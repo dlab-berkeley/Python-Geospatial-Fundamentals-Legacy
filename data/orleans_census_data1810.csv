@@ -1,0 +1,21 @@
+GISJOIN,YEAR,STATE,COUNTY,total_pop,nwfree_pop,nwslave_pop,white_pop,non_whitepop
+G4170015,1810,Orleans Territory,Ascension,2219,47,1031,1141,1078
+G4170035,1810,Orleans Territory,Assumption,2472,10,547,1915,557
+G4170055,1810,Orleans Territory,Attakapas,7369,278,3132,3959,3410
+G4170075,1810,Orleans Territory,Avoyelles,1209,22,404,783,426
+G4170095,1810,Orleans Territory,Catahoula,1164,8,348,808,356
+G4170115,1810,Orleans Territory,Concordia,2895,35,1581,1279,1616
+G4170135,1810,Orleans Territory,Iberville,2679,45,1205,1429,1250
+G4170155,1810,Orleans Territory,Lafourche,1995,15,289,1691,304
+G4170175,1810,Orleans Territory,Natchitoches,2870,181,1476,1213,1657
+G4170195,1810,Orleans Territory,Opelousas,5048,389,1670,2989,2059
+G4170215,1810,Orleans Territory,Orleans,24552,5727,10824,8001,16551
+G4170235,1810,Orleans Territory,Ouachitta,1077,9,284,784,293
+G4170255,1810,Orleans Territory,Plaquemines,1549,239,753,557,992
+G4170275,1810,Orleans Territory,Pointe Coupee,4539,104,3187,1248,3291
+G4170295,1810,Orleans Territory,Rapides,2200,123,1081,996,1204
+G4170315,1810,Orleans Territory,St Bernard,1020,10,382,628,392
+G4170335,1810,Orleans Territory,St Charles,3291,150,2321,820,2471
+G4170355,1810,Orleans Territory,St James,3955,41,1952,1962,1993
+G4170375,1810,Orleans Territory,St John Baptiste,2990,70,1518,1402,1588
+G4170395,1810,Orleans Territory,West Baton Rouge,1463,82,675,706,757
