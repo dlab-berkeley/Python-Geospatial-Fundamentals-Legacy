@@ -17,3 +17,4 @@ Insert the URL to this github repo: https://github.com/dlab-geo
 
 Then, open the notebook **geopandas_intro_for_gcollab.ipynb**
 
+*If you are warned that this is not a Google notebook, select "Run anyway".*
