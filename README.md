@@ -14,3 +14,6 @@ From the **File** menu select **Open Notebook**
 Click on the **GitHUB** tab
 
 Insert the URL to this github repo: https://github.com/dlab-geo
+
+Then, open the notebook **geopandas_intro_for_gcollab.ipynb**
+
