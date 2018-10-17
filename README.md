@@ -21,7 +21,7 @@ if str(x).find('geopandas_intro') < 0:
   !git clone https://github.com/dlab-geo/geopandas_intro
 else:
   print('You already have the files')
-print("Got to the File menu and select Open > Geopandas_intro_for_gcollab.ipynb to open the notebook in Google Collab")
+print("Got to the File menu and select Open Notebook > Geopandas_intro_for_gcollab.ipynb to open the notebook in Google Collab")
 
 </pre>
 
