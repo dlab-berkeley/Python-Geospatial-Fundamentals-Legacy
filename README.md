@@ -21,6 +21,4 @@ Then, open the notebook **geopandas_intro_lsc.ipynb**
 
 ### Or use the badge
 
-```markdown
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dlab-geo/geopandas_intro/blob/master/geopandas_intro_lsc.ipynb)
-```
