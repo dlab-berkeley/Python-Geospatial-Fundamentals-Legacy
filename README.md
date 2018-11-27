@@ -2,7 +2,7 @@
 Intro to Geospatial data in Python with Geopandas for Digital Humanities 101
 
 ### Try it on mybinder.org
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-geo/geopandas_intro/master?filepath=Geopandas_intro_lsc.ipynb)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-geo/geopandas_intro/master?filepath=geopandas_intro_lsc.ipynb)
 
 
 ### Try it on Google Collab
