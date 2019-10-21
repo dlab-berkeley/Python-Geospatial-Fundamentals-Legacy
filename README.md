@@ -12,7 +12,7 @@ Click on the **GitHUB** tab
 
 Insert the URL to this github repo: https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python
 
-Then, open the notebook **Geopandas_Intro_Sp2019_GC_may6.ipynb**
+Then, open the notebook **Geopandas_Intro_F2019_GC.ipynb**
 
 *If you are warned that this is not a Google notebook, select "Run anyway".*
 
