@@ -16,3 +16,7 @@ Then, open the notebook **Geopandas_Intro_F2019_GC.ipynb**
 
 *If you are warned that this is not a Google notebook, select "Run anyway".*
 
+## Save a copy of the file to DRIVE to be able to make and save edits 
+
+### When you are done, you can select **FIle > Download *.ipynb** to save your work locally.
+
