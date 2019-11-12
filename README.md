@@ -1,5 +1,5 @@
 # Geospatial Fundamentals in Python with Geopandas
-A two-day (6 hour) introduction to working with Geospatial data in Python with Geopandas.
+A two-day (4-6 hour) introduction to working with Geospatial data in Python with Geopandas.
 
 
 ### Try it on Google Collab
