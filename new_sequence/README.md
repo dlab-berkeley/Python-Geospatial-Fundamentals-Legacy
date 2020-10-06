@@ -8,6 +8,7 @@ You'll probably get the most out of this workshop if you a basis in Python and P
 D-Lab Workshops:
  - [Python Fundamentals](https://github.com/dlab-berkeley/python-fundamentals)
  - [Pandas](https://github.com/dlab-berkeley/introduction-to-pandas)
+
 Other:
  - [Learn Python on Kaggle](https://www.kaggle.com/learn/python)
  - [Programming in Python - Software Carpentry](http://swcarpentry.github.io/python-novice-inflammation/)
