@@ -8,6 +8,7 @@ You'll probably get the most out of this workshop if you a basis in Python and P
 D-Lab Workshops:
  - [Python Fundamentals](https://github.com/dlab-berkeley/python-fundamentals)
  - [Pandas](https://github.com/dlab-berkeley/introduction-to-pandas)
+
 Other:
  - [Learn Python on Kaggle](https://www.kaggle.com/learn/python)
  - [Programming in Python - Software Carpentry](http://swcarpentry.github.io/python-novice-inflammation/)
@@ -61,3 +62,16 @@ $ conda activate geo_env
 Once you activate the environment your notebooks will have access to all the packages installed therein.
 
 However, once you close the terminal window you will exit this virtual environment and return to your base Python environment. That means you need to activate the environment each time you want to run the geo notebooks.
+
+
+---
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="../assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+      
