@@ -24,7 +24,7 @@ Anaconda is a free and open-source distribution of Python. Anaconda installs IDE
 Follow this link to download Anaconda: https://www.anaconda.com/distribution/#windowsDownload. The same link can be used for Mac, Windows, and Linux. 
 
 We recommend downloading the latest version, which will be Python 3. There is a lot of code written in Python 2 but support for that version is ending this year and will be difficult to work with in the future.
-<img src="img/anaconda_download_instructions.png" width="650">
+<img src="../assets/images/anaconda_download_instructions.png" width="650">
     
 Open the .exe file that was downloaded and follow the instructions in the installation wizard prompt.
 
@@ -32,7 +32,7 @@ Open the .exe file that was downloaded and follow the instructions in the instal
 
 Once installation is complete open Anaconda Navigator and launch Jupyter Notebook. 
 
-<img src="img/anaconda_navigator_launch.png" width="650">
+<img src="../assets/images/anaconda_navigator_launch.png" width="650">
 
 Jupyter Notebook will open in your web browser (it does not require internet to work). In Jupyter, navigate to the folder where you saved the code file you plan to use and open the .ipynb file (the extension for Jupyter Notebook files written in Python) to view it in the Notebook.
 
