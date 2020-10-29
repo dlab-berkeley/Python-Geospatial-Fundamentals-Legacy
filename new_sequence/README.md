@@ -75,7 +75,7 @@ Jupyter Notebook will open in your web browser (it does not require internet to 
 
 > <img src="../assets/images/anaconda3_the terminal.png" width="650">
 
-- In the terminal window, type the commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment:
+- In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are shown in the green box in the image below.:
 
 > <img src="../assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
 
