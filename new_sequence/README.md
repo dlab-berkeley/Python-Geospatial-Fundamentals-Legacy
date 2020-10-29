@@ -57,24 +57,27 @@ Open the .exe file that was downloaded and follow the instructions in the instal
 
 Once installation is complete open Anaconda Navigator and launch Jupyter Notebook. 
 
-<img src="../assets/images/anaconda_navigator_launch.png" width="650">
+> <img src="../assets/images/anaconda_navigator_launch.png" width="650">
 
 Jupyter Notebook will open in your web browser (it does not require internet to work). In Jupyter, navigate to the folder where you saved the code file you plan to use and open the .ipynb file (the extension for Jupyter Notebook files written in Python) to view it in the Notebook.
 
 ## 2.0 Installing Geopandas
 
 - From within Anaconda Navigator click on the `Environments` selection in the left sidebar menu
-<img src="../assets/images/anaconda1_navigator_home.png" width="650">
+
+> <img src="../assets/images/anaconda1_navigator_home.png" width="650">
 
 - Click on the arrow to the right of your `base (root)` environment and select **Open Terminal** 
-<img src="../assets/images/anaconda2_base_open_teriminal.png" width="650>
+
+> <img src="../assets/images/anaconda2_base_open_teriminal.png" width="650">
 
 - This will give you access to the command line interface (CLI) on your computer in a window that looks like this:
-<img src="../assets/images/anaconda3_the terminal.png" width="650">
+
+> <img src="../assets/images/anaconda3_the terminal.png" width="650">
 
 - In the terminal window, type the commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment:
 
-<img src="../assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
+> <img src="../assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
 
 - Additionally install some needed software in your new `geo_env` by entering the following commands, one at a time:
 
