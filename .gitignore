@@ -1,2 +1,4 @@
-# Jupyter Notebook
+.DS_Store
+
 .ipynb_checkpoints
+*/outdata
