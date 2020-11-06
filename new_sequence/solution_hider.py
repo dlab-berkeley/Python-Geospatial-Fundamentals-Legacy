@@ -1,5 +1,4 @@
-from IPython.display import HTML
-import random
+from IPython.display import display, HTML
 
 """
 Provides a function that can be called within a
@@ -9,7 +8,7 @@ cells in D-Lab workshops.
 
 Made from code taken and tweaked from both
 [here](https://stackoverflow.com/questions/31517194/how-to-hide-one-specific-cell-input-or-output-in-ipython-notebook)
-and [here](https://stackoverflow.com/questions/27934885/how-to-hide-code-from-cells-in-ipython-notebook-visualized-with-nbviewer).
+and [here](https://stackoverflow.com/questions/27934885/how-to-hide-code-from-cells-in-ipython-notebook-visualized-with-nbviewer) and [here](https://www.xspdf.com/help/50518335.html).
 """
 
 
@@ -20,18 +19,23 @@ def hide_solution():
     D-Lab workshop exercises) and provides
     a toggle button for revealing and hiding the input.
     """
-    html = '''<script>
-            code_show=true; 
-            function code_toggle() {
-             if (code_show){
-             $('div.cell.code_cell.rendered.selected div.input').hide();
-             } else {
-             $('div.cell.code_cell.rendered.selected div.input').show();
-             }
-             code_show = !code_show
-            } 
-            $( document ).ready(code_toggle);
-            </script>
-            <form action="javascript:code_toggle()"><input type="submit" value="CLICK TO TOGGLE SOLUTION"></form>'''
-    return HTML(html)
+    toggle_code_str = '''
+    <form action="javascript:code_toggle()"><input type="submit" id="toggleButton" value="CLICK TO TOGGLE SOLUTION"></form>
+    '''
+
+    toggle_code_prepare_str = '''
+        <script>
+        function code_toggle() {
+            if ($('div.cell.code_cell.rendered.selected div.input').css('display')!='none'){
+                $('div.cell.code_cell.rendered.selected div.input').hide();
+            } else {
+                $('div.cell.code_cell.rendered.selected div.input').show();
+            }
+        }
+        </script>
+
+    '''
+
+    return display(HTML(toggle_code_prepare_str + toggle_code_str))
+
 
