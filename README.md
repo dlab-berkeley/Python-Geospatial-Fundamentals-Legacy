@@ -49,7 +49,7 @@ Follow this link to download Anaconda: https://www.anaconda.com/distribution/#wi
 
 
 We recommend downloading the latest version, which will be Python 3. There is a lot of code written in Python 2 but support for that version is ending this year and will be difficult to work with in the future.
-<img src="../assets/images/anaconda_download_instructions.png" width="650">
+<img src="assets/images/anaconda_download_instructions.png" width="650">
     
 Open the .exe file that was downloaded and follow the instructions in the installation wizard prompt.
 
