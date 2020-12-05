@@ -75,22 +75,24 @@ Jupyter Notebook will open in your web browser (it does not require internet to 
 
 > <img src="assets/images/anaconda3_the terminal.png" width="650">
 
-- In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are shown in the green box in the image below.:
-
-> <img src="assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
-
-- Additionally install some needed software in your new `geo_env` by entering the following commands, one at a time:
+- Install some needed software by entering the following commands, one at a time:
 
 ```
+conda install python=3 geopandas
 conda install juypter
 conda install matplotlib
 conda install descartes
 conda install mapclassify
 conda install contextily
 ```
+Once you have those libraries all installed you will be able to go to Anaconda Navigator, launch a `Jupyter Notebook`, navigate to the workshop files and run all of the notebooks.
 
-Once you have those libraries all installed you will be able to select your `geo_env` in Anaconda Navigator, launch a `Jupyter Notebook`, navigate to the workshop files  and run all of the notebooks.
 
+*Optionally you can create a virtual environment In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are shown in the green box in the image below:*
+
+> <img src="assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
+
+*After creating your virtual environment, you can process and install the rest of your packages listed above. You will be able to select your `geo_env` in Anaconda Navigator.*
 
 
 
