@@ -45,10 +45,10 @@ Anaconda is a free and open-source distribution of Python. Anaconda installs IDE
 
 ### 1.1 Download Anaconda:
 
-Follow this link to download Anaconda: https://www.anaconda.com/distribution/#windowsDownload. The same link can be used for Mac, Windows, and Linux. 
+Follow this link to download Anaconda: https://www.anaconda.com/distribution. The same link can be used for Mac, Windows, and Linux. 
 
 
-We recommend downloading the latest version, which will be Python 3. There is a lot of code written in Python 2 but support for that version is ending this year and will be difficult to work with in the future.
+We recommend downloading the latest version, which will be Python 3.
 <img src="assets/images/anaconda_download_instructions.png" width="650">
     
 Open the .exe file that was downloaded and follow the instructions in the installation wizard prompt.
@@ -88,9 +88,13 @@ conda install contextily
 Once you have those libraries all installed you will be able to go to Anaconda Navigator, launch a `Jupyter Notebook`, navigate to the workshop files and run all of the notebooks.
 
 
-*Optionally you can create a virtual environment In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are shown in the green box in the image below:*
+*Optionally you can create a virtual environment In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are:
 
-> <img src="assets/images/anaconda4_commands_from_geopandas_webpage.png" width="650">
+> `conda create -n geo_env`
+> `conda activate geo_env`
+> `conda config --env --add channels conda-forge`
+> `conda config --env --set channel_priority strict`
+> `conda install python=3 geopandas`
 
 *After creating your virtual environment, you can process and install the rest of your packages listed above. You will be able to select your `geo_env` in Anaconda Navigator.*
 
