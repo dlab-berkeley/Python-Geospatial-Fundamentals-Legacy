@@ -91,9 +91,13 @@ Once you have those libraries all installed you will be able to go to Anaconda N
 *Optionally you can create a virtual environment In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are:
 
 > `conda create -n geo_env`
+
 > `conda activate geo_env`
+
 > `conda config --env --add channels conda-forge`
+
 > `conda config --env --set channel_priority strict`
+
 > `conda install python=3 geopandas`
 
 *After creating your virtual environment, you can process and install the rest of your packages listed above. You will be able to select your `geo_env` in Anaconda Navigator.*
