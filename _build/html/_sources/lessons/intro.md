@@ -1,16 +1,33 @@
-# Welcome to Geospatial Fundamentals in Python
+# Welcome to Geospatial Fundamentals in Python: From A to Z to Fancy
 
 ## Overview
 
-Geospatial data are an important component of data visualization and analysis in the social sciences, humanities, and elsewhere. The Python programming language is a great platform for exploring these data and integrating them into your research. 
+Geospatial data are an important component of data visualization and analysis in the social sciences, humanities, and elsewhere. The Python programming language is a great platform for exploring these data and integrating them into your research. This JupyterBook explores everything from *A to Z* to get started to work with Geospatial data in Python. We then take you all the way to *fancy* to work with online data sources, basemaps, interactive maps, geocoding, tessellation, and raster data.
 
-### Geospatial Data in Python, part I: Getting started with spatial dataframes
+### 1. Getting Started with Spatial Dataframes
 
-Part one of this two-part workshop series will introduce basic methods for working with geospatial data in Python using the [GeoPandas library](https://geopandas.org). Participants will learn how to import and export spatial data and store them as GeoPandas GeoDataFrames (or spatial dataframes). We will explore and compare several methods for mapping the data including the GeoPandas plot function and the matplotlib library. We will review coordinate reference systems and methods for reading, defining and transforming these. Note, this workshop focuses on vector spatial data.
+Part one will introduce basic methods for working with geospatial data in Python using the [GeoPandas library](https://geopandas.org). You will learn how to import and export spatial data and store them as GeoPandas GeoDataFrames (or spatial dataframes). We will explore and compare several methods for mapping the data including the GeoPandas plot function and the matplotlib library. We will review coordinate reference systems and methods for reading, defining and transforming these. 
 
-### Geospatial Data in Python, part 2: Geoprocessing and analysis
 
-Part two of this two-part workshop series will dive deeper into data driven mapping in Python, using color palettes and data classification to communicate information with maps. We will also introduce basic methods for processing spatial data, which are the building blocks of common spatial analysis workflows. Note, this workshop focuses on vector spatial data.
+### 2. Geoprocessing and Analysis
+
+Part two dives deeper into data driven mapping in Python, using color palettes and data classification to communicate information with maps. We will also introduce basic methods for processing spatial data, which are the building blocks of common spatial analysis workflows. 
+
+
+### 3. Exercises
+
+Part 3 provides two full workflows for you to try to work through on your own. These exercises uses techniques and concepts from both the first and second parts.
+
+### 4. Get Fancy
+
+Part 4 dives builds off of the foundational work from the earlier sections. The topics included involve:
+- Reading in online sources data
+- Adding basemaps
+- Creating interactive maps
+- Geocoding addresses
+- Using Altair for plotting
+- Creating voronoi tessellations
+- Starting out with raster data
 
 
 ###  Pre-requisites
