@@ -1,0 +1,49 @@
+
+- file: lessons/intro
+  numbered: false
+
+
+- part: Introduction to Geospatial Concepts
+  chapters:
+  - file: lessons/01_Overview_Geospatial_Data
+    title: Overview of Geospatial Data
+
+- part: Getting started with spatial dataframes
+  chapters:
+  - file: lessons/02_Introduction_to_GeoPandas
+    title: Introduction to GeoPandas
+  - file: lessons/03_CRS_Map_Projections
+    title: Coordinate Reference Systems (CRS) & Map Projections
+  - file: lessons/04_More_Data_More_Maps
+    title: More Data, More Maps!
+
+- part: Geoprocessing and analysis
+  chapters:
+  - file: lessons/06_Spatial_Queries
+    title: Spatial Queries
+  - file: lessons/07_Joins_and_Aggregation
+    title: Attribute and Spatial Joins
+
+- part: Exercises
+  chapters:
+  - file: lessons/08_Pulling_It_All_Together
+    title: Pulling it All Together
+  - file: lessons/09_ON_YOUR_OWN_A_Full_Workflow
+    title: Another Full Workflow
+
+- part: Get Fancy
+  chapters:
+  - file: lessons/10_OPTIONAL_Fetching_Data
+    title: Read in Data from Online Sources
+  - file: lessons/11_OPTIONAL_Basemap_with_Contextily
+    title: Adding Basemaps with Contextily
+  - file: lessons/12_OPTIONAL_Interactive_Mapping_with_Folium
+    title: Interactive Mapping with Folium
+  - file: lessons/13_OPTIONAL_geocoding
+    title: Geocoding Addresses
+  - file: lessons/14_OPTIONAL_Plotting_and_Mapping_with_Altair
+    title: Plotting and Mapping with Altair
+  - file: lessons/15_OPTIONAL_Voronoi_Tessellation
+    title: Voronoi Tessellation
+  - file: lessons/16_OPTIONAL_Introduction_to_Raster_Data
+    title: Introduction to Raster Data
