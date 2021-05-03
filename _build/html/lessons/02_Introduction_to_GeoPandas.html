@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 2. Introduction to Geopandas &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3. Coordinate Reference Systems (CRS) &amp; Map Projections" href="03_CRS_Map_Projections.html" />
+    <link rel="prev" title="Lesson 1. Overview of Geospatial Data" href="01_Overview_Geospatial_Data.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/02_Introduction_to_GeoPandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/02_Introduction_to_GeoPandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-geopandas">
+   2.1 What is GeoPandas?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geopandas-and-related-geospatial-packages">
+     GeoPandas and related Geospatial Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geopandas-pandas-geo">
+     GeoPandas = pandas + geo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import Libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-a-shapefile">
+   2.2 Read in a shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explore-the-geodataframe">
+   2.3 Explore the GeoDataFrame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-geopandas-geodataframe">
+     The GeoPandas GeoDataFrame
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-the-geodataframe">
+   2.4 Plot the GeoDataFrame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geopandas-geometries">
+     Geopandas Geometries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#subset-the-geodataframe">
+   2.5 Subset the GeoDataframe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#save-your-data">
+   2.6 Save your Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   2.7 Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-io-manipulation-and-mapping">
+   Exercise: IO, Manipulation, and Mapping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#double-click-to-see-solution">
+   Double-click to see solution!
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-2-introduction-to-geopandas">
+<h1>Lesson 2. Introduction to Geopandas<a class="headerlink" href="#lesson-2-introduction-to-geopandas" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson we’ll learn about a package that is core to using geospatial data in Python. We’ll go through the structure of the data (it’s not too different from regular DataFrames!), geometries, shapefiles, and how to save your hard work.</p>
+<ul class="simple">
+<li><p>2.1 What is GeoPandas?</p></li>
+<li><p>2.2 Read in a shapefile</p></li>
+<li><p>2.3 Explore the GeoDataFrame</p></li>
+<li><p>2.4 Plot the GeoDataFrame</p></li>
+<li><p>2.5 Subset the GeoDataFrame</p></li>
+<li><p>2.6 Save your data</p></li>
+<li><p>2.7 Recap</p></li>
+<li><p><strong>Exercise</strong>: IO, Manipulation, and Mapping</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/california_counties/CaliforniaCounties.shp’</p></li>
+<li><p>‘notebook_data/census/Places/cb_2018_06_place_500k.zip’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 30 minutes</p></li>
+<li><p>Exercises: 5 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="what-is-geopandas">
+<h2>2.1 What is GeoPandas?<a class="headerlink" href="#what-is-geopandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="geopandas-and-related-geospatial-packages">
+<h3>GeoPandas and related Geospatial Packages<a class="headerlink" href="#geopandas-and-related-geospatial-packages" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://geopandas.org/">GeoPandas</a> is a relatively new package that makes it easier to work with geospatial data in Python. In the last few years it has grown more powerful and stable. This is really great because previously it was quite complex to work with geospatial data in Python. GeoPandas is now the go-to package for working with <code class="docutils literal notranslate"><span class="pre">vector</span></code> geospatial data in Python.</p>
+<blockquote>
+<div><p><strong>Protip</strong>: If you work with <code class="docutils literal notranslate"><span class="pre">raster</span></code> data you will want to checkout the <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/">rasterio</a> package. We will not cover raster data in this tutorial.</p>
+</div></blockquote>
+</div>
+<div class="section" id="geopandas-pandas-geo">
+<h3>GeoPandas = pandas + geo<a class="headerlink" href="#geopandas-pandas-geo" title="Permalink to this headline">¶</a></h3>
+<p>GeoPandas gives you access to all of the functionality of <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, which is the primary data analysis tool for working with tabular data in Python. GeoPandas extends pandas with attributes and methods for working with geospatial data.</p>
+</div>
+<div class="section" id="import-libraries">
+<h3>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start by importing the libraries that we will use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="read-in-a-shapefile">
+<h2>2.2 Read in a shapefile<a class="headerlink" href="#read-in-a-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>As we discussed in the initial geospatial overview, a <em>shapefile</em> is one type of geospatial data that holds vector data.</p>
+<blockquote>
+<div><p>To learn more about ESRI Shapefiles, this is a good place to start: <a class="reference external" href="https://en.wikipedia.org/wiki/Shapefile">ESRI Shapefile Wiki Page</a></p>
+</div></blockquote>
+<p>The tricky thing to remember about shapefiles is that they’re actually a collection of 3 to 9+ files together. Here’s a list of all the files that can make up a shapefile:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">shp</span></code>: The main file that stores the feature geometry</p>
+<p><code class="docutils literal notranslate"><span class="pre">shx</span></code>: The index file that stores the index of the feature geometry</p>
+<p><code class="docutils literal notranslate"><span class="pre">dbf</span></code>: The dBASE table that stores the attribute information of features</p>
+<p><code class="docutils literal notranslate"><span class="pre">prj</span></code>: The file that stores the coordinate system information. (should be required!)</p>
+<p><code class="docutils literal notranslate"><span class="pre">xml</span></code>: Metadata —Stores information about the shapefile.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cpg</span></code>: Specifies the code page for identifying the character set to be used.</p>
+</div></blockquote>
+<p>But it remains the most commonly used file format for vector spatial data, and it’s really easy to visualize in one go!</p>
+<p>Let’s try it out with California counties, and use <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> for the first time. <code class="docutils literal notranslate"><span class="pre">gpd.read_file</span></code> is a flexible function that let’s you read in many different types of geospatial data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in the counties shapefile</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/california_counties/CaliforniaCounties.shp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot out California counties</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bam! Amazing! We’re off to a running start.</p>
+</div>
+<div class="section" id="explore-the-geodataframe">
+<h2>2.3 Explore the GeoDataFrame<a class="headerlink" href="#explore-the-geodataframe" title="Permalink to this headline">¶</a></h2>
+<p>Before we get in too deep, let’s discuss what a <em>GeoDataFrame</em> is and how it’s different from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <em>DataFrames</em>.</p>
+<div class="section" id="the-geopandas-geodataframe">
+<h3>The GeoPandas GeoDataFrame<a class="headerlink" href="#the-geopandas-geodataframe" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://geopandas.org/data_structures.html#geodataframe">GeoPandas GeoDataFrame</a>, or <code class="docutils literal notranslate"><span class="pre">gdf</span></code> for short, is just like a pandas dataframe (<code class="docutils literal notranslate"><span class="pre">df</span></code>) but with an extra geometry column and methods &amp; attributes that work on that column. I repeat because it’s important:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">GeoPandas</span> <span class="pre">GeoDataFrame</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">pandas</span> <span class="pre">DataFrame</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">geometry</span> <span class="pre">column</span> <span class="pre">and</span> <span class="pre">methods</span> <span class="pre">&amp;</span> <span class="pre">attributes</span> <span class="pre">that</span> <span class="pre">work</span> <span class="pre">on</span> <span class="pre">that</span> <span class="pre">column.</span></code></p>
+</div></blockquote>
+<blockquote>
+<div><p>This means all the methods and attributes of a pandas DataFrame also work on a Geopandas GeoDataFrame!!</p>
+</div></blockquote>
+<p>With that in mind, let’s start exploring out dataframe just like we would do in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the number of rows and columns in counties</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the first couple of rows in our geodataframe</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at all the variables included in our data</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like we have a good amount of information about the total population for different years and the densities, as well as race, age, and occupancy info.</p>
+</div>
+</div>
+<div class="section" id="plot-the-geodataframe">
+<h2>2.4 Plot the GeoDataFrame<a class="headerlink" href="#plot-the-geodataframe" title="Permalink to this headline">¶</a></h2>
+<p>We’re able to plot our GeoDataFrame because of the extra <code class="docutils literal notranslate"><span class="pre">geometry</span></code> column.</p>
+<div class="section" id="geopandas-geometries">
+<h3>Geopandas Geometries<a class="headerlink" href="#geopandas-geometries" title="Permalink to this headline">¶</a></h3>
+<p>There are three main types of geometries that can be associated with your geodataframe: points, lines and polygons:</p>
+<p><img src ="assets/images/fig_create4.png" width="600"></img></p>
+<p>In the geodataframe these geometries are encoded in a format known as <a class="reference external" href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-Known Text (WKT)</a>. For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>POINT (30 10)</p></li>
+<li><p>LINESTRING (30 10, 10 30, 40 40)</p></li>
+<li><p>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</p></li>
+</ul>
+<p><em>where coordinates are separated by a space and coordinate pairs by a comma</em></p>
+</div></blockquote>
+<p>Your geodataframe may also include the variants <strong>multipoints, multilines, and multipolgyons</strong> if the row-level feature of interest is comprised of multiple parts. For example, a geodataframe of states, where one row represents one state, would have a POLYGON geometry for Utah but MULTIPOLYGON for Hawaii, which includes many islands.</p>
+<blockquote>
+<div><p>It’s ok to mix and match geometries of the same family, e.g., POLYGON and MULTIPOLYGON, in the same geodatafame.</p>
+</div></blockquote>
+<p><img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="20" align=left >  <strong>Question</strong> What kind of geometry would a roads geodataframe have? What about one that includes landmarks in the San Francisco Bay Area?</p>
+<p>You can check the types of geometries in a geodataframe or a subset of the geodataframe by combining the <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">unique</span></code> methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s check what geometries we have in our counties geodataframe</span>
+<span class="n">counties</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s check to make sure that we only have polygons and multipolygons </span>
+<span class="n">counties</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just like with other plots you can make in Python, we can start customizing our map with colors, size, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can run the following line of code to get more info about the parameters we can specify:</span>
+
+<span class="o">?</span>counties.plot
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make the figure size bigger</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> 
+              <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span>  <span class="c1"># grey colored border lines</span>
+              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span> <span class="p">,</span> <span class="c1"># fill in our counties as pink</span>
+              <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>       <span class="c1"># make the linedwith a width of 2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="subset-the-geodataframe">
+<h2>2.5 Subset the GeoDataframe<a class="headerlink" href="#subset-the-geodataframe" title="Permalink to this headline">¶</a></h2>
+<p>Since we’ll be focusing on Berkeley later in the workshop, let’s subset our GeoDataFrame to just be for Alameda County.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See all county names included in our dataset</span>
+<span class="n">counties</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like Alameda county is specified as “Alameda” in this dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can create a new geodataframe called <code class="docutils literal notranslate"><span class="pre">alameda_county</span></code> that is a subset of our counties geodataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Alameda&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot our newly subsetted geodataframe</span>
+<span class="n">alameda_county</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nice! Looks like we have what we were looking for.</p>
+<p><em>FYI</em>: You can also make dynamic plots of one or more county without saving to a new gdf.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bay_area_counties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alameda&#39;</span><span class="p">,</span> <span class="s1">&#39;Contra Costa&#39;</span><span class="p">,</span> <span class="s1">&#39;Marin&#39;</span><span class="p">,</span> <span class="s1">&#39;Napa&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;San Mateo&#39;</span><span class="p">,</span> <span class="s1">&#39;Santa Clara&#39;</span><span class="p">,</span> <span class="s1">&#39;Santa Cruz&#39;</span><span class="p">,</span> <span class="s1">&#39;Solano&#39;</span><span class="p">,</span> <span class="s1">&#39;Sonoma&#39;</span><span class="p">]</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bay_area_counties</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="save-your-data">
+<h2>2.6 Save your Data<a class="headerlink" href="#save-your-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s not forget to save out our Alameda County geodataframe <code class="docutils literal notranslate"><span class="pre">alameda_county</span></code>. This way we won’t need to repeat the processing steps and attribute join we did above.</p>
+<p>We can save it as a shapefile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outdata/alameda_county.shp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of the problems of saving to a shapefile is that our column names get truncated to 10 characters (a shapefile limitation.)</p>
+<p>Instead of renaming all columns with obscure names that are less than 10 characters, we can save our GeoDataFrame to a spatial data file format that does not have this limation - <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/GeoPackage">GPKG</a> (geopackage) file.</p>
+<ul class="simple">
+<li><p>These formats have the added benefit of outputting only one file in contrast tothe multi-file shapefile format.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outdata/alameda_county.json&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outdata/alameda_county.gpkg&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can read these in, just as you would a shapefile with <code class="docutils literal notranslate"><span class="pre">gpd.read_file</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county_test</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;outdata/alameda_county.gpkg&quot;</span><span class="p">)</span>
+<span class="n">alameda_county_test</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alameda_county_test2</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;outdata/alameda_county.json&quot;</span><span class="p">)</span>
+<span class="n">alameda_county_test2</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are also many other formats we could use for data output.</p>
+<p><strong>NOTE</strong>: If you’re working with point data (i.e. a single latitude and longitude value per feature),
+then CSV might be a good option!</p>
+</div>
+<div class="section" id="recap">
+<h2>2.7 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson we learned about…</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> package</p></li>
+<li><p>Reading in shapefiles</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpd.read_file</span></code></p></li>
+</ul>
+</li>
+<li><p>GeoDataFrame structures</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code></p></li>
+</ul>
+</li>
+<li><p>Plotting GeoDataFrames</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span></code></p></li>
+</ul>
+</li>
+<li><p>Subsetting GeoDatFrames</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">loc</span></code></p></li>
+</ul>
+</li>
+<li><p>Saving out GeoDataFrames</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_file</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="exercise-io-manipulation-and-mapping">
+<h2>Exercise: IO, Manipulation, and Mapping<a class="headerlink" href="#exercise-io-manipulation-and-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Now you’ll get a chance to practice the operations we learned above.</p>
+<p>In the following cell, compose code to:</p>
+<ol class="simple">
+<li><p>Read in the California places data (<code class="docutils literal notranslate"><span class="pre">notebook_data/census/Places/cb_2018_06_place_500k.zip</span></code>)</p></li>
+<li><p>Subset the data to Berkeley</p></li>
+<li><p>Plot, and customize as desired</p></li>
+<li><p>Save out as a shapefile (<code class="docutils literal notranslate"><span class="pre">outdata/berkeley_places.shp</span></code>)</p></li>
+</ol>
+<p><em>Note: pulling in a zipped shapefile has the same syntax as just pulling in a shapefile. The only difference is that insead of just putting in the filepath you’ll want to write <code class="docutils literal notranslate"><span class="pre">zip://notebook_data/census/Places/cb_2018_06_place_500k.zip</span></code></em></p>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h2>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+# SOLUTION
+
+# 1. Read in the California places data 
+california_places = gpd.read_file('zip://notebook_data/census/Places/cb_2018_06_place_500k.zip')
+california_places.head()
+
+# 2. Subset the data to Berkeley
+berkeley_places = california_places.loc[california_places['NAME']=='Berkeley'].copy().reset_index(drop=True)
+
+# 3. Plot and customize
+berkeley_places.plot(edgecolor='grey', color='lightgreen')
+
+# 4. Save to a shapefile
+berkeley_places.to_file("outdata/berkeley_places.shp")
+
+--><hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="01_Overview_Geospatial_Data.html" title="previous page">Lesson 1. Overview of Geospatial Data</a>
+    <a class='right-next' id="next-link" href="03_CRS_Map_Projections.html" title="next page">Lesson 3. Coordinate Reference Systems (CRS) &amp; Map Projections</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

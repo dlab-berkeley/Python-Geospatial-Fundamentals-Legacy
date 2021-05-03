@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Search &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" />
+  <script src="searchindex.js" defer></script>
+  
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="#" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lessons/16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1 id="search-documentation">Search</h1>
+  <div id="fallback" class="admonition warning">
+  <script>$('#fallback').hide();</script>
+  <p>
+    Please activate JavaScript to enable the search
+    functionality.
+  </p>
+  </div>
+  <p>
+    From here you can search these documents. Enter your search
+    words into the box below and click "search". Note that the search
+    function will automatically search for all of the words. Pages
+    containing fewer words won't appear in the result list.
+  </p>
+  <form action="" method="get">
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" />
+    <input type="submit" value="search" />
+    <span id="search-progress" style="padding-left: 10px"></span>
+  </form>
+  
+  <div id="search-results">
+  
+  </div>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

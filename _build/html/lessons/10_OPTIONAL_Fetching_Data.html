@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>10. Read in Data from Online Sources + CSV to Geodataframe &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Adding Basemaps with Contextily" href="11_OPTIONAL_Basemap_with_Contextily.html" />
+    <link rel="prev" title="Lesson 9. On Your Own: A Full Workflow" href="09_ON_YOUR_OWN_A_Full_Workflow.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/10_OPTIONAL_Fetching_Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/10_OPTIONAL_Fetching_Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   10.1 Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up">
+     Set-Up
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-file-from-a-url">
+   10.2 Read File from a url
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-the-data-from-the-url-read-it-using-geopandas-and-create-a-subset-of-only-berkeley-places">
+     Read the data from the url, read it using geopandas and create a subset of only Berkeley places
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#confirm-that-this-is-true">
+       CONFIRM THAT THIS IS TRUE
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-file-from-a-api">
+   10.3 Read in file from a API
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#berkeley-open-data-portal">
+     Berkeley Open Data portal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#berkeley-bike-network-data">
+     Berkeley Bike Network data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-data-via-a-python-library-osmnx">
+   10.4 Read in data via a Python library (OSMnx)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   10.5 Exercise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sf-open-data-portal">
+     SF Open Data portal
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sf-bike-network-data">
+       SF Bike Network data
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#double-click-here-to-see-solution">
+   Double-click here to see solution!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-data-from-a-csv-and-convert-to-geodataframe">
+   10.6 Read in Data from a CSV and convert to geodataframe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     10.7 Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Double-click here to see solution!
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="read-in-data-from-online-sources-csv-to-geodataframe">
+<h1>10. Read in Data from Online Sources + CSV to Geodataframe<a class="headerlink" href="#read-in-data-from-online-sources-csv-to-geodataframe" title="Permalink to this headline">¶</a></h1>
+<p>In this optional notebook we’ll be going over how to read data into a notebook from online sources.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#section1">10.1 Introduction </a></p></li>
+<li><p><a class="reference external" href="#section2">10.2 Read File from a url</a></p></li>
+<li><p><a class="reference external" href="#section3">10.3 Read File from an API</a></p></li>
+<li><p><a class="reference external" href="#section4">10.4 Read in Data from a Pyhton Library</a></p></li>
+<li><p><a class="reference external" href="#section5">10.5 Exercise</a></p></li>
+<li><p><a class="reference external" href="#section6">10.6 Read in Data from a CSV and convert to geodataframe</a></p></li>
+</ul>
+<br>
+<font color='grey'>
+<p><strong>DEVELOPER NOTES</strong>:</p>
+<ul class="simple">
+<li><p>Datasets used:</p>
+<ul>
+<li><p>Census Data: <a class="reference external" href="https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_tract_500k.zip">https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_tract_500k.zip</a></p></li>
+<li><p>SF Bikeway Data: <a class="reference external" href="https://data.sfgov.org/api/geospatial/ygmz-vaxd?method=export&amp;format=GeoJSON">https://data.sfgov.org/api/geospatial/ygmz-vaxd?method=export&amp;format=GeoJSON</a></p></li>
+<li><p>Berkeley Bikeway Data: <a class="reference external" href="https://data.cityofberkeley.info/api/geospatial/fgw9-98ic?method=export&amp;format=GeoJSON">https://data.cityofberkeley.info/api/geospatial/fgw9-98ic?method=export&amp;format=GeoJSON</a></p></li>
+<li><p>OSMNX Library SF and Berkeley Data</p></li>
+</ul>
+</li>
+</ul>
+<p><a id="section1"></a></p>
+<div class="section" id="introduction">
+<h2>10.1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the past examples, the data we have imported into our notebooks has come either from previously downloaded and saved files or from the census API. The goal of this notebook is to present other ways of accessing data, either from <strong>urls</strong>, other <strong>APIs</strong> or from predetermined <strong>Python libraries</strong>.</p>
+<div class="section" id="set-up">
+<h3>Set-Up<a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h3>
+<p>Let’s import the packages we need before we get started.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span><span class="p">,</span> <span class="n">Request</span>
+
+<span class="kn">import</span> <span class="nn">json</span> <span class="c1"># for working with JSON data</span>
+<span class="kn">import</span> <span class="nn">geojson</span> <span class="c1"># ditto for GeoJSON data - an extension of JSON with support for geographic data</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># more plotting stuff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="section2"></a></p>
+</div>
+</div>
+<div class="section" id="read-file-from-a-url">
+<h2>10.2 Read File from a url<a class="headerlink" href="#read-file-from-a-url" title="Permalink to this headline">¶</a></h2>
+<p>The following link shows the different shapefile data available through the Census Bureau <a class="reference external" href="https://www2.census.gov/geo/tiger/GENZ2018/shp/">website</a>. Clicking on any of the files will dowload the .zip file unto your computer.</p>
+<p>This notebook will show a workaround to access the file directly from the notebook, without having to go through the process of previously downloading the shapefile.</p>
+<p>For this example, we will download the cities for the state of California (<a class="reference external" href="https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_tract_500k.zip">cb_2018_06_tract_500k.zip</a>). Remember that California’s State FIPS code is 06, which is how we recognize that this dataset is associated with the State of California.</p>
+<div class="section" id="read-the-data-from-the-url-read-it-using-geopandas-and-create-a-subset-of-only-berkeley-places">
+<h3>Read the data from the url, read it using geopandas and create a subset of only Berkeley places<a class="headerlink" href="#read-the-data-from-the-url-read-it-using-geopandas-and-create-a-subset-of-only-berkeley-places" title="Permalink to this headline">¶</a></h3>
+<p>First, we’ll save the data from the url into a variable called <em>ca_places</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca_places</span> <span class="o">=</span> <span class="s2">&quot;https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_place_500k.zip&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll use geopandas to read the file and then we’ll visualize it to make sure we read it properly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">ca_places</span><span class="p">)</span>
+<span class="n">places</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span> <span class="c1">### This takes a little bit, because the file is fairly large</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="confirm-that-this-is-true">
+<h4>CONFIRM THAT THIS IS TRUE<a class="headerlink" href="#confirm-that-this-is-true" title="Permalink to this headline">¶</a></h4>
+<p>Notice that there are some spaces inside the boundaries of the state of California that are empty. These are unincorporated areas.</p>
+<p>However, say we are only interested in the City of Berkeley. Let’s examine the file to see how we could select the polygon fob Berkeley. We’ll take a look at which columns are included in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try filtering by Name</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span> <span class="o">=</span> <span class="n">places</span><span class="p">[</span><span class="n">places</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">]</span>
+<span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Awesome! This worked! Now we have a polygon with the boundaries of the City of Berkeley.</p>
+<p><a id="section3"></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="read-in-file-from-a-api">
+<h2>10.3 Read in file from a API<a class="headerlink" href="#read-in-file-from-a-api" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will be reading a file using an API, or Application Programming Interface. APIs are very useful, because they allow two different portals to talk to each other. For more information on APIs, take a look <a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface">here</a>.</p>
+<p>In this case, we will be using the City of Berkeley Open Data Portal’s API to read in information on the bike network to out notebook.</p>
+<p>Below you can find more information both on the City of Berkeley’s Open Data portal and on the bike network data.</p>
+<div class="section" id="berkeley-open-data-portal">
+<h3>Berkeley Open Data portal<a class="headerlink" href="#berkeley-open-data-portal" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://data.cityofberkeley.info/">https://data.cityofberkeley.info/</a></p>
+</div>
+<div class="section" id="berkeley-bike-network-data">
+<h3>Berkeley Bike Network data<a class="headerlink" href="#berkeley-bike-network-data" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://data.cityofberkeley.info/Transportation/Bicycle-Boulevards/fgw9-98ic">https://data.cityofberkeley.info/Transportation/Bicycle-Boulevards/fgw9-98ic</a></p>
+<p>We will be reading the geospatial data for the bike network of the City of Berkeley.</p>
+<p>As before, first we’ll save the data from the url into a variable called <em>berkeley_bike_ways</em> and then we’ll read it using geopandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley_bike_ways</span> <span class="o">=</span> <span class="s2">&quot;https://data.cityofberkeley.info/api/geospatial/fgw9-98ic?method=export&amp;format=GeoJSON&quot;</span>
+<span class="n">bikes</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">berkeley_bike_ways</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll plot the bikeways on top of the City of Berkeley polygon that we imported from the Census Bureau url</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">bikes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oops! Where did the bike lanes go? Well, python uses a default color for all plots, so the bike paths were plotted on top of the polygon in the exact same color. Let’s try to plot the bike lanes yellow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">bikes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we have a map that shows where the bike network of the City of Berkeley is located.</p>
+<p><a id="section4"></a></p>
+</div>
+</div>
+<div class="section" id="read-in-data-via-a-python-library-osmnx">
+<h2>10.4 Read in data via a Python library (OSMnx)<a class="headerlink" href="#read-in-data-via-a-python-library-osmnx" title="Permalink to this headline">¶</a></h2>
+<p>OSMnx is a Python library that lets you access Open Street Map’s street networks through an API.</p>
+<p>You can explore more of Open Street Maps <a class="reference external" href="https://www.openstreetmap.org/">here</a></p>
+<p>You can access the full documentation of OSMnx <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/index.html">here</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to install library</span>
+<span class="c1"># !pip install osmnx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the below cell does not run, you need to install the library first, by uncommmenting and running the cell above</p>
+<blockquote>
+<div><p><strong>Note</strong></p>
+<p>If you get a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> associated error you may need to uninstall and reinstall <code class="docutils literal notranslate"><span class="pre">numpy</span></code> as well as set up tools. Run the following lines of code in your terminal:
+<code>
+pip uninstall -y numpy
+pip uninstall -y setuptools
+pip install setuptools
+pip install numpy</code></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use the osmnx library to access data from Open Street Maps. Let’s try to load the Berkeley street map.
+We are using the graph_from_place function. To see the full documentation for the function, go to this link: <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.graph.graph_from_place">https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.graph.graph_from_place</a>.</p>
+<p>We need to define two arguments for the function: the <strong>query</strong> and the <strong>network type</strong></p>
+<ul class="simple">
+<li><p><strong>Query</strong>: For cities in the US, the query should follow the following format: “City Name, State Abbreviation, USA”</p></li>
+<li><p><strong>Network Type</strong>: This is where we define which network we are interested in. Some of the available options are:</p>
+<ul>
+<li><p>all</p></li>
+<li><p>drive</p></li>
+<li><p>walk</p></li>
+<li><p>bike</p></li>
+</ul>
+</li>
+</ul>
+<p>Let’s try to read the data for the vehicular network for Berkeley</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">place</span> <span class="o">=</span> <span class="s2">&quot;Berkeley, CA,  USA&quot;</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This took a while to read. Let’s take a look at how many elements were loaded from OSM for Berkeley</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the data type</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a new format. To get this into something that is familiar to us, we are going to extract the nodes and links by using the <em>graph_to_gdfs</em> function, which converts our data from a graph to two geodataframes. Because a street network is made up from nodes and links, and our geodatraframes can only have one geography type, the <em>graph_to_gdfs</em> returns 2 geodataframes: a node (point) and a street (line) geodataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span><span class="p">,</span> <span class="n">streets</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_to_gdfs</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="n">streets</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s try to put everything together in the same map (the limits of the city, the bike lanes and the streets)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">streets</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
+<span class="n">bikes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another feature that we can extract form OSMnx is the bus stops. To do this, we use the pois_from_place function (see full documentation <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.pois.pois_from_place">here</a>)</p>
+<p>This function requires two arguments: the <strong>query</strong> (same as above) and the <strong>tag</strong>:</p>
+<ul class="simple">
+<li><p><strong>Query</strong>: For cities in the US, the query should follow the following format: “City Name, State Abbreviation, USA”</p></li>
+<li><p><strong>Tag</strong>: This is where we define which tags we are interested in. There are many options available. You can find a list of tag features <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Map_Features#Highway">here</a>. These tags are coded as dictionaries. Bus stops are a value defined under the key highway, therefore, the format to call for bus stops looks like this: {‘highway’:’bus_stop’}</p></li>
+</ul>
+<p>Let’s access the bus stops using the same query defined for Berkeley</p>
+<blockquote>
+<div><p><strong>Note</strong></p>
+<p>If you are using an older version of <code class="docutils literal notranslate"><span class="pre">osmnx</span></code> you would be able to use the function <code class="docutils literal notranslate"><span class="pre">pois_from_place</span></code>. This and other functions such as <code class="docutils literal notranslate"><span class="pre">footprints_from_place</span></code> are deprecated as of July 2020. <code class="docutils literal notranslate"><span class="pre">geometries_from_place</span></code> is meant to replace these functions.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### fetch and map POIs from osmnx</span>
+<span class="n">busstops</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">geometries_from_place</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;highway&#39;</span><span class="p">:</span><span class="s1">&#39;bus_stop&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s check the data type busstops was read as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">busstops</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, busstops is already a geodataframe. Therefore, we can plot it as it is unto out map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">streets</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
+<span class="n">bikes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">busstops</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="section5"></a></p>
+</div>
+<div class="section" id="exercise">
+<h2>10.5 Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Repeat above for SF. The link for accessing the bikeways for SF is already given to you below.</p>
+<div class="section" id="sf-open-data-portal">
+<h3>SF Open Data portal<a class="headerlink" href="#sf-open-data-portal" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://datasf.org/opendata/">https://datasf.org/opendata/</a></p>
+<div class="section" id="sf-bike-network-data">
+<h4>SF Bike Network data<a class="headerlink" href="#sf-bike-network-data" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://data.sfgov.org/Transportation/SFMTA-Bikeway-Network/ygmz-vaxd">https://data.sfgov.org/Transportation/SFMTA-Bikeway-Network/ygmz-vaxd</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_bike_ways</span> <span class="o">=</span> <span class="s2">&quot;https://data.sfgov.org/api/geospatial/ygmz-vaxd?method=export&amp;format=GeoJSON&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-here-to-see-solution">
+<h2>Double-click here to see solution!<a class="headerlink" href="#double-click-here-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION:
+
+sf_bikes = gpd.read_file(sf_bike_ways)
+
+# Limit places data to San Francisco
+sf = places[places['NAME']=='San Francisco']
+
+# Set place to be for SF
+place = "San Francisco, CA,  USA"
+# Pull in networtk from OSM
+graph = ox.graph_from_place(place, network_type='bike')
+# Extract nodes and streets as geodataframes
+nodes, streets = ox.graph_to_gdfs(graph)
+
+# Plot results
+fig, ax = plt.subplots(figsize = (10,8)) 
+sf.plot(ax=ax)
+streets.plot(ax=ax, color="grey")
+sf_bikes.plot(ax=ax, color="yellow")
+plt.show()
+
+
+--><p><a id="section6"></a></p>
+</div>
+<div class="section" id="read-in-data-from-a-csv-and-convert-to-geodataframe">
+<h2>10.6 Read in Data from a CSV and convert to geodataframe<a class="headerlink" href="#read-in-data-from-a-csv-and-convert-to-geodataframe" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we’ll learn how to read a csv file with latitude and longitude coordinates and convert it to a geodataframe for plotting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in CSV file</span>
+<span class="n">stations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;notebook_data/transportation/bart.csv&quot;</span><span class="p">)</span>
+<span class="n">stations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now want to convert the csv file into a Point geodataframe, so we can produce maps and access the geospatial analysis tools.</p>
+<p>We do this below with the geopandas <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> function which takes as input</p>
+<ol class="simple">
+<li><p>a pandas dataframe here <code class="docutils literal notranslate"><span class="pre">stations</span></code>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometry</span></code> for each row in the dataframe.</p></li>
+</ol>
+<p>We create the geometry using the geopandas <code class="docutils literal notranslate"><span class="pre">points_from_xy</span></code> function, using the data in the <code class="docutils literal notranslate"><span class="pre">lon</span></code> and <code class="docutils literal notranslate"><span class="pre">lat</span></code> columns of the pandas dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Convert the DataFrame to a GeoDataFrame. </span>
+<span class="n">bart_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">stations</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">stations</span><span class="o">.</span><span class="n">lat</span><span class="p">))</span> 
+
+<span class="c1"># and take a look</span>
+<span class="n">bart_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we have a map of BART stations!  You can use this approach with any CSV file that has columns of x,y coordinates.</p>
+<div class="section" id="exercises">
+<h3>10.7 Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<p>Set the CRS for <code class="docutils literal notranslate"><span class="pre">bart_gdf</span></code> to WGS84</p>
+<p>Below is the url for the 2018 census county geographic boundary file.</p>
+<ul class="simple">
+<li><p>Read in the county file</p></li>
+<li><p>Subset on Marin County</p></li>
+<li><p>Plot Marin County with the Bart stations you transformed</p></li>
+<li><p>Question: what should do if the county name is not unique?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Census Counties file for the USA</span>
+<span class="n">county_file</span>      <span class="o">=</span> <span class="s2">&quot;https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_county_500k.zip&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION:
+
+# Set CRS of Bart since it's missing
+bart_gdf.crs ='epsg:4326'
+
+# Bring in counties
+counties = gpd.read_file(county_file)
+counties.head()
+
+# Subset to marin
+marin = counties[counties['NAME']=='Marin']
+marin.crs
+
+# Figure
+fig,ax = plt.subplots(figsize=(8,8))
+marin.plot(ax=ax,color='tan')
+bart_gdf.plot(ax=ax,color='k')
+
+--><hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env2"
+        },
+        kernelOptions: {
+            kernelName: "geo_env2",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env2'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="09_ON_YOUR_OWN_A_Full_Workflow.html" title="previous page">Lesson 9. On Your Own: A Full Workflow</a>
+    <a class='right-next' id="next-link" href="11_OPTIONAL_Basemap_with_Contextily.html" title="next page">11. Adding Basemaps with Contextily</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

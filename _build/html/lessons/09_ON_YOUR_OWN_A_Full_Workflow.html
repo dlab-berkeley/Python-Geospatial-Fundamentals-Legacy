@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 9. On Your Own: A Full Workflow &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Read in Data from Online Sources + CSV to Geodataframe" href="10_OPTIONAL_Fetching_Data.html" />
+    <link rel="prev" title="08. Pulling it all Together" href="08_Pulling_It_All_Together.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/09_ON_YOUR_OWN_A_Full_Workflow.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/09_ON_YOUR_OWN_A_Full_Workflow.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-packages">
+     Install Packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polling-station-locations">
+     9.1 Polling Station Locations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#double-click-here-to-see-solution">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tracts-data">
+     9.2 Tracts data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Double-click here to see solution!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spatial-join">
+   9.3 Spatial Join
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregate-number-of-stations-by-census-tracts">
+     9.4 Aggregate number of stations by census tracts
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribute-join-back-to-tracts-data">
+     9.5 Attribute join back to tracts data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#berkeley-outline">
+     9.6 Berkeley outline
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bus-routes">
+     8.7 Bus routes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Double-click here to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polling-stations-within-walking-distance-of-bus-routes">
+     8.6 Polling stations within walking distance of bus routes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Double-click here to see solution!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-9-on-your-own-a-full-workflow">
+<h1>Lesson 9. On Your Own: A Full Workflow<a class="headerlink" href="#lesson-9-on-your-own-a-full-workflow" title="Permalink to this headline">¶</a></h1>
+<p>Now is your chance to pull everything we’ve learned together and answer the questions:</p>
+<ul class="simple">
+<li><p>How many polling stations are in each census tract in Alameda County?</p></li>
+<li><p>Which polling stations are within walking distance (100m) from a bus route in Berkeley?</p></li>
+<li><p>How far are these polling stations from the bus routes in Berkeley?</p></li>
+</ul>
+<p><strong>All on your own!!</strong></p>
+<ul class="simple">
+<li><p>9.1 Polling Station Locations</p></li>
+<li><p>9.2 Tracts data</p></li>
+<li><p>9.3 Spatial Join</p></li>
+<li><p>9.4 Aggregate number of stations by census tracts</p></li>
+<li><p>9.5 Attribute join back to tracts data</p></li>
+<li><p>9.6 Berkeley outline</p></li>
+<li><p>9.7 Bus routes</p></li>
+<li><p>9.8 Polling station distance from bus routes</p></li>
+</ul>
+<p><em>We’ve written out some of the code for you, and you can check your answers by clicking on the toggle solution button</em></p>
+<div class="section" id="install-packages">
+<h2>Install Packages<a class="headerlink" href="#install-packages" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="polling-station-locations">
+<h2>9.1 Polling Station Locations<a class="headerlink" href="#polling-station-locations" title="Permalink to this headline">¶</a></h2>
+<p>We’ll be using the 2020 General Election voting locations for Alameda County for this analysis. Since the data is <em>aspatial</em> we’ll need to coerce it to be a geodataframe and define a CRS.</p>
+<ul class="simple">
+<li><p>read our grocery-data CSV into a Pandas DataFrame (it lives at <code class="docutils literal notranslate"><span class="pre">'notebook_data/ac_voting_locations.csv</span></code>)</p></li>
+<li><p>coerce it to a GeoDataFrame</p></li>
+<li><p>define its CRS (EPSG:4326)</p></li>
+<li><p>plot it</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pull in polling location</span>
+
+<span class="c1"># polling_ac_df = pd.read_csv(...)</span>
+<span class="c1"># polling_ac_df.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make into geo data frame</span>
+
+<span class="c1"># polling_ac_gdf = gpd.GeoDataFrame(..., </span>
+<span class="c1">#                                geometry=gpd.points_from_xy(...,...))</span>
+<span class="c1"># polling_ac_gdf.crs = ...</span>
+
+<span class="c1"># plot it </span>
+
+<span class="c1"># polling_ac_gdf.plot(...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-here-to-see-solution">
+<h2>Double-click here to see solution!<a class="headerlink" href="#double-click-here-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+# Pull in polling location
+polling_ac_df = pd.read_csv('notebook_data/ac_voting_locations.csv')
+polling_ac_df.head()
+
+# Make into geo data frame
+polling_ac_gdf = gpd.GeoDataFrame(polling_ac_df, 
+                               geometry=gpd.points_from_xy(polling_ac_df.X, polling_ac_df.Y))
+polling_ac_gdf.crs = "epsg:4326"
+
+polling_ac_gdf.plot()
+
+--></div>
+<div class="section" id="tracts-data">
+<h2>9.2 Tracts data<a class="headerlink" href="#tracts-data" title="Permalink to this headline">¶</a></h2>
+<p>Since we want to answer the question <strong>How many polling stations are in each census tract?</strong>, we’ll pull in our tracts data.</p>
+<ul class="simple">
+<li><p>Bring in the census tracts data which lives at <code class="docutils literal notranslate"><span class="pre">notebook_data/census/Tracts/cb_2013_06_tract_500k.zip</span></code></p></li>
+<li><p>Narrow it down to Alameda County</p></li>
+<li><p>Check CRS</p></li>
+<li><p>Transform CRS to 26910 if needed</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bring in census tracts</span>
+<span class="c1"># tracts_gdf = gpd.read_file(...)</span>
+
+<span class="c1"># Narrow it down to Alameda County</span>
+<span class="c1"># tracts_gdf_ac = tracts_gdf[...]</span>
+<span class="c1"># tracts_gdf_ac.plot()</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check CRS</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;polling_ac_gdf:&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tracts_gdf_ac CRS:&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transform CRS</span>
+<span class="n">polling_ac_gdf_utm10</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">tracts_gdf_ac_utm10</span> <span class="o">=</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+# Bring in census tracts
+tracts_gdf = gpd.read_file("zip://notebook_data/census/Tracts/cb_2013_06_tract_500k.zip")
+
+# Narrow it down to Alameda County
+tracts_gdf_ac = tracts_gdf[tracts_gdf['COUNTYFP']=='001']
+tracts_gdf_ac.plot()
+plt.show()
+
+# Check CRS
+print('polling_ac_gdf:', polling_ac_gdf.crs)
+print('tracts_gdf_ac CRS:', tracts_gdf_ac.crs)
+
+# Transform CRS
+polling_ac_gdf_utm10 = polling_ac_gdf.to_crs("epsg:26910")
+tracts_gdf_ac_utm10 = tracts_gdf_ac.to_crs("epsg:26910")
+
+--></div>
+</div>
+<div class="section" id="spatial-join">
+<h1>9.3 Spatial Join<a class="headerlink" href="#spatial-join" title="Permalink to this headline">¶</a></h1>
+<p>Alright, now our data is all ready to go! We’re going to do a <em>spatial join</em> to answer our question about polling stations in each tract.</p>
+<ul class="simple">
+<li><p>Spatial join tracts/acs with the polling data (keep the tracts geometry!)</p></li>
+<li><p>Plot it to make sure you have the right geometry</p></li>
+<li><p>Check out your data and its dimensions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spatial join tracts/acs with the polling data (keep the tracts geometry!)</span>
+
+<span class="c1"># polls_jointracts = gpd.sjoin(..., ... , how=...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it to make sure you have the right geometry</span>
+
+<span class="c1"># polls_jointracts.plot()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out your data and its dimensions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+# Spatial join tracts/acs with the polling data (keep the tracts geometry!)
+polls_jointracts = gpd.sjoin(tracts_gdf_ac_utm10, polling_ac_gdf_utm10, how='left')
+
+# Plot it to make sure you have the right geometry
+polls_jointracts.plot()
+
+# Check out your data and its dimensions
+print(polls_jointracts.shape)
+polls_jointracts.head()
+
+--></div>
+<div class="section" id="aggregate-number-of-stations-by-census-tracts">
+<h2>9.4 Aggregate number of stations by census tracts<a class="headerlink" href="#aggregate-number-of-stations-by-census-tracts" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a GeoDataFrame with all our polling and tract data, we’ll need to <em>aggregate</em> to actually count the number of stations we have</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">dissolve</span></code> to count the number of polls we have</p></li>
+<li><p>Create a choropleth map base don the number of stations there are</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use `dissolve` to count the number of polls we have</span>
+
+<span class="c1"># polls_countsbytract = polls_jointracts[[&#39;TRACTCE&#39;, &#39;NAME_right&#39;, </span>
+<span class="c1">#                                         &#39;geometry&#39;]].dissolve(by=..., </span>
+<span class="c1">#                                                               aggfunc=...).reset_index()</span>
+<span class="c1"># polls_countsbytract.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rename the column to be for the number of polling stations (you dont have to change anything here)</span>
+
+<span class="c1"># polls_countsbytract.rename(columns={&#39;NAME_right&#39;: &#39;Num_Polling&#39;}, inplace=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a choropleth map base don the number of stations there are</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+
+<span class="c1"># polls_countsbytract.plot(ax=ax,</span>
+<span class="c1">#                          column=..., </span>
+<span class="c1">#                          cmap=...,</span>
+<span class="c1">#                          edgecolor=&quot;grey&quot;,</span>
+<span class="c1">#                          legend=True)</span>
+
+<span class="c1"># polling_ac_gdf_utm10.plot(ax=ax, color=..., edgecolor=..., markersize= ...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+# Use `dissolve` to count the number of polls we have
+polls_countsbytract = polls_jointracts[['TRACTCE', 'NAME_right', 'geometry']].dissolve(by='TRACTCE', aggfunc='count').reset_index()
+polls_countsbytract.head()
+
+# rename the column to be for the number of polling stations
+polls_countsbytract.rename(columns={'NAME_right': 'Num_Polling'}, inplace=True)
+
+# Create a choropleth map base don the number of stations there are
+fig, ax = plt.subplots(figsize = (14,8)) 
+
+polls_countsbytract.plot(ax=ax,column='Num_Polling', 
+                         cmap="YlGn",
+                         edgecolor="grey",
+                         legend=True)
+polling_ac_gdf_utm10.plot(ax=ax, color='orange', edgecolor='black', markersize=3)
+
+--></div>
+<div class="section" id="attribute-join-back-to-tracts-data">
+<h2>9.5 Attribute join back to tracts data<a class="headerlink" href="#attribute-join-back-to-tracts-data" title="Permalink to this headline">¶</a></h2>
+<p>Amazing! Now that we have this information let’s do an <em>attribute join</em> to add this data into our tracts data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># merge onto census tract data</span>
+
+<span class="c1"># tracts_gdf_ac =  tracts_gdf_ac.merge(polls_countsbytract[[&#39;TRACTCE&#39;, &#39;Num_Polling&#39;]], left_on= ...,right_on= ... , how= ... ) </span>
+<span class="c1"># tracts_gdf_ac.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+# merge onto census tract data
+tracts_gdf_ac =  tracts_gdf_ac.merge(polls_countsbytract[['TRACTCE', 'Num_Polling']], left_on='TRACTCE',right_on="TRACTCE", how='inner') 
+tracts_gdf_ac.head()
+
+--></div>
+<div class="section" id="berkeley-outline">
+<h2>9.6 Berkeley outline<a class="headerlink" href="#berkeley-outline" title="Permalink to this headline">¶</a></h2>
+<p>To answer our question <em>Which polling stations are within walking distance (100m) from a bus route in Berkeley?</em> we’ll need to know where Berkeley is! This is the perfect time to bring our Berkeley places data in.</p>
+<ul class="simple">
+<li><p>Read in <code class="docutils literal notranslate"><span class="pre">outdata/berkeley_places.shp</span></code></p></li>
+<li><p>Check the CRS</p></li>
+<li><p>Transform CRS if necessary to EPSG:26910</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in outdata/berkeley_places.shp</span>
+<span class="c1"># berkeley_places = gpd.read_file(...)</span>
+
+<span class="c1"># Check the CRS</span>
+
+
+<span class="c1"># Transform CRS if necessary to EPSG:26910</span>
+<span class="n">berkeley_places_utm10</span> <span class="o">=</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+berkeley_places = gpd.read_file("outdata/berkeley_places.shp")
+berkeley_places.crs
+berkeley_places_utm10 = berkeley_places.to_crs("epsg:26910")
+
+-->
+</div>
+<div class="section" id="bus-routes">
+<h2>8.7 Bus routes<a class="headerlink" href="#bus-routes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Bring in bus routes (‘notebook_data/transportation/Fall20Routeshape.zip’), transform CRS to 26910</p></li>
+<li><p>Intersect bus routes with Berkeley</p></li>
+<li><p>Plot results of intersection</p></li>
+<li><p>Clip bus routes to everything that is inside the berkley outline</p></li>
+<li><p>Plot bus routes on top of Berkeley outline</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bring in bus routes, transform CRS to 26910</span>
+<span class="n">bus_routes</span> <span class="o">=</span> <span class="o">...</span>
+<span class="c1"># bus_routes_utm10 = bus_routes.to_crs(...)</span>
+<span class="c1"># bus_routes_utm10.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at intersection between bus routes and Berkeley</span>
+<span class="c1"># bus_routes_berkeley = .intersects(... .geometry.squeeze())</span>
+
+<span class="c1"># Create new geodataframe from these results</span>
+<span class="c1"># bus_berk = bus_routes_utm10.loc[bus_routes_berkeley].reset_index(drop=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results of intersection</span>
+
+<span class="c1"># fig, ax = plt.subplots(figsize=(10,10))</span>
+<span class="c1"># berkeley_places_utm10.plot(ax=ax)</span>
+<span class="c1"># bus_berk.plot(ax=ax, column =&#39;PUB_RTE&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BONUS: Look at route length</span>
+<span class="c1"># bus_berk.length</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clip bus routes to everything that is inside the berkley outline</span>
+<span class="c1"># bus_berk_clip = gpd.clip(...,...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot bus routes on top of Berkeley outline</span>
+<span class="c1"># fig, ax = plt.subplots(figsize=(10,10))</span>
+<span class="c1"># berkeley_places_utm10.plot(ax=ax)</span>
+<span class="c1"># bus_berk_clip.plot(ax=ax, column =&#39;PUB_RTE&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+# Bring in bus routes, transform CRS to 26910
+bus_routes = gpd.read_file('zip://notebook_data/transportation/Fall20Routeshape.zip')
+bus_routes_utm10 = bus_routes.to_crs("epsg:26910")
+bus_routes_utm10.head()
+
+# Look at intersection between bus routes and Berkeley
+bus_routes_berkeley = bus_routes_utm10.intersects(berkeley_places_utm10.geometry.squeeze())
+
+# Plot results of intersection
+fig, ax = plt.subplots(figsize=(10,10))
+berkeley_places_utm10.plot(ax=ax)
+bus_routes_utm10.loc[bus_routes_berkeley].plot(ax=ax, column ='PUB_RTE')
+
+bus_berk = bus_routes_utm10.loc[bus_routes_berkeley].reset_index(drop=True)
+
+bus_berk.length
+
+# Clip bus routes to everything that is inside the berkley outline
+bus_berk_clip = gpd.clip(bus_berk,berkeley_places_utm10)
+
+# Plot bus routes on top of Berkeley outline
+fig, ax = plt.subplots(figsize=(10,10))
+berkeley_places_utm10.plot(ax=ax)
+bus_berk_clip.plot(ax=ax, column ='PUB_RTE')
+
+--></div>
+<div class="section" id="polling-stations-within-walking-distance-of-bus-routes">
+<h2>8.6 Polling stations within walking distance of bus routes<a class="headerlink" href="#polling-stations-within-walking-distance-of-bus-routes" title="Permalink to this headline">¶</a></h2>
+<p>Now we can really answer the question <em>Which polling stations are within walking distance (100m) from a bus route in Berkeley?</em></p>
+<ul class="simple">
+<li><p>Create buffer around bus route for 100m</p></li>
+<li><p>Intersect polling locations in Alameda County with Berkeley outline</p></li>
+<li><p>Plot Berkeley outline, bus routes, the bus routes buffer, and polling locations</p></li>
+<li><p>Calculate the distance from polling stations to the closest bus route</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create buffer around bus route for 100m</span>
+<span class="c1"># bus_berk_buf =bus_berk_clip.buffer(distance= ...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intersect polling locations in Alameda County with Berkeley outline</span>
+<span class="c1"># polling_berk =  ... .intersects(berkeley_places_utm10.geometry.squeeze())</span>
+
+<span class="c1"># polling_berk_gdf = polling_ac_gdf_utm10[polling_berk].reset_index(drop=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot Berkeley outline, bus routes, the bus routes buffer, and polling locations</span>
+
+<span class="c1"># fig, ax = plt.subplots(figsize=(10,10))</span>
+<span class="c1"># berkeley_places_utm10.plot(ax=ax)</span>
+<span class="c1"># bus_berk_buf.plot(color=&#39;pink&#39;, ax=ax, alpha=0.5)</span>
+<span class="c1"># bus_berk_clip.plot(ax=ax, column =&#39;PUB_RTE&#39;)</span>
+<span class="c1"># polling_berk_gdf.plot(ax=ax, color= &#39;yellow&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the distance from polling stations to the closest bus route</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>Double-click here to see solution!<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<!--
+#SOLUTION:
+
+bus_berk_buf =bus_berk_clip.buffer(distance=100)
+
+polling_berk = polling_ac_gdf_utm10.intersects(berkeley_places_utm10.geometry.squeeze())
+
+polling_berk_gdf = polling_ac_gdf_utm10[polling_berk].reset_index(drop=True)
+
+fig, ax = plt.subplots(figsize=(10,10))
+berkeley_places_utm10.plot(ax=ax)
+bus_berk_buf.plot(color='pink', ax=ax, alpha=0.5)
+bus_berk_clip.plot(ax=ax, column ='PUB_RTE')
+polling_berk_gdf.plot(ax=ax, color= 'yellow')
+
+
+polling_berk_gdf.distance(bus_berk_clip.unary_union)
+
+--></div>
+</div>
+<div class="section" id="you-re-done">
+<h1>You’re done!!!!<a class="headerlink" href="#you-re-done" title="Permalink to this headline">¶</a></h1>
+<img src="https://pbs.twimg.com/media/EIEHbKvXUAATXhi?format=jpg&name=large"><hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="08_Pulling_It_All_Together.html" title="previous page">08. Pulling it all Together</a>
+    <a class='right-next' id="next-link" href="10_OPTIONAL_Fetching_Data.html" title="next page">10. Read in Data from Online Sources + CSV to Geodataframe</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,2187 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>12. Interactive Mapping with Folium &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Geocoding Addresses in Python" href="13_OPTIONAL_geocoding.html" />
+    <link rel="prev" title="11. Adding Basemaps with Contextily" href="11_OPTIONAL_Basemap_with_Contextily.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/12_OPTIONAL_Interactive_Mapping_with_Folium.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/12_OPTIONAL_Interactive_Mapping_with_Folium.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import Libraries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-your-version-of-folium-and-geopandas">
+     Check your version of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       folium
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       geopandas
+      </span>
+     </code>
+     .
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   12.1 Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   12.2 Interactive Mapping with Folium
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-a-map-layer">
+   12.3 Adding a Map Layer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-layer-with-folium-geojson">
+     Adding a layer with folium.GeoJson
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-and-transforming-the-crs">
+     Checking and Transforming the CRS
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#styling-features-with-folium-geojson">
+     Styling features with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       folium.GeoJson
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question">
+       Question
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-tooltip">
+     Adding a Tooltip
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-mapping">
+   12.4 Data Mapping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choropleth-mapping-with-folium-discussion">
+     Choropleth Mapping with Folium - discussion
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Question
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choropleth-maps-with-tooltips">
+     Choropleth Maps with Tooltips
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Question
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overlays">
+   12.5 Overlays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mapping-points-and-lines">
+   12.6 Mapping Points and Lines
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-points">
+     Mapping Points
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Exercise
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#folium-circlemarkers">
+     folium.CircleMarkers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#folium-circle">
+     folium.Circle
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       Question
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proportional-symbol-maps">
+     Proportional Symbol Maps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-and-saving-a-folium-interactive-map">
+   12.7 Creating and Saving a folium Interactive Map
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-to-an-html-file">
+     Saving to an html file
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#extra-challenge">
+       Extra Challenge
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   12.8 Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-note">
+   Important note
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="interactive-mapping-with-folium">
+<h1>12. Interactive Mapping with Folium<a class="headerlink" href="#interactive-mapping-with-folium" title="Permalink to this headline">¶</a></h1>
+<p>In previous lessons we  used <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to create choropleth and point maps of our data. In this notebook we will take it to the next level by creating <code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">maps</span></code> with the <strong>folium</strong> library.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>This notebook provides an introduction to <code class="docutils literal notranslate"><span class="pre">folium</span></code>. To see what else you can do, check out the references listed below.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/python-visualization/folium">Folium web site</a></p></li>
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/python-visualization/folium/tree/master/examples/">Folium notebook examples</a></p></li>
+</ul>
+</div>
+<div class="section" id="import-libraries">
+<h2>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+
+<span class="kn">import</span> <span class="nn">folium</span> <span class="c1"># popular python web mapping tool for creating Leaflet maps</span>
+<span class="kn">import</span> <span class="nn">folium.plugins</span>
+
+<span class="c1"># Supress minor warnings about the syntax of CRS definitions, </span>
+<span class="c1"># ie &quot;init=epsg:4269&quot; vs &quot;epsg:4269&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/geopandas/_compat.py:106: UserWarning: The Shapely GEOS version (3.9.1-CAPI-1.14.2) is incompatible with the GEOS version PyGEOS was compiled with (3.9.0-CAPI-1.16.2). Conversions between both will be slow.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="check-your-version-of-folium-and-geopandas">
+<h3>Check your version of <code class="docutils literal notranslate"><span class="pre">folium</span></code> and <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>.<a class="headerlink" href="#check-your-version-of-folium-and-geopandas" title="Permalink to this headline">¶</a></h3>
+<p>Folium is a new and evolving Python library so make sure you have version 0.10.1 or later installed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">folium</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="c1"># Make sure you have version 0.10.1 or later of folium!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>unknown
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="c1"># Make sure you have version 0.7.0 or later of GeoPandas!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>12.1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Interactive maps serve two very important purposes in geospatial analysis. First, they provde new tools for exploratory data analysis. With an interactive map you can:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pan</span></code> over the mapped data,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zoom</span></code> into a smaller arear that is not easily visible when the full extent of the map is displayed, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click</span></code> on or <code class="docutils literal notranslate"><span class="pre">hover</span></code> over a feature to see more information about it.</p></li>
+</ul>
+<p>Second, when saved and shared, interactive maps provide a new tool for communicating the results of your analysis and for inviting your online audience to actively explore your work.</p>
+<p>For those of you who work with tools like ArcGIS or QGIS, interactive maps also make working in the jupyter notebook environment a bit more like working in a desktop GIS.</p>
+<p>The goal of this notebook is to show you how to create an interactive map with your geospatial data so that you can better analyze your data and save your output to share with others.</p>
+<p>After completing this lesson you will be able to create an interactive map like the one shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;notebook_data/bartmap_example.html&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;1000&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;600&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe src="notebook_data/bartmap_example.html" width="1000" height="600"></iframe>
+</div></div>
+</div>
+<p><a id="section2"></a></p>
+</div>
+<div class="section" id="id1">
+<h2>12.2 Interactive Mapping with Folium<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Under the hood, <code class="docutils literal notranslate"><span class="pre">folium</span></code> is a Python package for creating interactive maps with <a class="reference external" href="https://leafletjs.com">Leaflet</a>, a popular javascript web mapping library.</p>
+<p>Let’s start by creating a interactive map with the <code class="docutils literal notranslate"><span class="pre">folium.Map</span></code> function and display it in the notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new folium map and save it to the variable name map1</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">,</span>                     <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>                       <span class="c1"># in pixels (int) or in percent of available space (str)</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed (3-20)</span>
+
+<span class="n">map1</span>  <span class="c1"># display the map in the notebook</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_15a9ecb31a5745dd92e712cea6153bbe%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20500.0px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_15a9ecb31a5745dd92e712cea6153bbe%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_15a9ecb31a5745dd92e712cea6153bbe%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_15a9ecb31a5745dd92e712cea6153bbe%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B37.8721%2C%20-122.2578%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%2013%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_606260eab6c243c5a7cb67cf64f09a11%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22Data%20by%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//openstreetmap.org%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%2C%20under%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eODbL%5Cu003c/a%5Cu003e.%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_15a9ecb31a5745dd92e712cea6153bbe%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<p>Let’s discuss the map above and the code we used to generate it.</p>
+<p>At any time you can enter the following command to get help with <code class="docutils literal notranslate"><span class="pre">folium.Map</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uncomment to see help docs</span>
+<span class="o">?</span>folium.Map
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s make another folium map using the code below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new folium map and save it to the variable name map1</span>
+<span class="c1">#</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="c1">#width=800,                        # the width &amp; height of the output map</span>
+                 <span class="c1">#height=600,                       # in pixels or in percent of available space</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="https://image.flaticon.com/icons/svg/87/87705.svg" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+</div>
+<ul class="simple">
+<li><p>What’s new in the code?</p></li>
+<li><p>How do you think that will change the map?</p></li>
+</ul>
+<p>Let’s display the map and see what changes…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map1</span>  <span class="c1"># display map in notebook</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_014f515116ff4152b8dc85ea2ace0888%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20100.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_014f515116ff4152b8dc85ea2ace0888%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_014f515116ff4152b8dc85ea2ace0888%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_014f515116ff4152b8dc85ea2ace0888%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B37.8721%2C%20-122.2578%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%2013%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_9ff925e777434e27b3e232909fb19a45%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//cartodb-basemaps-%7Bs%7D.global.ssl.fastly.net/light_all/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%20contributors%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//cartodb.com/attributions%5C%22%5Cu003eCartoDB%5Cu003c/a%5Cu003e%2C%20CartoDB%20%5Cu003ca%20href%20%3D%5C%22http%3A//cartodb.com/attributions%5C%22%5Cu003eattributions%5Cu003c/a%5Cu003e%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_014f515116ff4152b8dc85ea2ace0888%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<p>Notice how the map changes when you change the underlying <strong>tileset</strong> from the default, which is <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>, to <code class="docutils literal notranslate"><span class="pre">CartoDB</span> <span class="pre">Positron</span></code>.</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.openstreetmap.org/#map=5/38.007/-95.844">OpenStreetMap</a> is the largest free and open source dataset of geographic information about the world. So it is the default basemap for a lot of mapping tools and libraries.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>You can find a list of the available tilesets you can use in the help documentation (<code class="docutils literal notranslate"><span class="pre">folium.Map?</span></code>), a snippet of which is shown below:</p></li>
+</ul>
+<pre>
+Generate a base map of given width and height with either default
+tilesets or a custom tileset URL. The following tilesets are built-in
+to Folium. Pass any of the following to the "tiles" keyword:
+
+    - "OpenStreetMap"
+    - "Mapbox Bright" (Limited levels of zoom for free tiles)
+    - "Mapbox Control Room" (Limited levels of zoom for free tiles)
+    - "Stamen" (Terrain, Toner, and Watercolor)
+    - "Cloudmade" (Must pass API key)
+    - "Mapbox" (Must pass API key)
+    - "CartoDB" (positron and dark_matter)
+</pre>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Take a few minutes to try some of the different tilesets in the code below and see how they change the output map. <em>Avoid the ones that don’t require an API key</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make changes to the code below to change the folium Map</span>
+<span class="c1">## Try changing the values for the zoom_start and tiles parameters.</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;Stamen Watercolor&#39;</span><span class="p">,</span>         <span class="c1"># basemap aka baselay or tile set</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>                        <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>                       <span class="c1"># in pixels or percent of available space</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1">#display the map</span>
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="section3"></a></p>
+</div>
+</div>
+<div class="section" id="adding-a-map-layer">
+<h2>12.3 Adding a Map Layer<a class="headerlink" href="#adding-a-map-layer" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have created a folium map, let’s add our California County data to the map.</p>
+<p>First, let’s read that data into a Geopandas geodataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alameda county census tract data with the associated ACS 5yr variables.</span>
+<span class="n">ca_counties_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;notebook_data/california_counties/CaliforniaCounties.shp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take another brief look at the geodataframe to recall the contents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take a look at first two rows</span>
+<span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take a look at all column names</span>
+<span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-a-layer-with-folium-geojson">
+<h3>Adding a layer with folium.GeoJson<a class="headerlink" href="#adding-a-layer-with-folium-geojson" title="Permalink to this headline">¶</a></h3>
+<p>Folium provides a number of ways to add vector data - points, lines, and polygons - to a map.</p>
+<p>The data we are working with are in Geopandas geodataframes. The main folium function for adding these to the map is <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code>.</p>
+<p>Let’s build on our last map and add the census tracts as a <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> layer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB positron&#39;</span><span class="p">,</span>         <span class="c1"># basemap aka baselay or tile set</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                      <span class="c1"># in pixels or in percent of available space</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add the census tracts to the map</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+
+<span class="c1">#display the map</span>
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That was pretty straight-forward, but <code class="docutils literal notranslate"><span class="pre">folium.GeoJSON</span></code> provides a lot of arguments for customizing the display of the data in the map. We will review some of these soon. However, at any time you can get more information about <code class="docutils literal notranslate"><span class="pre">folium.GeoJSON</span></code> by taking a look at the function documentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view documentation</span>
+<span class="c1"># folium.GeoJson?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-and-transforming-the-crs">
+<h3>Checking and Transforming the CRS<a class="headerlink" href="#checking-and-transforming-the-crs" title="Permalink to this headline">¶</a></h3>
+<p>It’s always a good idea to check the <strong>CRS</strong> of your geodata before doing anything with that data. This is true when we use <code class="docutils literal notranslate"><span class="pre">folium</span></code> to make an interactive map.</p>
+<p>Here is how folium deals with the CRS of a geodataframe before mapping it:</p>
+<ul class="simple">
+<li><p>Folium checks to see if the gdf has a defined CRS</p>
+<ul>
+<li><p>If the CRS is not defined, it assumes the data to be in the WGS84 CRS (epsg=4326).</p></li>
+<li><p>If the CRS is defined, it will be transformed dynamically to WGS84 before mapping.</p></li>
+</ul>
+</li>
+</ul>
+<p>So, if your map data doesn’t show up where at all or where you think it should, check the CRS of your data!</p>
+<ul class="simple">
+<li><p>If it is not defined, define it.</p></li>
+</ul>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="https://image.flaticon.com/icons/svg/87/87705.svg" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id2">
+<h4>Questions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</div>
+<ul class="simple">
+<li><p>What is the CRS of the tract data?</p></li>
+<li><p>How is folium dealing with the CRS of this gdf?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the CRS of the data </span>
+<span class="nb">print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Click here for answers</em></p>
+<!---
+# What is the CRS of the tract data?
+tracts_gdf.crs
+
+# How is folium dealing with the CRS of this gdf?
+# Dynamically transformed to WGS84 (but it already is in that projection so no change)
+---></div>
+</div>
+<div class="section" id="styling-features-with-folium-geojson">
+<h3>Styling features with <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code><a class="headerlink" href="#styling-features-with-folium-geojson" title="Permalink to this headline">¶</a></h3>
+<p>Let’s dive deeper into the <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> function. Below is an excerpt from the help documentation for the function that shows all the available function arguments that we can set.</p>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="20" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="question">
+<h4>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h4>
+</div>
+What argument do we use to style the color for our polygons?
+<pre>
+folium.GeoJson(
+    data,
+    style_function=None,
+    highlight_function=None,
+    name=None,
+    overlay=True,
+    control=True,
+    show=True,
+    smooth_factor=None,
+    tooltip=None,
+    embed=True,
+)
+</pre><p>Let’s examine the options for the <code class="docutils literal notranslate"><span class="pre">style_function</span></code> in more detail since we will use these to change the style of our mapped data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">style_function</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">{</span></code> apply to all features being mapped (ie, all rows in the geodataframe)<br />
+<code class="docutils literal notranslate"><span class="pre">'weight':</span> <span class="pre">line_weight,</span></code> set the thickness of a line or polyline where &lt;1 is thin, &gt;1 thick, 1 = default<br />
+<code class="docutils literal notranslate"><span class="pre">'opacity':</span> <span class="pre">line_opacity,</span></code> set opacity where 1 is solid, 0.5 is semi-opaque and 0 is transparent<br />
+<code class="docutils literal notranslate"><span class="pre">'color':</span> <span class="pre">line_color</span></code> set the color of the line, eg “red” or some hexidecimal color value
+<code class="docutils literal notranslate"><span class="pre">'fillOpacity':</span> <span class="pre">opacity,</span></code> set opacity of the fill of a polygon<br />
+<code class="docutils literal notranslate"><span class="pre">'fillColor':</span> <span class="pre">color</span></code> set color of the fill of a polygon<br />
+<code class="docutils literal notranslate"><span class="pre">'dashArray':</span> <span class="pre">'5,</span> <span class="pre">5'</span></code> set line pattern to a dash of 5 pixels on, off<br />
+<code class="docutils literal notranslate"><span class="pre">}</span></code></p>
+<p>Ok! Let’s try setting the style of our census tract by defining a style function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add  the census tracts gdf layer</span>
+<span class="c1"># setting the style of the data</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+               <span class="n">style_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                   <span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span><span class="mf">0.6</span>
+               <span class="p">}</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+
+
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Copy the code from our last map and paste it below. Take a few minutes edit the code to change the style of the census tract polygons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;Stamen Watercolor&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add  the census tracts gdf layer</span>
+<span class="c1"># setting the style of the data</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+               <span class="n">style_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                   <span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span><span class="mf">0.6</span>
+               <span class="p">}</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+
+
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-a-tooltip">
+<h3>Adding a Tooltip<a class="headerlink" href="#adding-a-tooltip" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">tooltip</span></code> can be added to a folium.GeoJson map layer to display data values when the mouse hovers over a feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Double check what columns we have</span>
+<span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>folium.GeoJsonTooltip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add  the census tracts gdf layer</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+               <span class="n">style_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                   <span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span><span class="mf">0.6</span>
+               <span class="p">},</span>
+               
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">,</span><span class="s1">&#39;POP12_SQMI&#39;</span> <span class="p">],</span> 
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;Population Density (mi2)&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+
+
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As always, you can get more help by reading the documentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view help</span>
+<span class="c1">#folium.GeoJsonTooltip?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>Edit the code in the cell below to <code class="docutils literal notranslate"><span class="pre">add</span></code> the median age(<code class="docutils literal notranslate"><span class="pre">MED_AGE</span></code>) to the tooltip.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map1</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add  the census tracts gdf layer</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+               <span class="n">style_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                   <span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span><span class="mf">0.6</span>
+               <span class="p">},</span>
+               
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">,</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span><span class="s1">&#39;MED_AGE&#39;</span> <span class="p">],</span> 
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;Population Density (mi2)&#39;</span><span class="p">,</span> <span class="s1">&#39;Median Age&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+
+
+<span class="n">map1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Click here for answers</em></p>
+<!---
+# Define the basemap
+map1 = folium.Map(location=[37.8721, -122.2578],           # lat, lon around which to center the map
+                 tiles='CartoDB Positron',
+                 width=1000,                       # the width & height of the output map
+                 height=600,                       # in pixels
+                 zoom_start=6)                    # the zoom level for the data to be displayed
+
+# Add  the census tracts gdf layer
+folium.GeoJson(ca_counties_gdf,
+               style_function = lambda x: {
+                   'weight':2,
+                   'color':"white",
+                   'opacity':1,
+                   'fillColor':"red",
+                   'fillOpacity':0.6
+               },
+               
+               tooltip=folium.GeoJsonTooltip(
+                   fields=['FID_','POP2012','POP12_SQMI','MED_AGE' ], 
+                   aliases=['County ID', 'Population', 'Population Density (mi2)', 'Median Age'],
+                   labels=True,
+                   localize=True
+               ),
+              ).add_to(map1)
+
+
+map1
+---><p><a id="section4"></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="data-mapping">
+<h2>12.4 Data Mapping<a class="headerlink" href="#data-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Above, we set the style for all of the census tracts to the same fill and outline colors and opacity values.</p>
+<p>Let’s take a look at how we would use the <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">values</span></code> to set the color values for the polygons. This is called a <code class="docutils literal notranslate"><span class="pre">choropleth</span></code> map or, more generally, a <code class="docutils literal notranslate"><span class="pre">thematic</span> <span class="pre">map</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">folium.Choropleth</span></code> function can be used for this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view help docs</span>
+<span class="c1">## folium.Choropleth?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">folium.Choropleth</span></code>, we will use some of the same style parameters that we used with <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code>.</p>
+<p>We will also use some new parameters, as shown below.</p>
+<p>First, let’s take a look at the data we will map to refresh our knowledge.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s create a choropleth map of total population, which is in the <code class="docutils literal notranslate"><span class="pre">c_race</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+
+<span class="c1"># Add the Choropleth layer</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span><span class="n">geo_data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">),</span>   <span class="c1"># The object with the geospatial data</span>
+           <span class="n">data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="p">,</span>                                 <span class="c1"># The object with the attribute data (can be same)</span>
+           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span>                      <span class="c1"># the ID and data columns in the data objects</span>
+           <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>                             <span class="c1"># the ID in the geo_data object (don&#39;t change)</span>
+           <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>                               <span class="c1"># The color palette (or color map) - see help</span>
+           <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
+           <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">legend_name</span><span class="o">=</span><span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+          <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map2</span><span class="p">)</span>
+
+<span class="c1"># Display the map</span>
+<span class="n">map2</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="choropleth-mapping-with-folium-discussion">
+<h3>Choropleth Mapping with Folium - discussion<a class="headerlink" href="#choropleth-mapping-with-folium-discussion" title="Permalink to this headline">¶</a></h3>
+<p>Let’s discuss the following lines from the code above in more detail.</p>
+<pre>
+# Add the Choropleth layer
+folium.Choropleth(geo_data=ca_counties_gdf.set_index('NAME'),
+           data=ca_counties_gdf, 
+           columns=['NAME','POP2012'],
+           key_on="feature.id",
+           fill_color="Reds",                               
+           ...)
+
+
+</pre>
+<p><code class="docutils literal notranslate"><span class="pre">geo_data</span></code> and the <code class="docutils literal notranslate"><span class="pre">data</span></code>: we need to identify the objects that contains both because they could be different objects. In our example they are in the same object.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ca_counties_gdf.set_index('NAME')</span></code>: We need to <strong>set_index(‘NAME’)</strong> in order to identify the column in <code class="docutils literal notranslate"><span class="pre">geo_data</span></code> that will be used to <code class="docutils literal notranslate"><span class="pre">join</span></code> the geometries in the <code class="docutils literal notranslate"><span class="pre">geo_data</span></code> to the data values in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">columns=['NAME','POP2012']</span></code>: we identify in <code class="docutils literal notranslate"><span class="pre">data</span></code> (1) the column that will join these <code class="docutils literal notranslate"><span class="pre">data</span></code> to  <code class="docutils literal notranslate"><span class="pre">geo_data</span></code> and (2) the second column is the column with the values that will determine the color.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fill_color=&quot;Reds&quot;:</span></code> Here we identify the name of the color palette that we will use to style the polygons. These will be the same as the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> colormaps.</p>
+<div class="section" id="id5">
+<h4>Question<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>Recall our discussion about best practices for choropleth maps. Is population count an appropriate variable to plot as a choropleth?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your thoughts here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>Copy and paste the code from above into the cell below to create a choropleth map of population density (<code class="docutils literal notranslate"><span class="pre">POP12_SQMI</span></code>).</p>
+<p>Feel free to experiment with any of the <code class="docutils literal notranslate"><span class="pre">folium.Choropleth</span></code> style parameters, especially the <code class="docutils literal notranslate"><span class="pre">fill_color</span></code> which needs to be one of the <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">brewer</span> <span class="pre">palettes</span></code> listed below:</p>
+<pre>
+fill_color: string, default 'blue'
+    Area fill color. Can pass a hex code, color name, or if you are
+    binding data, one of the following color brewer palettes:
+    'BuGn', 'BuPu', 'GnBu', 'OrRd', 'PuBu', 'PuBuGn', 'PuRd', 'RdPu',
+    'YlGn', 'YlGnBu', 'YlOrBr', and 'YlOrRd'.
+</pre><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+<span class="c1"># Define the basemap</span>
+<span class="n">map2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.7749</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.4194</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;Stamen Toner&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+
+<span class="c1"># Add the Choropleth layer </span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span><span class="n">geo_data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">),</span>   <span class="c1"># The object with the geospatial data</span>
+           <span class="n">data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="p">,</span>                                 <span class="c1"># The object with the attribute data (can be same)</span>
+           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">],</span>                      <span class="c1"># the ID and data columns in the data objects</span>
+           <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>                             <span class="c1"># the ID in the geo_data object (don&#39;t change)</span>
+           <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;RdPu&quot;</span><span class="p">,</span>                               <span class="c1"># The color palette (or color map) - see help</span>
+           <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map2</span><span class="p">)</span>
+
+<span class="n">map2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Click here for answers</em></p>
+<!---
+    # SOLUTION
+    # Get our map center
+    ctrX = (tracts_gdf.total_bounds[0] + tracts_gdf.total_bounds[2])/2
+    ctrY = (tracts_gdf.total_bounds[1] + tracts_gdf.total_bounds[3])/2
+
+    # Create our base map
+    map2 = folium.Map(location=[ctrY, ctrX], 
+                      tiles='CartoDB Positron',
+                      width=800,height=600,
+                      zoom_start=10)
+
+    # Add the Choropleth layer
+    folium.Choropleth(geo_data=tracts_gdf.set_index('GEOID'), 
+               data=tracts_gdf,
+               columns=['GEOID','pop_dens_km2'],
+               key_on="feature.id",
+               fill_color="PuBu",
+               fill_opacity=0.65,
+               line_color="grey",
+               legend=True,
+               legend_name="Population Density per km2",
+              ).add_to(map2)
+
+    # Display 
+    map2
+---></div>
+</div>
+<div class="section" id="choropleth-maps-with-tooltips">
+<h3>Choropleth Maps with Tooltips<a class="headerlink" href="#choropleth-maps-with-tooltips" title="Permalink to this headline">¶</a></h3>
+<p>You can add a <code class="docutils literal notranslate"><span class="pre">tooltip</span></code> to a folium.Choropleth map but the process is not straigthforward. The <code class="docutils literal notranslate"><span class="pre">folium.Choropleth</span></code> function does not have a tooltip argument the way <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> does.</p>
+<p>The workaround is to add the layer as both a <code class="docutils literal notranslate"><span class="pre">folium.Choropleth</span></code> layer and as a <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> layer and bind the tooltip to the GeoJson layer.</p>
+<p>Let’s check it out below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map3</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.8721</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.2578</span><span class="p">],</span>           <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>                       <span class="c1"># the width &amp; height of the output map</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>                       <span class="c1"># in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+
+<span class="c1"># Add the Choropleth layer</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span><span class="n">geo_data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">),</span>   <span class="c1"># The object with the geospatial data</span>
+           <span class="n">data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="p">,</span>                                 <span class="c1"># The object with the attribute data (can be same)</span>
+           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span>                      <span class="c1"># the ID and data columns in the data objects</span>
+           <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>                             <span class="c1"># the ID in the geo_data object (don&#39;t change)</span>
+           <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>                               <span class="c1"># The color palette (or color map) - see help</span>
+           <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
+           <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">legend_name</span><span class="o">=</span><span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+          <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map3</span><span class="p">)</span>
+
+<span class="c1"># ADD the same geodataframe to the map to display a tooltip</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+    <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">,</span><span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">},</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+        <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span> 
+        <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">],</span>
+        <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">highlight_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map3</span><span class="p">)</span>
+
+
+
+<span class="n">map3</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>Question<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>Do you notice anything different about the <code class="docutils literal notranslate"><span class="pre">style_function</span></code> for layer2 above?</p>
+</div>
+<div class="section" id="id8">
+<h4>Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>Redo the above choropleth map code to map population density. Add both population and population density to the tooltip. Don’t forget to update the legend name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="section5"></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="overlays">
+<h2>12.5 Overlays<a class="headerlink" href="#overlays" title="Permalink to this headline">¶</a></h2>
+<p>We can overlay other geospatial data on our folium maps.</p>
+<p>Let’s say we want to focus the previous choropleth map with tooltips (<code class="docutils literal notranslate"><span class="pre">map3</span></code>) on the City of Berkeley. We can fetch the border of the city from our census Places dataset. These data can be downloaded from the Census website. We use the cartographic boundary files not the TIGER line files as these look better on a map (clipped to shoreline).</p>
+<p>Specifically, we will fetch the city boundaries from the following census cartographic boundary file:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_place_500k.zip">https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_06_place_500k.zip</a></p></li>
+</ul>
+<p>Then we can overlay the border of the city on the map and set the initial zoom to the center of the Berkeley boundary.</p>
+<p>Let’s try that.</p>
+<p>First we need to read in the census places data and create a subset geodataframe for our city of interest, here Berkeley.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/census/Places/cb_2018_06_place_500k.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span> <span class="o">=</span> <span class="n">places</span><span class="p">[</span><span class="n">places</span><span class="o">.</span><span class="n">NAME</span><span class="o">==</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">berkeley</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the Berkeley geodataframe to make sure it looks ok.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new map centered on Berkeley</span>
+<span class="n">berkeley_map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">berkeley</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> 
+                                    <span class="n">berkeley</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+
+
+<span class="c1"># Add the census tract polygons as a choropleth map</span>
+<span class="n">layer1</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span><span class="n">geo_data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">),</span>
+           <span class="n">data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span>
+           <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+           <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
+           <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="c1">#&quot;white&quot;,</span>
+           <span class="n">line_weight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">line_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">legend_name</span><span class="o">=</span><span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+           <span class="n">highlight</span><span class="o">=</span><span class="kc">True</span>
+          <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">berkeley_map</span><span class="p">)</span>
+
+<span class="c1"># Add the berkeley boundary - note the fill color</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">berkeley</span><span class="p">,</span>
+               <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span><span class="n">smooth_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+               <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                                         <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span>
+                                         <span class="s1">&#39;transparent&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span>
+               <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">berkeley_map</span><span class="p">)</span>
+
+<span class="c1"># Add the tooltip for the census tracts as its own layer</span>
+<span class="n">layer3</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+    <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">,</span><span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">},</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+        <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span> 
+        <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">],</span>
+        <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">highlight_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">berkeley_map</span><span class="p">)</span>
+
+<span class="n">berkeley_map</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id9">
+<h3>Questions<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>Any questions about the above map?</p>
+<p>Does the code for the Berkeley map above differ from our previous choropleth map code?</p>
+<p>Does the order of layer2 &amp; layer3 matter (can they be switched?)</p>
+</div>
+<div class="section" id="id10">
+<h3>Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Redo the above map with population density. Create and display the Oakland city boundary on the map instead of Berkeley and center the map on Oakland.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Click here for solution</em></p>
+<!---
+    # SOLUTION
+    oakland = places[places.NAME=='Oakland'].copy()
+    oakland.plot()
+
+    # SOLUTION
+    oakland_map = folium.Map(location=[oakland.centroid.y.mean(), oakland.centroid.x.mean()], 
+                      tiles='CartoDB Positron',
+                      width=800,height=600,
+                      zoom_start=12)
+
+    # Add the census tract polygons as a choropleth map
+    layer1=folium.Choropleth(geo_data=ca_counties_gdf.set_index('NAME'),
+           data=ca_counties_gdf,
+           columns=['NAME','POP2012'],
+           fill_color="Reds",
+           fill_opacity=0.65,
+           line_color="grey", #"white",
+           line_weight=1,
+           line_opacity=1,
+           key_on="feature.id",
+           legend=True,
+           legend_name="Population",
+           highlight=True
+          ).add_to(oakland_map)
+
+
+    # Add the oakland boundary
+    layer2 = folium.GeoJson(data=oakland,
+                   name='Oakland',smooth_factor=2,
+                   style_function=lambda x: {'color':'black','opacity':1,'fillColor':'transparent','weight':3},
+                   ).add_to(oakland_map)
+
+    # Add the tooltip
+    layer3 = folium.GeoJson(ca_counties_gdf,
+        style_function=lambda x: {'color':'transparent','fillColor':'transparent'},
+        tooltip=folium.features.GeoJsonTooltip(
+            fields=['NAME','POP2012'], 
+            aliases=['County', 'Population'],
+            labels=True,
+            localize=True
+        ),
+        highlight_function=lambda x: {'weight':3,'color':'white'}
+    ).add_to(oakland_map)
+
+
+    oakland_map  # show map
+---><p><a id="section6"></a></p>
+</div>
+</div>
+<div class="section" id="mapping-points-and-lines">
+<h2>12.6 Mapping Points and Lines<a class="headerlink" href="#mapping-points-and-lines" title="Permalink to this headline">¶</a></h2>
+<p>We can also add points and lines to a folium map.</p>
+<p>Let’s overlay BART stations as points and BART lines as lines to the interactive map. For the Bay Area these are data are available from the <a class="reference external" href="http://opendata.mtc.ca.gov/datasets">Metropoliton Transportation Commission (MTC) Open Data portal</a>.</p>
+<p>We’re going to try pulling in BART station data that we downloaded from the website and subsetted from the passenger-rail-stations. You can learn more about the dataset through here: <a class="reference external" href="http://opendata.mtc.ca.gov/datasets/passenger-rail-stations-2019">http://opendata.mtc.ca.gov/datasets/passenger-rail-stations-2019</a></p>
+<p>As usual, let’s try pulling in the data and inspect the first couple of rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load light rail stop data</span>
+<span class="n">railstops</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/transportation/Passenger_Rail_Stations_2019.zip&quot;</span><span class="p">)</span>  
+<span class="n">railstops</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subset to keep just bart stations</span>
+<span class="n">bart_stations</span> <span class="o">=</span> <span class="n">railstops</span><span class="p">[</span><span class="n">railstops</span><span class="p">[</span><span class="s1">&#39;agencyname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BART&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;station_na&quot;</span><span class="p">)</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Repeat for the rail lines</span>
+<span class="n">rail_lines</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/transportation/Passenger_Railways_2019.zip&quot;</span><span class="p">)</span>  
+<span class="n">rail_lines</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rail_lines</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># subset by operator to get the bart lines</span>
+<span class="n">bart_lines</span> <span class="o">=</span> <span class="n">rail_lines</span><span class="p">[</span><span class="n">rail_lines</span><span class="p">[</span><span class="s1">&#39;operator&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BART&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the CRS of the geodataframes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bart_lines</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick plot</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">bart_lines</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have fetched and checked the Bart data, let’s do a quick folium map with it.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> to add these data to the map, just as we used it previously for the census tract polygons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bart Map</span>
+<span class="n">map4</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_stations</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+
+<span class="n">map4</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also add tooltips, just as we did previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bart Map</span>
+<span class="n">map4</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="c1">#width=800,height=600,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Add Bart lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">,</span>
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;operator&#39;</span> <span class="p">],</span>
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Line operator&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+<span class="c1"># Add Bart stations</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_stations</span><span class="p">,</span>
+              <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span> 
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Stop Name&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+
+<span class="n">map4</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s pretty cool, but don’t you just want to click on those marker points to get a <code class="docutils literal notranslate"><span class="pre">popup</span></code> rather than hovering over for a <code class="docutils literal notranslate"><span class="pre">tooltip</span></code>?</p>
+<div class="section" id="mapping-points">
+<h3>Mapping Points<a class="headerlink" href="#mapping-points" title="Permalink to this headline">¶</a></h3>
+<p>So far we have used <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> to map our BART points. By default this uses the push-pin marker symbology made popular by Google Maps.</p>
+<p>Under the hood, folium.GeoJson uses the default object type <code class="docutils literal notranslate"><span class="pre">folium.Marker</span></code> when the input data are points.</p>
+<p>This is helpful to know because <code class="docutils literal notranslate"><span class="pre">folium.Marker</span></code> has a few options that allow further customization of our points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view help docs</span>
+folium.Marker<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s explicitly add the Bart Stations as points so we can change the <code class="docutils literal notranslate"><span class="pre">tooltips</span></code> to <code class="docutils literal notranslate"><span class="pre">popups</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bart Map</span>
+<span class="n">map4</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="c1">#width=800,height=800,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Add Bart lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">,</span>
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;operator&#39;</span> <span class="p">],</span>
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Line operator&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+<span class="c1"># Add Bart stations</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span>
+                        <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+                                  <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                                  <span class="n">popup</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span>
+                                 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">map4</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That <code class="docutils literal notranslate"><span class="pre">folium.Marker</span></code> code is a bit more complex than <code class="docutils literal notranslate"><span class="pre">folium.GeoJson</span></code> and may not be worth it unless you really want that popup behavior.</p>
+<p>But let’s see what else we can do with a <code class="docutils literal notranslate"><span class="pre">folium.Marker</span></code> by viewing the next map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bart Map</span>
+<span class="n">map4</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="c1">#width=800,height=600,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Add BART lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">,</span>
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;operator&#39;</span> <span class="p">],</span>
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Line operator&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">)</span>
+
+<span class="c1"># Add BART Stations</span>
+<span class="n">icon_url</span> <span class="o">=</span> <span class="s2">&quot;https://gomentumstation.net/wp-content/uploads/2018/08/Bay-area-rapid-transit-1000.png&quot;</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span>
+                        <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+                                  <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                                  <span class="n">popup</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span>
+                                  <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">CustomIcon</span><span class="p">(</span><span class="n">icon_url</span><span class="p">,</span><span class="n">icon_size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)),</span>
+                                 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map4</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">map4</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>Copy and paste the code for the previous cell into the next cell and</p>
+<ol class="simple">
+<li><p>change the bart icon to “<a class="reference external" href="https://ya-webdesign.com/transparent450_/train-emoji-png-14.png">https://ya-webdesign.com/transparent450_/train-emoji-png-14.png</a>”</p></li>
+<li><p>change the popup back to a tooltip.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Click here for solution</em></p>
+<!---
+# Bart Map
+map4 = folium.Map(location=[bart_stations.centroid.y.mean(), bart_stations.centroid.x.mean()], 
+
+                  tiles='CartoDB Positron',
+                  #width=800,height=600,
+                  zoom_start=10)
+
+# Add BART lines
+folium.GeoJson(bart_lines,
+               tooltip=folium.GeoJsonTooltip(
+                   fields=['operator' ],
+                   aliases=['Line operator'],
+                   labels=True,
+                   localize=True
+               ),
+              ).add_to(map4)
+
+# Add BART Stations
+icon_url = "https://ya-webdesign.com/transparent450_/train-emoji-png-14.png"
+bart_stations.apply(lambda row:
+                        folium.Marker(
+                                  location=[row['geometry'].y,row['geometry'].x],
+                                  tooltip=row['ts_locatio'],
+                                  icon=folium.features.CustomIcon(icon_url,icon_size=(20, 20)),
+                                 ).add_to(map4), axis=1)
+
+map4  # show map
+---></div>
+</div>
+<div class="section" id="folium-circlemarkers">
+<h3>folium.CircleMarkers<a class="headerlink" href="#folium-circlemarkers" title="Permalink to this headline">¶</a></h3>
+<p>You may prefer to customize points as <code class="docutils literal notranslate"><span class="pre">CircleMarkers</span></code> instead of the icon or pushpin Marker style. This allows you to set size and color of a marker, either manually or as a function of a data variable.</p>
+<p>Let’s look at some code for doing this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map5</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="c1">#width=1000,                        # the width &amp; height of the output map</span>
+                 <span class="c1">#height=600,                       # in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add BART Lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">)</span>
+
+
+<span class="c1"># Add BART Stations</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span>
+                        <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
+                                  <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                                  <span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">popup</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span>
+                                 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">),</span> 
+                         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">map5</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="folium-circle">
+<h3>folium.Circle<a class="headerlink" href="#folium-circle" title="Permalink to this headline">¶</a></h3>
+<p>You can also set the size of your circles to a fixed radius, in meters, using <code class="docutils literal notranslate"><span class="pre">folium.Circle</span></code>.  This is great for exploratory data analysis. For example, you can see what the census tract values are within 500 meters of a BART station.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view</span>
+<span class="c1">#?folium.Circle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map5</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span>   <span class="c1"># lat, lon around which to center the map</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="c1">#width=1000,                        # the width &amp; height of the output map</span>
+                 <span class="c1">#height=600,                       # in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="c1"># Add BART Lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">)</span>
+
+
+<span class="c1"># Add BART Stations</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span>
+                        <span class="n">folium</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+                                  <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                                  <span class="n">radius</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">popup</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span>
+                                 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">),</span> 
+                         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">map5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id12">
+<h4>Question<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+</div>
+<p>What do you notice about the size of the circles as you zoom in/out when you compare folium.Circles and folium.CircleMarkers?</p>
+</div>
+</div>
+<div class="section" id="proportional-symbol-maps">
+<h3>Proportional Symbol Maps<a class="headerlink" href="#proportional-symbol-maps" title="Permalink to this headline">¶</a></h3>
+<p>One of the advantages of the <code class="docutils literal notranslate"><span class="pre">folium.CircleMarker</span></code> is that we can set the size of the map to vary based on a data value.</p>
+<p>To give this a try, let’s add a fake column to the <code class="docutils literal notranslate"><span class="pre">bart_stations</span></code> gdf called millions_served and set it to a value between 1 and 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a column to the bart stations gdf</span>
+<span class="n">bart_stations</span><span class="p">[</span><span class="s1">&#39;millions_served&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">bart_stations</span><span class="p">))</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the basemap</span>
+<span class="n">map5</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span>
+                 <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                 <span class="c1">#width=1000,                        # the width &amp; height of the output map</span>
+                 <span class="c1">#height=600,                       # in pixels</span>
+                 <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                    <span class="c1"># the zoom level for the data to be displayed</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">)</span>
+
+<span class="c1"># Add BART Stations as CircleMarkers</span>
+<span class="c1"># Here, some knowlege of Python string formatting is useful</span>
+<span class="n">bart_stations</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span>
+                        <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
+                                  <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                                  <span class="n">radius</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;millions_served&#39;</span><span class="p">],</span>
+                                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+                                  <span class="n">tooltip</span> <span class="o">=</span> <span class="s2">&quot;Bart Station: </span><span class="si">%s</span><span class="s2">&lt;br&gt;Millions served: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;millions_served&#39;</span><span class="p">])</span>
+                    
+                                 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">map5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So if you hover over our BART stations, you see that we’ve formatted it nicely! Using some HTML and Python string formatting we can make our <code class="docutils literal notranslate"><span class="pre">tooltip</span></code> easier to read.</p>
+<p>If you want to learn more about customizing these, you can <a class="reference external" href="https://www.w3schools.com/html/html_basic.asp">go check this out to learn HTML basics</a>.  You can then <a class="reference external" href="https://python-reference.readthedocs.io/en/latest/docs/str/formatting.html">go here to learn about Python string formatting</a>.</p>
+<p><a id="section7"></a></p>
+</div>
+</div>
+<div class="section" id="creating-and-saving-a-folium-interactive-map">
+<h2>12.7 Creating and Saving a folium Interactive Map<a class="headerlink" href="#creating-and-saving-a-folium-interactive-map" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have seen most of the ways you can add a geodataframe to a folium map, let’s create one big map that includes several of our geodataframes.</p>
+<p>To control the display of the data layers, we will add a <code class="docutils literal notranslate"><span class="pre">folium.LayerControl</span></code></p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">folium.LayerControl</span></code> will allow you to toggle on/off a map’s visible layers.</p></li>
+<li><p>In order to add a layer to the LayerControl, the layer must have value set for its <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p></li>
+</ul>
+<p>Let’s take a look.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new map centered on the census tract data</span>
+<span class="n">map6</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> 
+                  <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">,</span>
+                  <span class="c1">#width=800,height=600,</span>
+                  <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Add the counties polygons as a choropleth map</span>
+<span class="n">layer1</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span><span class="n">geo_data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">),</span>
+           <span class="n">data</span><span class="o">=</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span>
+           <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+           <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
+           <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="c1">#&quot;white&quot;,</span>
+           <span class="n">line_weight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">line_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">legend_name</span><span class="o">=</span><span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+           <span class="n">highlight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Counties&quot;</span>
+          <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map6</span><span class="p">)</span>
+
+<span class="c1"># Add the tooltip for the counties as its own layer</span>
+<span class="c1"># Don&#39;t display in the Layer control!</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">ca_counties_gdf</span><span class="p">,</span>
+    <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">,</span><span class="s1">&#39;fillColor&#39;</span><span class="p">:</span><span class="s1">&#39;transparent&#39;</span><span class="p">},</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+        <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span><span class="s1">&#39;POP2012&#39;</span><span class="p">],</span> 
+        <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">],</span>
+        <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">highlight_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">layer1</span><span class="o">.</span><span class="n">geojson</span><span class="p">)</span>
+
+<span class="c1"># Add Bart lines</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_lines</span><span class="p">,</span>
+               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bart Lines&quot;</span><span class="p">,</span>
+               <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                   <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;operator&#39;</span> <span class="p">],</span>
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Line operator&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map6</span><span class="p">)</span>
+
+
+<span class="c1"># Add Bart stations</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">bart_stations</span><span class="p">,</span>
+               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bart stations&quot;</span><span class="p">,</span>
+              <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ts_locatio&#39;</span> <span class="p">],</span> 
+                   <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Stop Name&#39;</span><span class="p">],</span>
+                   <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">localize</span><span class="o">=</span><span class="kc">True</span>
+               <span class="p">),</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map6</span><span class="p">)</span>
+
+<span class="c1"># ADD LAYER CONTROL</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">(</span><span class="n">collapsed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map6</span><span class="p">)</span>
+
+<span class="n">map6</span>  <span class="c1"># show map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="https://image.flaticon.com/icons/svg/87/87705.svg" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id13">
+<h3>Questions<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>Take a look at the help docs <code class="docutils literal notranslate"><span class="pre">folium.LayerControl?</span></code>. What parameter would move the location of the LayerControl? What parameter would allow it to be closed by default?</p></li>
+<li><p>Take a look at the way we added <code class="docutils literal notranslate"><span class="pre">layer2</span></code> above (this has the census tract tooltips). How has the code we use to add the layer to the map changed? Why do you think we made this change?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to view</span>
+<span class="c1">#folium.LayerControl?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="saving-to-an-html-file">
+<h3>Saving to an html file<a class="headerlink" href="#saving-to-an-html-file" title="Permalink to this headline">¶</a></h3>
+<p>By saving our map to a html we can use it later as something to add to a website or email to a colleague.</p>
+<p>You can save any of the maps you have in the notebook using this syntax:</p>
+<blockquote>
+<div><p>map_name.save(“file_name.html”)</p>
+</div></blockquote>
+<p>Let’s try that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map6</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;outdata/bartmap.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find your html file on your computer and double-click on it to open it in a browser.</p>
+<div class="section" id="extra-challenge">
+<h4>Extra Challenge<a class="headerlink" href="#extra-challenge" title="Permalink to this headline">¶</a></h4>
+<p>Check out the notebook examples and find one to try with the data we have used in this notebook. I recommend the following.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/python-visualization/folium/blob/master/examples/MiniMap.ipynb">Mini-maps</a></p></li>
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/python-visualization/folium/blob/master/examples/plugin-DualMap.ipynb">Dual-map</a> (choropleth maps two census tract vars)</p></li>
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/python-visualization/folium/blob/master/examples/plugin-Search.ipynb">Search</a> (e.g., for a Bart Station by name)</p></li>
+</ul>
+<p><a id="section6"></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>12.8 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Here we learned about the wonderful world of <code class="docutils literal notranslate"><span class="pre">Folium</span></code>! We created interactive maps– whether it be choropleth, points, lines, symbols… we mapped it all.</p>
+<p>Below you’ll find a list of key functionalities we learned:</p>
+<ul class="simple">
+<li><p>Interactive mapping</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.Map()</span></code></p></li>
+</ul>
+</li>
+<li><p>Adding a map layer</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.add_to()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.Choropleth()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">geo_data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">columns</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fill_color</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.GeoJson()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">style_function</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.Marker()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">icon</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.CircleMarker()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Adding a Tooltip</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.GeoJsonTooltip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.features.GeoJsonTooltip</span></code></p></li>
+</ul>
+</li>
+<li><p>Adding layer control</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">folium.LayerControl()</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="important-note">
+<h2>Important note<a class="headerlink" href="#important-note" title="Permalink to this headline">¶</a></h2>
+<p>The folium library changes often so I recommend you update your package frequently. This will give you increased functionality and may make future code easier to write. However, it might cause your existing code to break.</p>
+<div class="section" id="id14">
+<h3>References<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>This notebook provides an introduction to <code class="docutils literal notranslate"><span class="pre">folium</span></code>. To see what else you can do, check out the references listed below.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/python-visualization/folium">Folium web site</a></p></li>
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/python-visualization/folium/tree/master/examples/">Folium notebook examples</a></p></li>
+</ul>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env2"
+        },
+        kernelOptions: {
+            kernelName: "geo_env2",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env2'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="11_OPTIONAL_Basemap_with_Contextily.html" title="previous page">11. Adding Basemaps with Contextily</a>
+    <a class='right-next' id="next-link" href="13_OPTIONAL_geocoding.html" title="next page">Geocoding Addresses in Python</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
