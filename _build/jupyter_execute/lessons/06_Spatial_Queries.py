@@ -71,7 +71,7 @@ import matplotlib.pyplot as plt # submodule of matplotlib
 # To display plots, maps, charts etc in the notebook
 %matplotlib inline  
 
-# 6.0 Load and prep some data
+## 6.0 Load and prep some data
 
 Let's read in our census tracts data again.
 
@@ -85,7 +85,7 @@ Then we'll grab just the Alameda Country tracts.
 census_tracts_ac = census_tracts.loc[census_tracts['COUNTYFP']=='001'].reset_index(drop=True)
 census_tracts_ac.plot()
 
-# 6.1 Measurement Queries
+## 6.1 Measurement Queries
 
 We'll start off with some simple measurement queries.
 
@@ -209,7 +209,7 @@ dealing with polygons, this is equivalent to getting the features' perimeters.
 
 census_tracts_ac_utm10.length
 
-# 6.2 Relationship Queries
+## 6.2 Relationship Queries
 
 
 [Spatial relationship queries](https://en.wikipedia.org/wiki/Spatial_relation) consider how two geometries or sets of geometries relate to one another in space. 
@@ -295,7 +295,7 @@ ax.set_title('Protected areas in Alameda County, colored by area', size=18);
 
 # color by county?
 
-# Exercise: Spatial Relationship Query
+## Exercise: Spatial Relationship Query
 
 Let's use a spatial relationship query to create a new dataset containing Berkeley schools!
 
@@ -335,7 +335,7 @@ schools_df.head()
 # YOUR CODE HERE:
 
 
-## Double-click to see solution!
+### Double-click to see solution!
 
 <!--
 
@@ -358,7 +358,7 @@ berkeley_schools.plot(color='purple',ax=ax)
 
 -------------------------------
 
-# 6.3 Proximity Analysis
+## 6.3 Proximity Analysis
 
 Now that we've seen the basic idea of spatial measurement and relationship queries,
 let's take a look at a common analysis that combines those concepts: **promximity analysis**.
@@ -424,7 +424,7 @@ If we want to find the shortest distance from one school to the bike boulevards,
 
 berkeley_schools.distance(bike_blvds_utm10.unary_union)
 
-# Exercise: Proximity Analysis
+## Exercise: Proximity Analysis
 
 Now it's your turn to try out a proximity analysis!
 
@@ -456,7 +456,7 @@ berkeley_bart = bart_stations_gdf_utm10[bart_stations_gdf_utm10.within(berkeley_
 # YOUR CODE HERE:
 
 
-## Double-click to see solution!
+### Double-click to see solution!
 
 <!--
 

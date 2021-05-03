@@ -247,7 +247,7 @@ grocery_pts_gdf_ac.plot(ax=ax, column='SALESVOL', cmap='Greys_r', linewidth=0.3,
 
 ***
 
-# Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+## Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
 
 <img src="https://statmodeling.stat.columbia.edu/wp-content/uploads/2016/07/cat-globe.png">
 

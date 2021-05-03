@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt # submodule of matplotlib
 # To display plots, maps, charts etc in the notebook
 %matplotlib inline  
 
-# 7.0 Data Input and Prep
+## 7.0 Data Input and Prep
 
 Let's read in a table of data from the US Census' 5-year American Community Survey (ACS5).
 
@@ -118,7 +118,7 @@ tracts_gdf_ac = tracts_gdf[tracts_gdf['COUNTYFP']=='001']
 tracts_gdf_ac.plot()
 plt.show()
 
-# 7.1 Attribute Joins
+## 7.1 Attribute Joins
 
 **Attribute Joins  between Geodataframes and  Dataframes**
 
@@ -234,7 +234,7 @@ To see the solution, double-click the Markdown cell below.
 # YOUR CODE HERE
 
 
-## Double-click to see solution!
+### Double-click to see solution!
 
 <!--
 
@@ -250,7 +250,7 @@ ax.set_title("Percentage of Renters")
 -->
 
 -------------------
-# 7.2 Spatial Joins
+## 7.2 Spatial Joins
 
 Great! We've wrapped our heads around the concept of an attribute join.
 
@@ -445,7 +445,7 @@ there's a pretty obvious, strong, and positive correlation
 between median household income in a school's tract
 and the school's API.
 
-# 7.3: Aggregation
+## 7.3. Aggregation
 
 We just saw that a spatial join in one way to leverage the spatial relationship
 between two datasets in order to create a new, synthetic dataset.
@@ -563,7 +563,7 @@ schools_gdf.plot(ax=ax, color='black', markersize=2)
 
 ---------------------
 
-# Exercise: Aggregation
+## Exercise: Aggregation
 
 #### What is the mean API of each census tract?
 
@@ -588,7 +588,7 @@ To see the solution, double-click the Markdown cell below.
 
 
 
-## Double-click to see solution!
+### Double-click to see solution!
 
 <!--
 

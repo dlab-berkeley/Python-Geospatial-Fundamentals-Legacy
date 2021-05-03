@@ -148,6 +148,8 @@ cx.providers.Esri.keys()
 ax = bart_gdf.to_crs('EPSG:3857').plot(figsize=(9, 9))
 cx.add_basemap(ax,  source=cx.providers.NASAGIBS.ModisTerraTrueColorCR)
 
-# Learning More
+## Learning More
 
 Above, we prove a very short introduction to the excellent `contextily` library. You can find more detailed information on the `contextily` homepage, available at: [https://github.com/geopandas/contextily](https://github.com/geopandas/contextily). We especially encourage you to check out the notebook examples provided in that github repo.
+
+

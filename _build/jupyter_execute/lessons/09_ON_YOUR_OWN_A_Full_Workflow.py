@@ -119,7 +119,7 @@ tracts_gdf_ac_utm10 = tracts_gdf_ac.to_crs("epsg:26910")
 
 -->
 
-# 9.3 Spatial Join
+## 9.3 Spatial Join
 
 Alright, now our data is all ready to go! We're going to do a *spatial join* to answer our question about polling stations in each tract.
 
@@ -374,7 +374,7 @@ polling_berk_gdf.distance(bus_berk_clip.unary_union)
 
 -->
 
-# You're done!!!! 
+## You're done!!!! 
 <img src="https://pbs.twimg.com/media/EIEHbKvXUAATXhi?format=jpg&name=large">
 
 ---
