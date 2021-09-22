@@ -1,4 +1,4 @@
-# Welcome to Geospatial Fundamentals in Python
+# Geospatial Data and Mapping in Python
 
 ## Overview
 
