@@ -4,11 +4,11 @@
 
 Geospatial data are an important component of data visualization and analysis in the social sciences, humanities, and elsewhere. The Python programming language is a great platform for exploring these data and integrating them into your research. 
 
-### Geospatial Data in Python, part I: Getting started with spatial dataframes
+### Geospatial Data and Mapping in Python, Part 1: Getting started with spatial dataframes
 
 Part one of this two-part workshop series will introduce basic methods for working with geospatial data in Python using the [GeoPandas library](https://geopandas.org). Participants will learn how to import and export spatial data and store them as GeoPandas GeoDataFrames (or spatial dataframes). We will explore and compare several methods for mapping the data including the GeoPandas plot function and the matplotlib library. We will review coordinate reference systems and methods for reading, defining and transforming these. Note, this workshop focuses on vector spatial data.
 
-### Geospatial Data in Python, part 2: Geoprocessing and analysis
+### Geospatial Data and Mapping in Python, Part 2: Geoprocessing and analysis
 
 Part two of this two-part workshop series will dive deeper into data driven mapping in Python, using color palettes and data classification to communicate information with maps. We will also introduce basic methods for processing spatial data, which are the building blocks of common spatial analysis workflows. Note, this workshop focuses on vector spatial data.
 
