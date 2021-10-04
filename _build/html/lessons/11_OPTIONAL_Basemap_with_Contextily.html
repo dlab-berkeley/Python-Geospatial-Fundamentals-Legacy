@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>11. Adding Basemaps with Contextily &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Interactive Mapping with Folium" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html" />
+    <link rel="prev" title="10. Read in Data from Online Sources + CSV to Geodataframe" href="10_OPTIONAL_Fetching_Data.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Attribute and Spatial Joins
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   Pulling it All Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Another Full Workflow
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/11_OPTIONAL_Basemap_with_Contextily.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/11_OPTIONAL_Basemap_with_Contextily.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-data-into-a-geopandas-geodataframe">
+   Read data into a Geopandas GeoDataFrame
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-contextily-to-add-a-basemap">
+   Use Contextily to add a basemap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mapping-point-data">
+   Mapping Point Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-point-data-in-a-dataframe-to-geospatial-data-in-a-geodataframe">
+     Converting Point Data in a dataframe to Geospatial Data in a geodataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-basemap">
+   Changing the Basemap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-more">
+   Learning More
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="adding-basemaps-with-contextily">
+<h1>11. Adding Basemaps with Contextily<a class="headerlink" href="#adding-basemaps-with-contextily" title="Permalink to this headline">¶</a></h1>
+<p>If you work with geospatial data in Python, you most likely are familiar with the fantastic <a class="reference external" href="https://geopandas.org/">GeoPandas</a> library.  GeoPandas leverages the power of <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> to enable users to make maps of their data.  However, until recently, it has not been easy to add basemaps to these maps. Basemaps are the contextual map data, like Google Maps, on top of which geospatial data are often displayed.</p>
+<p>The new Python library <a class="reference external" href="https://github.com/geopandas/contextily">contextily</a>, which stands for <em>context map tiles</em>, now makes it possible and relatively straight forward to add basemaps to Geopandas maps. Below we walk through a few common workflows for doing this.</p>
+<p>First, let’s load are libraries. This assumes you have the following Python libraries installed in your environment:</p>
+<ul class="simple">
+<li><p>pandas</p></li>
+<li><p>matplotlib</p></li>
+<li><p>geopandas (and all dependancies)</p></li>
+<li><p>contextily</p></li>
+<li><p>descartes</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">cx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/geopandas/_compat.py:106: UserWarning: The Shapely GEOS version (3.9.1-CAPI-1.14.2) is incompatible with the GEOS version PyGEOS was compiled with (3.9.0-CAPI-1.16.2). Conversions between both will be slow.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="read-data-into-a-geopandas-geodataframe">
+<h2>Read data into a Geopandas GeoDataFrame<a class="headerlink" href="#read-data-into-a-geopandas-geodataframe" title="Permalink to this headline">¶</a></h2>
+<p>Fetch the census places data to map. Census places includes cities and other populated places. Here we fetch the 2019 cartographic boundary (<code class="docutils literal notranslate"><span class="pre">cb_</span></code>) file of California (<code class="docutils literal notranslate"><span class="pre">06</span></code>) places.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca_places</span> <span class="o">=</span> <span class="s2">&quot;https://www2.census.gov/geo/tiger/GENZ2019/shp/cb_2019_06_place_500k.zip&quot;</span>
+<span class="n">places</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">ca_places</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the geodatarame <code class="docutils literal notranslate"><span class="pre">plot</span></code> method to make a quick map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_5_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_5_0.png" />
+</div>
+</div>
+<p>Now that we can see those cities, let’s take a look at the data in the geodataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>PLACEFP</th>
+      <th>PLACENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>06</td>
+      <td>36490</td>
+      <td>02410102</td>
+      <td>1600000US0636490</td>
+      <td>0636490</td>
+      <td>Industry</td>
+      <td>25</td>
+      <td>30529397</td>
+      <td>723181</td>
+      <td>POLYGON ((-118.05750 34.01640, -118.05603 34.0...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>06</td>
+      <td>40130</td>
+      <td>02411620</td>
+      <td>1600000US0640130</td>
+      <td>0640130</td>
+      <td>Lancaster</td>
+      <td>25</td>
+      <td>244187339</td>
+      <td>681671</td>
+      <td>POLYGON ((-118.32517 34.75176, -118.32073 34.7...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>06</td>
+      <td>75000</td>
+      <td>02411987</td>
+      <td>1600000US0675000</td>
+      <td>0675000</td>
+      <td>Stockton</td>
+      <td>25</td>
+      <td>161025631</td>
+      <td>7985703</td>
+      <td>POLYGON ((-121.41881 38.04418, -121.41801 38.0...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>06</td>
+      <td>43000</td>
+      <td>02410866</td>
+      <td>1600000US0643000</td>
+      <td>0643000</td>
+      <td>Long Beach</td>
+      <td>25</td>
+      <td>131302222</td>
+      <td>75937543</td>
+      <td>MULTIPOLYGON (((-118.12890 33.75801, -118.1273...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>06</td>
+      <td>78106</td>
+      <td>02412042</td>
+      <td>1600000US0678106</td>
+      <td>0678106</td>
+      <td>Tehama</td>
+      <td>25</td>
+      <td>2057210</td>
+      <td>0</td>
+      <td>POLYGON ((-122.13364 40.02417, -122.13295 40.0...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can subset the data by selecting a row or rows by place name. Let’s select the city of Berkeley, CA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span> <span class="o">=</span> <span class="n">places</span><span class="p">[</span><span class="n">places</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_10_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="use-contextily-to-add-a-basemap">
+<h2>Use Contextily to add a basemap<a class="headerlink" href="#use-contextily-to-add-a-basemap" title="Permalink to this headline">¶</a></h2>
+<p>Above we can see the map of the boundary of the city of Berkeley, CA.  The axis labels display the longitude and latitude coordinates for the bounding extent of the city.</p>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">contextily</span></code> in it’s most simple form to add a basemap to provide the geographic context for Berkeley.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">berkeley</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_12_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_12_0.png" />
+</div>
+</div>
+<p>There are a few important things to note about the above code.</p>
+<ul class="simple">
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to define the plot canvas as <code class="docutils literal notranslate"><span class="pre">ax</span></code>.</p></li>
+<li><p>We then add the contextily basemap to the map with the code <code class="docutils literal notranslate"><span class="pre">cx.add_basemap(ax)</span></code></p></li>
+</ul>
+<p>Additionally, we <strong>dynamically transform the coordinate reference system</strong>, or CRS, of the Berkeley geodataframe from geographic lat/lon coordinates to <code class="docutils literal notranslate"><span class="pre">web</span> <span class="pre">mercator</span></code> using the method <strong>to_crs(‘EPSG:3857’)</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Web_Mercator_projection">Web mercator</a> is the default CRS used by all web map tilesets. It is referenced by a the code <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code> where <a class="reference external" href="https://en.wikipedia.org/wiki/EPSG_Geodetic_Parameter_Dataset">EPSG</a> stands for the the initials of the organization that created these codes  (the European Petroleum Survey Group).</p>
+<p>Let’s clean up the map by adding some code to change the symbology of the Berkeley city boundary. This will highlight the value of adding a basemap.</p>
+<p>First, let’s map the boundary with out a fill color.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_14_1.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_14_1.png" />
+</div>
+</div>
+<p>Now, let’s build on those symbology options and add the contextily basemap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">berkeley</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> 
+                                       <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="c1"># or a color </span>
+                                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>       <span class="c1"># opacity value for colors, 0-1</span>
+                                       <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>      <span class="c1"># line, or stroke, thickness</span>
+                                       <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+                                      <span class="p">)</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_16_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_16_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mapping-point-data">
+<h2>Mapping Point Data<a class="headerlink" href="#mapping-point-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s expand on this example by mapping a point dataset of BART station locations.</p>
+<p>First we fetch these data from a D-Lab web mapping tutorial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bart_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/dlab-berkeley/Geospatial-Fundamentals-in-Python/master/notebook_data/transportation/bart.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bart</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">bart_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bart</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>STATION</th>
+      <th>OPERATOR</th>
+      <th>COUNTY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.283348</td>
+      <td>37.874061</td>
+      <td>NORTH BERKELEY</td>
+      <td>BART</td>
+      <td>ALA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.268249</td>
+      <td>37.869689</td>
+      <td>DOWNTOWN BERKELEY</td>
+      <td>BART</td>
+      <td>ALA</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.270119</td>
+      <td>37.853207</td>
+      <td>ASHBY</td>
+      <td>BART</td>
+      <td>ALA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.251777</td>
+      <td>37.844510</td>
+      <td>ROCKRIDGE</td>
+      <td>BART</td>
+      <td>ALA</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.267120</td>
+      <td>37.828705</td>
+      <td>MACARTHUR</td>
+      <td>BART</td>
+      <td>ALA</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="converting-point-data-in-a-dataframe-to-geospatial-data-in-a-geodataframe">
+<h3>Converting Point Data in a dataframe to Geospatial Data in a geodataframe<a class="headerlink" href="#converting-point-data-in-a-dataframe-to-geospatial-data-in-a-geodataframe" title="Permalink to this headline">¶</a></h3>
+<p>Because these data are in a CSV file we read them into a Pandas DataFrame.</p>
+<p>In order to map these data we need to convert these data to a GeoPandas GeoDataFame. To do this, we need to specify:</p>
+<ul class="simple">
+<li><p>the data, here the geodataframe <code class="docutils literal notranslate"><span class="pre">bart</span></code></p></li>
+<li><p>the coordinate data, here <code class="docutils literal notranslate"><span class="pre">bart['X']</span></code> and <code class="docutils literal notranslate"><span class="pre">bart['Y']</span></code></p></li>
+<li><p>the CRS of the bart coordinate data, here <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code></p></li>
+</ul>
+<p>The CRS code ‘EPSG:4326’ stands for the World Geodectic System of 1984, or WGS84. This is the most commonly used CRS for geographic (lat/lon) coordinate data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Convert the DataFrame to a GeoDataFrame. </span>
+<span class="n">bart_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">bart</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">bart</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> 
+                                                              <span class="n">bart</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]),</span> 
+                            <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span> 
+
+<span class="c1"># and take a look</span>
+<span class="n">bart_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_22_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_22_0.png" />
+</div>
+</div>
+<p>Now that we have the BART data in a geodataframe we can use the same commands as we did above to map it with a contextily basemap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">bart_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_24_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_24_0.png" />
+</div>
+</div>
+<p>We have the full range of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> style options to enhance the map, a few of which are shown in the example below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">bart_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                                    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                                    <span class="n">markersize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> 
+                                    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Bay Area Bart Stations&#39;</span><span class="p">)</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_26_0.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_26_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="changing-the-basemap">
+<h2>Changing the Basemap<a class="headerlink" href="#changing-the-basemap" title="Permalink to this headline">¶</a></h2>
+<p>By default <code class="docutils literal notranslate"><span class="pre">contextiley</span></code> returns maptiles from the OpenStreetmap Mapnik basemap. However, ther are other available tilesets from different providers.  These tilesets are stored in the contextily <code class="docutils literal notranslate"><span class="pre">cx.providers</span></code> dictionary.</p>
+<p>That’s a large dictionary and you can view it. Alternatively, and more simply, you can access the list of the providers in this dictionary using the command <code class="docutils literal notranslate"><span class="pre">cs.providers.keys</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change basemap - can be one of these</span>
+<span class="c1"># first see available provider names</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;OpenStreetMap&#39;, &#39;OpenSeaMap&#39;, &#39;OpenPtMap&#39;, &#39;OpenTopoMap&#39;, &#39;OpenRailwayMap&#39;, &#39;OpenFireMap&#39;, &#39;SafeCast&#39;, &#39;Thunderforest&#39;, &#39;OpenMapSurfer&#39;, &#39;Hydda&#39;, &#39;MapBox&#39;, &#39;Stamen&#39;, &#39;Esri&#39;, &#39;OpenWeatherMap&#39;, &#39;HERE&#39;, &#39;FreeMapSK&#39;, &#39;MtbMap&#39;, &#39;CartoDB&#39;, &#39;HikeBike&#39;, &#39;BasemapAT&#39;, &#39;nlmaps&#39;, &#39;NASAGIBS&#39;, &#39;NLS&#39;, &#39;JusticeMap&#39;, &#39;Wikimedia&#39;, &#39;GeoportailFrance&#39;, &#39;OneMapSG&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you have the list of providers, you can find the names of their specific tilesets.</p>
+<p>Below, we retrieve the list of the tilesets available from the provider <code class="docutils literal notranslate"><span class="pre">CartoDB</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Then find the names of the tile sets for a specific provider</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;Positron&#39;, &#39;PositronNoLabels&#39;, &#39;PositronOnlyLabels&#39;, &#39;DarkMatter&#39;, &#39;DarkMatterNoLabels&#39;, &#39;DarkMatterOnlyLabels&#39;, &#39;Voyager&#39;, &#39;VoyagerNoLabels&#39;, &#39;VoyagerOnlyLabels&#39;, &#39;VoyagerLabelsUnder&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can specify a different tileset using the <strong>source</strong> argument to the <code class="docutils literal notranslate"><span class="pre">add_basemap</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Esri</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;WorldStreetMap&#39;, &#39;DeLorme&#39;, &#39;WorldTopoMap&#39;, &#39;WorldImagery&#39;, &#39;WorldTerrain&#39;, &#39;WorldShadedRelief&#39;, &#39;WorldPhysical&#39;, &#39;OceanBasemap&#39;, &#39;NatGeoWorldMap&#39;, &#39;WorldGrayCanvas&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the basemap provider and tileset</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">bart_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span>  <span class="n">source</span><span class="o">=</span><span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">NASAGIBS</span><span class="o">.</span><span class="n">ModisTerraTrueColorCR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/contextily/tile.py:632: UserWarning: The inferred zoom level of 11 is not valid for the current tile provider (valid zooms: 1 - 9).
+  warnings.warn(msg)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionResetError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span>             <span class="c1"># Make the request on the httplib connection object.</span>
+<span class="ne">--&gt; </span><span class="mi">699</span>             <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">conn</span><span class="p">,</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>                     <span class="c1"># Otherwise it looks like a bug in the code.</span>
+<span class="ne">--&gt; </span><span class="mi">445</span>                     <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>         <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">,</span> <span class="n">SocketError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/packages/six.py</span> in <span class="ni">raise_from</span><span class="nt">(value, from_value)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>                 <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>                     <span class="n">httplib_response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>                 <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1347</span>                 <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span>             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">307</span>             <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>             <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="k">def</span> <span class="nf">_read_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">268</span>         <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">704</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1241</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1242</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span>             <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1099</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span>             <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">ConnectionResetError</span>: [Errno 54] Connection reset by peer
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ProtocolError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">439</span>                 <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>                     <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">754</span> 
+<span class="ne">--&gt; </span><span class="mi">755</span>             <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span>                 <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/util/retry.py</span> in <span class="ni">increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span>             <span class="k">if</span> <span class="n">read</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_method_retryable</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">531</span>                 <span class="k">raise</span> <span class="n">six</span><span class="o">.</span><span class="n">reraise</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">),</span> <span class="n">error</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span>             <span class="k">elif</span> <span class="n">read</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/packages/six.py</span> in <span class="ni">reraise</span><span class="nt">(tp, value, tb)</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span>             <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">__traceback__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">tb</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">734</span>                 <span class="k">raise</span> <span class="n">value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span>             <span class="k">raise</span> <span class="n">value</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span>             <span class="c1"># Make the request on the httplib connection object.</span>
+<span class="ne">--&gt; </span><span class="mi">699</span>             <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">conn</span><span class="p">,</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>                     <span class="c1"># Otherwise it looks like a bug in the code.</span>
+<span class="ne">--&gt; </span><span class="mi">445</span>                     <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>         <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">,</span> <span class="n">SocketError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/packages/six.py</span> in <span class="ni">raise_from</span><span class="nt">(value, from_value)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>                 <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>                     <span class="n">httplib_response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>                 <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1347</span>                 <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span>             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">307</span>             <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>             <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="k">def</span> <span class="nf">_read_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">268</span>         <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">704</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1241</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1242</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span>             <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1099</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span>             <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">ProtocolError</span>: (&#39;Connection aborted.&#39;, ConnectionResetError(54, &#39;Connection reset by peer&#39;))
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="n">b75b516f4bbf</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Change the basemap provider and tileset</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">bart_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span>  <span class="n">source</span><span class="o">=</span><span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">NASAGIBS</span><span class="o">.</span><span class="n">ModisTerraTrueColorCR</span><span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/contextily/plotting.py</span> in <span class="ni">add_basemap</span><span class="nt">(ax, zoom, source, interpolation, attribution, attribution_size, reset_extent, crs, resampling, url, **extra_imshow_args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>         <span class="c1"># Download image</span>
+<span class="ne">--&gt; </span><span class="mi">143</span>         <span class="n">image</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">bounds2img</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>             <span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">ll</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>         <span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/contextily/tile.py</span> in <span class="ni">bounds2img</span><span class="nt">(w, s, e, n, zoom, source, ll, wait, max_retries, url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">z</span>
+<span class="g g-Whitespace">    </span><span class="mi">247</span>         <span class="n">tile_url</span> <span class="o">=</span> <span class="n">_construct_tile_url</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">248</span>         <span class="n">image</span> <span class="o">=</span> <span class="n">_fetch_tile</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span>         <span class="n">tiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>         <span class="n">arrays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/joblib/memory.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span> 
+<span class="g g-Whitespace">    </span><span class="mi">590</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">591</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_call</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span> 
+<span class="g g-Whitespace">    </span><span class="mi">593</span>     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/joblib/memory.py</span> in <span class="ni">_cached_call</span><span class="nt">(self, args, kwargs, shelving)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> 
+<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="k">if</span> <span class="n">must_call</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">534</span>             <span class="n">out</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mmap_mode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>                 <span class="c1"># Memmap the output at the first call to be consistent with</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/joblib/memory.py</span> in <span class="ni">call</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">759</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">760</span>             <span class="nb">print</span><span class="p">(</span><span class="n">format_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">761</span>         <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">762</span>         <span class="bp">self</span><span class="o">.</span><span class="n">store_backend</span><span class="o">.</span><span class="n">dump_item</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">763</span>             <span class="p">[</span><span class="n">func_id</span><span class="p">,</span> <span class="n">args_id</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/contextily/tile.py</span> in <span class="ni">_fetch_tile</span><span class="nt">(tile_url, wait, max_retries)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="nd">@memory</span><span class="o">.</span><span class="n">cache</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">def</span> <span class="nf">_fetch_tile</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">303</span>     <span class="n">request</span> <span class="o">=</span> <span class="n">_retryer</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_stream</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_stream</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/contextily/tile.py</span> in <span class="ni">_retryer</span><span class="nt">(tile_url, wait, max_retries)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span><span class="s2">     try:</span>
+<span class="ne">--&gt; </span><span class="mi">446</span><span class="s2">         request = requests.get(tile_url, headers={&quot;user-agent&quot;: USER_AGENT})</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="s2">         request.raise_for_status()</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span><span class="s2">     except requests.HTTPError:</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="s2">     kwargs.setdefault(&#39;allow_redirects&#39;, True)</span>
+<span class="ne">---&gt; </span><span class="mi">76</span><span class="s2">     return request(&#39;get&#39;, url, params=params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span><span class="s2"> </span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/api.py</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="s2">     # cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">     with sessions.Session() as session:</span>
+<span class="ne">---&gt; </span><span class="mi">61</span><span class="s2">         return session.request(method=method, url=url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="s2"> </span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="s2">         }</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="s2">         send_kwargs.update(settings)</span>
+<span class="ne">--&gt; </span><span class="mi">542</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span><span class="s2">         return resp</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span><span class="s2">         # Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">655</span><span class="s2">         r = adapter.send(request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span><span class="s2">         # Total elapsed time of the request (approximately)</span>
+
+<span class="nn">/opt/anaconda3/envs/geo_env2/lib/python3.9/site-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span><span class="s2">         except (ProtocolError, socket.error) as err:</span>
+<span class="ne">--&gt; </span><span class="mi">498</span><span class="s2">             raise ConnectionError(err, request=request)</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span><span class="s2">         except MaxRetryError as e:</span>
+
+<span class="ne">ConnectionError</span>: (&#39;Connection aborted.&#39;, ConnectionResetError(54, &#39;Connection reset by peer&#39;))
+</pre></div>
+</div>
+<img alt="../_images/11_OPTIONAL_Basemap_with_Contextily_33_2.png" src="../_images/11_OPTIONAL_Basemap_with_Contextily_33_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="learning-more">
+<h2>Learning More<a class="headerlink" href="#learning-more" title="Permalink to this headline">¶</a></h2>
+<p>Above, we prove a very short introduction to the excellent <code class="docutils literal notranslate"><span class="pre">contextily</span></code> library. You can find more detailed information on the <code class="docutils literal notranslate"><span class="pre">contextily</span></code> homepage, available at: <a class="reference external" href="https://github.com/geopandas/contextily">https://github.com/geopandas/contextily</a>. We especially encourage you to check out the notebook examples provided in that github repo.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env2"
+        },
+        kernelOptions: {
+            kernelName: "geo_env2",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env2'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="10_OPTIONAL_Fetching_Data.html" title="previous page">10. Read in Data from Online Sources + CSV to Geodataframe</a>
+    <a class='right-next' id="next-link" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html" title="next page">12. Interactive Mapping with Folium</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

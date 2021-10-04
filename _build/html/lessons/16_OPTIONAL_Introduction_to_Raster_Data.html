@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>16. Introduction to Raster Data &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="15. Voronoi Tessellation" href="15_OPTIONAL_Voronoi_Tessellation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/16_OPTIONAL_Introduction_to_Raster_Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/16_OPTIONAL_Introduction_to_Raster_Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data-and-plot">
+   16.1 Import data and plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#raster-data-structure">
+   16.2 Raster data structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mask-raster-data">
+   16.2 Mask raster data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregate-raster-to-vector">
+   16.3 Aggregate raster to vector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-resources">
+   16.4 Other resources
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-raster-data">
+<h1>16. Introduction to Raster Data<a class="headerlink" href="#introduction-to-raster-data" title="Permalink to this headline">¶</a></h1>
+<p>This is a very brief introduction to reading raster data and basic manipulations in Python. We’ll walk through one of the most commonly used raster python packages, <code class="docutils literal notranslate"><span class="pre">rasterio</span></code>. We’ll be using the <a class="reference external" href="https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend">National Land Cover Database (NLCD)</a> from 2011 that was downloaded from <a class="reference external" href="https://viewer.nationalmap.gov/basic">here</a>.</p>
+<img src="https://www.mdpi.com/remotesensing/remotesensing-11-02971/article_deploy/html/images/remotesensing-11-02971-g004.png" width="600">
+<blockquote>
+<div><p>Note: They also have a <a class="reference external" href="https://www.mrlc.gov/viewer/">cool online viewer</a> that is free and open access.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Patch</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use raster data we’ll be using the <code class="docutils literal notranslate"><span class="pre">rasterio</span></code> package, which is a popular package that helps you read, write, and manipulate raster data. We’ll also be using <code class="docutils literal notranslate"><span class="pre">rasterstats</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span><span class="p">,</span> <span class="n">plotting_extent</span>
+<span class="kn">from</span> <span class="nn">rasterio.mask</span> <span class="kn">import</span> <span class="n">mask</span>
+
+<span class="kn">from</span> <span class="nn">rasterstats</span> <span class="kn">import</span> <span class="n">zonal_stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="import-data-and-plot">
+<h2>16.1 Import data and plot<a class="headerlink" href="#import-data-and-plot" title="Permalink to this headline">¶</a></h2>
+<p>To open our NLCD subset data, we’ll use the <code class="docutils literal notranslate"><span class="pre">rasterio.open</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;notebook_data/raster/nlcd2011_sf.tif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check out what we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s dissect this output here. We can look at the helper documentation for clues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>rasterio.open
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which reads that the function returns a <code class="docutils literal notranslate"><span class="pre">DatasetReader</span></code> or <code class="docutils literal notranslate"><span class="pre">DatasetWriter</span></code> object. Unlike in <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> which we’ve been utilizing a lot of, we don’t have a directly editable object here. However, <code class="docutils literal notranslate"><span class="pre">rasterio</span></code> does have functions in place where we can still use this returned object directly.</p>
+<p>For example, we can easily plot our NLCD data using <code class="docutils literal notranslate"><span class="pre">rasterio.plot.show</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">nlcd_2011</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And just like how we formatted our <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> plots when we were using GeoDataFrames, we can still do that with this raster plotting function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>rasterio.plot.show
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt_nlcd</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">nlcd_2011</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Pastel2&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(Take note of what you think could be improved here… we’ll come back to this)</p>
+<p>We can also plot a histogram of our data in a very similar way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show_hist</span><span class="p">(</span><span class="n">nlcd_2011</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that we have more values on the lower end than on the higher end. To really understand the values that we see here let’s <a class="reference external" href="https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend">take a look at the legend</a>.</p>
+<img src ="assets/images/NLCD_Colour_Classification_Update.jpg" width="200" align="center"></div>
+<div class="section" id="raster-data-structure">
+<h2>16.2 Raster data structure<a class="headerlink" href="#raster-data-structure" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><em>Note:</em> If you need a refresher on what raster data is and relevant terminology. Check out the first lesson that covers geospatial topics</p>
+</div></blockquote>
+<p>Now that we have a basic grasp on how to pull in and plot raster data, we can dig a little deeper to see what information we have.</p>
+<p>First let’s check the number of bands there are in our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case we only have 1 band. If you’re pulling in aerial image, you might have 3 bands (red, green, blue). In the case you’re bringing in remote sensing data like Landsat or MODIS you might have more!</p>
+<p>Not let’s check out what meta data we have.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span><span class="o">.</span><span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we have a lot of good information here. Let’s unpack it:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">driver</span></code>: the file type (simialr to what we see in <code class="docutils literal notranslate"><span class="pre">open</span></code> and Geopandas <code class="docutils literal notranslate"><span class="pre">open</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dtype</span></code>: the data type of each of your pixels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodata</span></code>: the value that is set for no data pixels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code>: the number of pixels wide your dataset is</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: the number of pixels high your dataset is</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: the number of bands in your dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crs</span></code>: the coordiante reference system (CRS) of your data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transform</span></code>: the affine transform matrix that tell us which pixel locations in each row and column align with spatial locations (longitude, latitude).</p></li>
+</ul>
+<p>We can also get similar information by calling <code class="docutils literal notranslate"><span class="pre">profile</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span><span class="o">.</span><span class="n">profile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay, but now we want to actually access our data. We can read in our data as a Numpy ndarray.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011_array</span> <span class="o">=</span> <span class="n">nlcd_2011</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">nlcd_2011_array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can call shape and see we have a 3D array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011_array</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Much like other Numpy arrays, we can look at the min, mean, and max of our data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">nlcd_2011_array</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">nlcd_2011_array</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">nlcd_2011_array</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And since we have our data in an array form now, we can plot it using not a <code class="docutils literal notranslate"><span class="pre">rasterio</span></code> function, but simply <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nlcd_2011_array</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we specified this plotting by making our array 2D. This gives us more flexibility about how we want to create our plots. You can do something like this:</p>
+<blockquote>
+<div><p>This definitely looks more scary than it actually is. Essentially we are:</p>
+<ol class="simple">
+<li><p>constructing a full color spectrum with all the colors we want</p></li>
+<li><p>If values are outside of this range, we set the color tot white</p></li>
+<li><p>we set the boudnaries for each of these colors so we know which color to assign to what value</p></li>
+<li><p>we create legend labels for our legend</p></li>
+</ol>
+<p>This process is only really needed if we want to have a color map for specific values outside of a specific named <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> named color map.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the colors you want</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="c1">#11</span>
+                                        <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="c1">#12</span>
+                                        <span class="s1">&#39;beige&#39;</span><span class="p">,</span> <span class="c1">#21</span>
+                                        <span class="s1">&#39;salmon&#39;</span><span class="p">,</span> <span class="c1">#22</span>
+                                        <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="c1">#23</span>
+                                        <span class="s1">&#39;darkred&#39;</span><span class="p">,</span> <span class="c1">#24</span>
+                                        <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="c1">#31</span>
+                                        <span class="s1">&#39;yellowgreen&#39;</span><span class="p">,</span> <span class="c1">#41</span>
+                                        <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="c1">#42</span>
+                                        <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="c1"># 43</span>
+                                        <span class="s1">&#39;darkgoldenrod&#39;</span><span class="p">,</span> <span class="c1">#51</span>
+                                        <span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="c1"># 52</span>
+                                        <span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="c1"># 71</span>
+                                        <span class="s1">&#39;darkkhaki&#39;</span><span class="p">,</span> <span class="c1">#72</span>
+                                        <span class="s1">&#39;darkseagreen&#39;</span><span class="p">,</span> <span class="c1">#73</span>
+                                         <span class="s1">&#39;mediumseagreen&#39;</span><span class="p">,</span> <span class="c1">#74</span>
+                                         <span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="c1">#81</span>
+                                         <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="c1">#82</span>
+                                         <span class="s1">&#39;lightsteelblue&#39;</span><span class="p">,</span> <span class="c1">#90</span>
+                                         <span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="c1">#95</span>
+                                        <span class="p">])</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_under</span><span class="p">(</span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_over</span><span class="p">(</span><span class="s1">&#39;#FFFFFF&#39;</span><span class="p">)</span>
+<span class="c1"># Define a normalization from values -&gt; colors</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">([</span><span class="mf">10.5</span><span class="p">,</span>
+                                       <span class="mf">11.5</span><span class="p">,</span>
+                                       <span class="mf">12.5</span><span class="p">,</span>
+                                       <span class="mf">21.5</span><span class="p">,</span>
+                                       <span class="mf">22.5</span><span class="p">,</span>
+                                       <span class="mf">23.5</span><span class="p">,</span>
+                                       <span class="mf">24.5</span><span class="p">,</span>
+                                       <span class="mf">31.5</span><span class="p">,</span>
+                                       <span class="mf">41.5</span><span class="p">,</span> 
+                                       <span class="mf">42.5</span><span class="p">,</span>
+                                       <span class="mf">43.5</span><span class="p">,</span>
+                                       <span class="mf">51.5</span><span class="p">,</span>
+                                       <span class="mf">52.5</span><span class="p">,</span>
+                                       <span class="mf">71.5</span><span class="p">,</span>
+                                       <span class="mf">72.5</span><span class="p">,</span>
+                                       <span class="mf">73.5</span><span class="p">,</span>
+                                       <span class="mf">74.5</span><span class="p">,</span>
+                                       <span class="mf">81.5</span><span class="p">,</span>
+                                       <span class="mf">82.5</span><span class="p">,</span>
+                                       <span class="mf">90.5</span><span class="p">,</span>
+                                       <span class="mf">95.5</span><span class="p">,</span>
+                                      <span class="p">],</span><span class="mi">20</span><span class="p">)</span>
+
+
+<span class="n">legend_labels</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;royalblue&#39;</span><span class="p">:</span><span class="s1">&#39;Open Water&#39;</span><span class="p">,</span> 
+                  <span class="s1">&#39;white&#39;</span><span class="p">:</span><span class="s1">&#39;Perennial Ice/Snow&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;beige&#39;</span><span class="p">:</span><span class="s1">&#39;Developed, Open Space&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;salmon&#39;</span><span class="p">:</span><span class="s1">&#39;Developed, Low Intensity&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;red&#39;</span><span class="p">:</span><span class="s1">&#39;Developed, Medium Intensity&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;darkred&#39;</span><span class="p">:</span><span class="s1">&#39;Developed High Intensity&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;grey&#39;</span><span class="p">:</span><span class="s1">&#39;Barren Land (Rock/Sand/Clay)&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;yellowgreen&#39;</span><span class="p">:</span><span class="s1">&#39;Deciduous Forest&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;darkgreen&#39;</span><span class="p">:</span><span class="s1">&#39;Evergreen Forest&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;lightgreen&#39;</span><span class="p">:</span><span class="s1">&#39;Mixed Forest&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;darkgoldenrod&#39;</span><span class="p">:</span><span class="s1">&#39;Dwarf Scrub&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;tan&#39;</span><span class="p">:</span><span class="s1">&#39;Shrub/Scrub&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;wheat&#39;</span><span class="p">:</span><span class="s1">&#39;Grassland/Herbaceous&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;darkkhaki&#39;</span><span class="p">:</span><span class="s1">&#39;Sedge/Herbaceous&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;darkseagreen&#39;</span><span class="p">:</span><span class="s1">&#39;Lichens&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;mediumseagreen&#39;</span><span class="p">:</span><span class="s1">&#39;Moss&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;gold&#39;</span><span class="p">:</span><span class="s1">&#39;Pasture/Hay&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;chocolate&#39;</span><span class="p">:</span><span class="s1">&#39;Cultivated Crops&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;lightsteelblue&#39;</span><span class="p">:</span><span class="s1">&#39;Woody Wetlands&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;steelblue&#39;</span><span class="p">:</span><span class="s1">&#39;Emergent Herbaceous Wetlands&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt_nlcd</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nlcd_2011_array</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;NLCD 2011&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Remove axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_frame_on</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="c1"># Add color bar</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+           <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">legend_labels</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mask-raster-data">
+<h2>16.2 Mask raster data<a class="headerlink" href="#mask-raster-data" title="Permalink to this headline">¶</a></h2>
+<p><em>Masking</em> is a common action that is done with raster data where you “mask” everything outside of a certain geometry.</p>
+<p>To do this let’s first bring in the san francisco county data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bring in census tracts</span>
+<span class="n">tracts_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/census/Tracts/cb_2013_06_tract_500k.zip&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">)</span>
+
+<span class="c1"># Narrow it down to San Francisco County</span>
+<span class="n">tracts_gdf_sf</span> <span class="o">=</span> <span class="n">tracts_gdf</span><span class="p">[</span><span class="n">tracts_gdf</span><span class="p">[</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;075&#39;</span><span class="p">]</span>
+
+<span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We forgot about the Farollon islands! Let’s crop those out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crop out Farallon</span>
+<span class="n">tracts_gdf_sf</span> <span class="o">=</span> <span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="o">-</span><span class="mf">122.8</span><span class="p">:</span><span class="o">-</span><span class="mf">122.35</span><span class="p">,</span> <span class="mf">37.65</span><span class="p">:</span><span class="mf">37.85</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll want to check the crs of our GeoDataFrame</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will call the <code class="docutils literal notranslate"><span class="pre">mask</span></code> function from <code class="docutils literal notranslate"><span class="pre">rasterio</span></code>. Let’s look at the documentation first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>mask
+</pre></div>
+</div>
+</div>
+</div>
+<p>We actually recommend using the <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> method instesd. So we’ll import a new package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rioxarray</span> <span class="k">as</span> <span class="nn">rxr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Open our same NLCD data…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd_2011</span> <span class="o">=</span> <span class="n">rxr</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="s1">&#39;notebook_data/raster/nlcd2011_sf.tif&#39;</span><span class="p">,</span>
+                              <span class="n">masked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reproject our NLCD to be in the same coordinate reference system as the san francisco data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rasterio.crs</span> <span class="kn">import</span> <span class="n">CRS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>rio --version
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Currently doesn&#39;t work</span>
+<span class="c1"># Issue: https://github.com/mapbox/rasterio/issues/2103</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">nlcd_2011</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And clip our data to the san francisco geometry</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clipped</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span> <span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can easily plot this using <code class="docutils literal notranslate"><span class="pre">.plot()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clipped</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can also make a pretty map like we did before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">clipped</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>  <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;NLCD 2011 (Cropped)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Add color bar</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+           <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">legend_labels</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">))</span>
+
+<span class="c1"># Remove axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_frame_on</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and you can save your work out to a new file!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clipped</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">to_raster</span><span class="p">(</span><span class="s2">&quot;outdata/nlcd2011_sf_cropped.tif&quot;</span><span class="p">,</span> <span class="n">tiled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="aggregate-raster-to-vector">
+<h2>16.3 Aggregate raster to vector<a class="headerlink" href="#aggregate-raster-to-vector" title="Permalink to this headline">¶</a></h2>
+<p>Another common step we see in a lot of raster work flows is questions that go along the lines of “How do I find the average of my raster within my vector data shapes”?</p>
+<p>We can do this by <em>aggregating</em> to our vector data. For this example we’ll ask the question, “What is the majority class I have in each of the census tracts in San Francisco?”</p>
+<p>For this we’ll turn to the <code class="docutils literal notranslate"><span class="pre">rasterstas</span></code> pacakge which has a handy function called <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code>. By default, the function will give us the minimum, maximum, mean, and count. But there also a lot more statistics that the function can return beyond this:</p>
+<ul class="simple">
+<li><p>sum</p></li>
+<li><p>std</p></li>
+<li><p>median</p></li>
+<li><p>majority</p></li>
+<li><p>minority</p></li>
+<li><p>unique</p></li>
+<li><p>range</p></li>
+<li><p>nodata</p></li>
+<li><p>percentile</p></li>
+</ul>
+<p>So we’ll first bring back our clipped census tracts shapefile we have for san francisco.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf_sf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we’ll check out the <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code> documentation to get a better sense of how we can customize the arguments to better fit our needs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>zonal_stats
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which doesn’t tell us a ton. Since we don’t have <code class="docutils literal notranslate"><span class="pre">gen_zonal_stas</span></code> loaded, we can go look at the documentation online: <a class="reference external" href="https://pythonhosted.org/rasterstats/rasterstats.html">https://pythonhosted.org/rasterstats/rasterstats.html</a></p>
+<p>After we check that out, let’s get on rolling and actually get our zonal stats by census tract.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;notebook_data/raster/nlcd2011_sf.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">affine</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_zonal_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">tracts_gdf_sf</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;majority&#39;</span><span class="p">,</span> <span class="s1">&#39;unique&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There’s a lot going on in the cell above, let’s break it down:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">affine</span></code> object grabbed the transform of our raster data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code> object read the first band we have in our raster dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_zonal_stats</span></code> has the results of our <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code> and then coerced it to be a dataframe.</p></li>
+</ul>
+<p>So from that caell, we get <code class="docutils literal notranslate"><span class="pre">df_zonal_stats</span></code> which looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_zonal_stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now, we can merge this back onto our geodataframe so we can add the majority classes and unique number of classes as attributes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf_sf_zs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tracts_gdf_sf</span><span class="p">,</span> <span class="n">df_zonal_stats</span><span class="p">[[</span><span class="s1">&#39;majority&#39;</span><span class="p">,</span><span class="s1">&#39;unique&#39;</span><span class="p">]]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can make a map that shows, for example, the majority class we have in each census tract.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">tracts_gdf_sf_zs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;majority&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Add color bar</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+           <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">legend_labels</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="other-resources">
+<h2>16.4 Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<p>We really only grazed the surface here. We’ve linked a couple of resources that dive into raster data.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.earthdatascience.org">EarthLab</a></p></li>
+<li><p><a class="reference external" href="https://carpentries-incubator.github.io/geospatial-python/aio/index.html">Software Carpentry</a></p></li>
+<li><p><a class="reference external" href="https://automating-gis-processes.github.io/CSC/index.html">Intro to Python GIS</a></p></li>
+</ul>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env2"
+        },
+        kernelOptions: {
+            kernelName: "geo_env2",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env2'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="15_OPTIONAL_Voronoi_Tessellation.html" title="previous page">15. Voronoi Tessellation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

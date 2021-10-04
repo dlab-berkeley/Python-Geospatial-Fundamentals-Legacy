@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 5. Data-driven Mapping &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/05_Data-Driven_Mapping.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/05_Data-Driven_Mapping.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lesson 5. Data-driven Mapping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-thematic-maps">
+     Types of Thematic Maps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choropleth-maps">
+   5.1 Choropleth Maps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question">
+     Question
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-types-of-color-maps">
+     Note: Types of Color Maps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issues-with-visualization">
+   5.2 Issues with Visualization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-choropleth-data">
+     Types of choropleth data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretability-of-plotted-data">
+     Interpretability of plotted data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Question
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-schemes">
+   5.3 Classification schemes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-commonly-used-classifications-schemes">
+     The commonly used classifications schemes:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-schemes-and-geodataframes">
+     Classification schemes and GeoDataFrames
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-schemes-in-action">
+     Classification schemes in action
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-defined-classification-schemes">
+     User Defined Classification Schemes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-plot-a-ratio">
+     Let’s plot a ratio
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#questions">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-maps">
+   5.4 Point maps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proportional-color-maps">
+     Proportional Color Maps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graduated-color-maps">
+     Graduated Color Maps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graduated-symbol-maps">
+     Graduated symbol maps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-categorical-data">
+     5.5 Mapping Categorical Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recap">
+     5.6 Recap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-data-driven-mapping">
+   Exercise: Data-Driven Mapping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#double-click-to-see-solution">
+     Double-click to see solution!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-5-data-driven-mapping">
+<h1>Lesson 5. Data-driven Mapping<a class="headerlink" href="#lesson-5-data-driven-mapping" title="Permalink to this headline">¶</a></h1>
+<p><em>Data-driven mapping</em> refers to the process of using data values to determine the symbology of mapped features. Color, shape, and size are the three most common symbology types used in data-driven mapping.
+Data-driven maps are often refered to as thematic maps.</p>
+<ul class="simple">
+<li><p>5.1 Choropleth Maps</p></li>
+<li><p>5.2 Issues with Visualization</p></li>
+<li><p>5.3 Classification Schemes</p></li>
+<li><p>5.4 Point Maps</p></li>
+<li><p>5.5 Mapping Categorical Data</p></li>
+<li><p>5.6 Recap</p></li>
+<li><p><strong>Exercise</strong>: Data-Driven Mapping</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/california_counties/CaliforniaCounties.shp’</p></li>
+<li><p>‘notebook_data/alco_schools.csv’</p></li>
+<li><p>‘notebook_data/transportation/BerkeleyBikeBlvds.geojson’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 30 minutes</p></li>
+<li><p>Exercises: 15 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="types-of-thematic-maps">
+<h2>Types of Thematic Maps<a class="headerlink" href="#types-of-thematic-maps" title="Permalink to this headline">¶</a></h2>
+<p>There are two primary types of maps used to convey data values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Choropleth</span> <span class="pre">maps</span></code>: set the color of areas (polygons) by data value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Point</span> <span class="pre">symbol</span> <span class="pre">maps</span></code>: set the color or size of points by data value</p></li>
+</ul>
+<p>We will discuss both of these types of maps in more detail in this lesson. But let’s take a quick look at choropleth maps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="choropleth-maps">
+<h1>5.1 Choropleth Maps<a class="headerlink" href="#choropleth-maps" title="Permalink to this headline">¶</a></h1>
+<p>Choropleth maps are the most common type of thematic map.</p>
+<p>Let’s take a look at how we can use a geodataframe to make a choropleth map.</p>
+<p>We’ll start by reloading our counties dataset from Day 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/california_counties/CaliforniaCounties.shp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a plain map of our polygons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, for comparison, let’s create a choropleth map by setting the color of the county based on the values in the population per square mile (<code class="docutils literal notranslate"><span class="pre">POP12_SQMI</span></code>) column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s really the heart of it. To set the color of the features based on the values in a column, set the <code class="docutils literal notranslate"><span class="pre">column</span></code> argument to the column name in the gdf.</p>
+<blockquote>
+<div><p><strong>Protip:</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>You can quickly right-click on the plot and save to a file or open in a new browser window.</p></li>
+</ul>
+<p>By default map colors are linearly scaled to data values. This is called a <code class="docutils literal notranslate"><span class="pre">proportional</span> <span class="pre">color</span> <span class="pre">map</span></code>.</p>
+<ul class="simple">
+<li><p>The great thing about <code class="docutils literal notranslate"><span class="pre">proportional</span> <span class="pre">color</span> <span class="pre">maps</span></code> is that you can visualize the full range of data values.</p></li>
+</ul>
+<p>We can also add a legend, and even tweak its display.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;Population Density per mile$^2$&quot;</span><span class="p">,</span>
+                                 <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">},)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="question">
+<h2>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h2>
+</div>
+<p>Why are we plotting <code class="docutils literal notranslate"><span class="pre">POP12_SQMI</span></code> instead of <code class="docutils literal notranslate"><span class="pre">POP2012</span></code>?</p>
+</div>
+<div class="section" id="note-types-of-color-maps">
+<h2>Note: Types of Color Maps<a class="headerlink" href="#note-types-of-color-maps" title="Permalink to this headline">¶</a></h2>
+<p>There are a few different types of color maps (or color palettes), each of which has a different purpose:</p>
+<ul class="simple">
+<li><p><em>diverging</em> - a “diverging” set of colors are used so emphasize mid-range values as well as extremes.</p></li>
+<li><p><em>sequential</em> - usually with a single color hue to emphasize changes in magnitude, where darker colors typically mean higher values</p></li>
+<li><p><em>qualitative</em> - a diverse set of colors to identify categories and avoid implying quantitative significance.</p></li>
+</ul>
+<p><img src="http://www.gnuplotting.org/figs/colorbrewer.png"></img></p>
+<p><small><center><i>Image Credit: <a href="https://commons.wikimedia.org/wiki/File:Anatone_WA.jpg"> Dsdugan at English Wikipedia </a></i></small></center></p>
+<blockquote>
+<div><p><strong>Pro-tip</strong>: You can actually see all your color map options if you misspell what you put in <code class="docutils literal notranslate"><span class="pre">cmap</span></code> and try to run-in. Try it out!</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Pro-tip</strong>: Sites like <a class="reference external" href="https://colorbrewer2.org/#type=sequential&amp;scheme=Blues&amp;n=3">ColorBrewer</a> let’s you play around with different types of color maps. If you want to create your own, <a class="reference external" href="https://python-graph-gallery.com/python-colors/">The Python Graph Gallery</a> is a way to see what your Python color options are.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="issues-with-visualization">
+<h1>5.2 Issues with Visualization<a class="headerlink" href="#issues-with-visualization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="types-of-choropleth-data">
+<h2>Types of choropleth data<a class="headerlink" href="#types-of-choropleth-data" title="Permalink to this headline">¶</a></h2>
+<p>There are several types of quantitative data variables that can be used to create a choropleth map. Let’s consider these in terms of our ACS data.</p>
+<ul class="simple">
+<li><p><strong>Count</strong></p>
+<ul>
+<li><p>counts, aggregated by feature</p>
+<ul>
+<li><p><em>e.g. population within a census tract</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Density</strong></p>
+<ul>
+<li><p>count, aggregated by feature, normalized by feature area</p>
+<ul>
+<li><p><em>e.g. population per square mile within a census tract</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Proportions / Percentages</strong></p>
+<ul>
+<li><p>value in a specific category divided by total value across in all categories</p>
+<ul>
+<li><p><em>e.g. proportion of the tract population that is white compared to the total tract population</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Rates / Ratios</strong></p>
+<ul>
+<li><p>value in one category divided by value in another category</p>
+<ul>
+<li><p><em>e.g. homeowner-to-renter ratio would be calculated as the number of homeowners (c_owners/ c_renters)</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="interpretability-of-plotted-data">
+<h2>Interpretability of plotted data<a class="headerlink" href="#interpretability-of-plotted-data" title="Permalink to this headline">¶</a></h2>
+<p>The goal of a choropleth map is to use color to visualize the spatial distribution of a quantitative variable.</p>
+<p>Brighter or richer colors are typically used to signify higher values.</p>
+<p>A big problem with choropleth maps is that our eyes are drawn to the color of larger areas, even if the values being mapped in one or more smaller areas are more important.</p>
+<p>We see just this sort of problem in our population-density map.</p>
+<p><em><strong>Why does our map not look that interesting?</strong></em> Take a look at the histogram below, then consider the following question.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">],</span><span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Population Density per mile$^2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id1">
+<h3>Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>What county does that outlier represent? What problem does that pose?</p>
+</div>
+</div>
+</div>
+<div class="section" id="classification-schemes">
+<h1>5.3 Classification schemes<a class="headerlink" href="#classification-schemes" title="Permalink to this headline">¶</a></h1>
+<p>Let’s try to make our map more interpretable!</p>
+<p>The common alternative to a proportionial color map is to use a <strong>classification scheme</strong> to create a <strong>graduated color map</strong>. This is the standard way to create a <strong>choropleth map</strong>.</p>
+<p>A <strong>classification scheme</strong> is a method for binning continuous data values into 4-7 classes (the default is 5) and map those classes to a color palette.</p>
+<div class="section" id="the-commonly-used-classifications-schemes">
+<h2>The commonly used classifications schemes:<a class="headerlink" href="#the-commonly-used-classifications-schemes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Equal intervals</strong></p>
+<ul>
+<li><p>equal-size data ranges (e.g., values within 0-10, 10-20, 20-30, etc.)</p></li>
+<li><p><u>pros</u>:</p>
+<ul>
+<li><p>best for data spread across entire range of values</p></li>
+<li><p>easily understood by map readers</p></li>
+</ul>
+</li>
+<li><p><u>cons</u>:</p>
+<ul>
+<li><p>but avoid if you have highly skewed data or a few big outliers</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Quantiles</strong></p>
+<ul>
+<li><p>equal number of observations in each bin</p></li>
+<li><p><u>pros</u>:</p>
+<ul>
+<li><p>looks nice, becuase it best spreads colors across full set of data values</p></li>
+<li><p>thus, it’s often the default scheme for mapping software</p></li>
+</ul>
+</li>
+<li><p><u>cons</u>:</p>
+<ul>
+<li><p>bin ranges based on the number of observations, not on the data values</p></li>
+<li><p>thus, different classes can have very similar or very different values.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Natural breaks</strong></p>
+<ul>
+<li><p>minimize within-class variance and maximize between-class differences</p></li>
+<li><p>e.g. ‘fisher-jenks’</p></li>
+<li><p></u>pros</u>:</p>
+<ul>
+<li><p>great for exploratory data analysis, because it can identify natural groupings</p></li>
+</ul>
+</li>
+<li><p><u>cons</u>:</p>
+<ul>
+<li><p>class breaks are best fit to one dataset, so the same bins can’t always be used for multiple years</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Manual</strong></p>
+<ul>
+<li><p>classifications are user-defined</p></li>
+<li><p><u>pros</u>:</p>
+<ul>
+<li><p>especially useful if you want to slightly change the breaks produced by another scheme</p></li>
+<li><p>can be used as a fixed set of breaks to compare data over time</p></li>
+</ul>
+</li>
+<li><p><u>cons</u>:</p>
+<ul>
+<li><p>more work involved</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="classification-schemes-and-geodataframes">
+<h2>Classification schemes and GeoDataFrames<a class="headerlink" href="#classification-schemes-and-geodataframes" title="Permalink to this headline">¶</a></h2>
+<p>Classification schemes can be implemented using the geodataframe <code class="docutils literal notranslate"><span class="pre">plot</span></code> method by setting a value for the <strong>scheme</strong> argument. This requires the <a class="reference external" href="https://pysal.org/">pysal</a> and <a class="reference external" href="https://pysal.org/mapclassify">mapclassify</a> libraries to be installed in your Python environment.</p>
+<p>Here is a list of the <code class="docutils literal notranslate"><span class="pre">classification</span> <span class="pre">schemes</span></code> names that we will use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">equalinterval</span></code>, <code class="docutils literal notranslate"><span class="pre">quantiles</span></code>,<code class="docutils literal notranslate"><span class="pre">fisherjenks</span></code>,<code class="docutils literal notranslate"><span class="pre">naturalbreaks</span></code>, and <code class="docutils literal notranslate"><span class="pre">userdefined</span></code>.</p></li>
+</ul>
+<p>For more information about these classification schemes see the <a class="reference external" href="https://pysal.org/mapclassify/api.html">pysal mapclassifiers web page</a> or check out the help docs.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="classification-schemes-in-action">
+<h2>Classification schemes in action<a class="headerlink" href="#classification-schemes-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Let’s redo the last map using the <code class="docutils literal notranslate"><span class="pre">quantile</span></code> classification scheme.</p>
+<ul class="simple">
+<li><p>What is different about the code? About the output map?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot population density - mile^2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> 
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span> 
+                   <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span>
+                   <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+                   <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Population Density per Sq Mile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note: For interval notation</p>
+<ul class="simple">
+<li><p>A square bracket is <em>inclusive</em></p></li>
+<li><p>A parentheses is <em>exclusive</em></p></li>
+</ul>
+</div>
+<div class="section" id="user-defined-classification-schemes">
+<h2>User Defined Classification Schemes<a class="headerlink" href="#user-defined-classification-schemes" title="Permalink to this headline">¶</a></h2>
+<p>You may get pretty close to your final map without being completely satisfied. In this case you can manually define a classification scheme.</p>
+<p>Let’s customize our map with a <code class="docutils literal notranslate"><span class="pre">user-defined</span></code> classification scheme where we manually set the breaks for the bins using the <code class="docutils literal notranslate"><span class="pre">classification_kwds</span></code> argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span>
+                    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">,</span> 
+                    <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;user_defined&#39;</span><span class="p">,</span> 
+                    <span class="n">classification_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bins&#39;</span><span class="p">:[</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">]},</span>
+                    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Population Density per Sq Mile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we are customizing our plot, we can also edit our legend to specify and format the text so that it’s easier to read.</p>
+<ul class="simple">
+<li><p>We’ll use <code class="docutils literal notranslate"><span class="pre">legend_labels_list</span></code> to customize the labels for group in the legend.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP12_SQMI&#39;</span><span class="p">,</span>
+                    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">,</span> 
+                    <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;user_defined&#39;</span><span class="p">,</span> 
+                    <span class="n">classification_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bins&#39;</span><span class="p">:[</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">]},</span>
+                    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Create the labels for the legend</span>
+<span class="n">legend_labels_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;50&#39;</span><span class="p">,</span><span class="s1">&#39;50 to 100&#39;</span><span class="p">,</span><span class="s1">&#39;100 to 200&#39;</span><span class="p">,</span><span class="s1">&#39;200 to 300&#39;</span><span class="p">,</span><span class="s1">&#39;300 to 400&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;400&#39;</span><span class="p">]</span>
+
+<span class="c1"># Apply the labels to the plot</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">())):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">legend_labels_list</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Population Density per Sq Mile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="let-s-plot-a-ratio">
+<h2>Let’s plot a ratio<a class="headerlink" href="#let-s-plot-a-ratio" title="Permalink to this headline">¶</a></h2>
+<p>If we look at the columns in our dataset, we see we have a number of variables
+from which we can calculate proportions, rates, and the like.</p>
+<p>Let’s try that out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span> 
+
+<span class="c1"># Plot percent hispanic as choropleth</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;HISPANIC&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;POP2012&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> 
+                        <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> 
+                        <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;user_defined&#39;</span><span class="p">,</span> 
+                        <span class="n">classification_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bins&#39;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">]},</span>
+                        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+                        <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">legend_labels_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;20%&#39;</span><span class="p">,</span><span class="s1">&#39;20</span><span class="si">% - 40%</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;40</span><span class="si">% - 60%</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;60</span><span class="si">% - 80%</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;80</span><span class="si">% - 100%</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">())):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">legend_labels_list</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Percent Hispanic Population&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>What new options and operations have we added to our code?</p></li>
+<li><p>Based on our code, what title would you give this plot to describe what it displays?</p></li>
+<li><p>How many bins do we specify in the <code class="docutils literal notranslate"><span class="pre">legend_labels_list</span></code> object, and how many bins are in the map legend? Why?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="point-maps">
+<h1>5.4 Point maps<a class="headerlink" href="#point-maps" title="Permalink to this headline">¶</a></h1>
+<p>Choropleth maps are great, but mapping using point symbols enables us to visualize our spatial data in another way.</p>
+<p>If you know both mapping methods you can expand how much information you can show in one map.</p>
+<p>For example, point maps are a great way to map <code class="docutils literal notranslate"><span class="pre">counts</span></code> because the varying sizes of areas are deemphasized.</p>
+<hr class="docutils" />
+<p>Let’s read in some point data on Alameda County schools.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;notebook_data/alco_schools.csv&#39;</span><span class="p">)</span>
+<span class="n">schools_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We got it from a plain CSV file, let’s coerce it to a GeoDataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">schools_df</span><span class="p">,</span> 
+                               <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">schools_df</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">schools_df</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can map it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Alameda County Schools&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="proportional-color-maps">
+<h2>Proportional Color Maps<a class="headerlink" href="#proportional-color-maps" title="Permalink to this headline">¶</a></h2>
+<p><strong>Proportional color maps</strong> linearly scale the <code class="docutils literal notranslate"><span class="pre">color</span></code> of a point symbol by the data values.</p>
+<p>Let’s try this by creating a map of <code class="docutils literal notranslate"><span class="pre">API</span></code>. API stands for <em>Academic Performance Index</em>, which is a measurement system that looks at the performance of an individual school.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;API&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gist_heat&quot;</span><span class="p">,</span> 
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Alameda County, School API scores&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you see that continuous color bar in the legend you know that the mapping of data values to colors is not classified.</p>
+</div>
+<div class="section" id="graduated-color-maps">
+<h2>Graduated Color Maps<a class="headerlink" href="#graduated-color-maps" title="Permalink to this headline">¶</a></h2>
+<p>We can also create <strong>graduated color maps</strong> by binning data values before associating them with colors. These are just like choropleth maps, except that the term “choropleth” is only used with polygon data.</p>
+<p>Graduated color maps use the same syntax as the choropleth maps above - you create them by setting a value for <code class="docutils literal notranslate"><span class="pre">scheme</span></code>.</p>
+<p>Below, we copy the code we used above to create a choropleth, but we change the name of the geodataframe to use the point gdf.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span> 
+
+<span class="c1"># Plot percent non-white with graduated colors</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> 
+                        <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span>
+                        <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;user_defined&#39;</span><span class="p">,</span> 
+                        <span class="n">classification_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bins&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">800</span><span class="p">]},</span>
+                        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+                        <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                        <span class="c1">#markersize=60,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Create a custom legend</span>
+<span class="n">legend_labels_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;&lt; 200&#39;</span><span class="p">,</span><span class="s1">&#39;&lt; 400&#39;</span><span class="p">,</span><span class="s1">&#39;&lt; 600&#39;</span><span class="p">,</span><span class="s1">&#39;&lt; 800&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;= 800&#39;</span><span class="p">]</span>
+
+<span class="c1"># Apply the legend to the map</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">())):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">legend_labels_list</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Alameda County, School API scores&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="p">[</span><span class="s1">&#39;API&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the syntax for a choropleth and graduated color map is the same,
+although some options only apply to one or the other.</p>
+<p>For example, uncomment the <code class="docutils literal notranslate"><span class="pre">markersize</span></code> parameter above to see how you can further customize a graduated color map.</p>
+</div>
+<div class="section" id="graduated-symbol-maps">
+<h2>Graduated symbol maps<a class="headerlink" href="#graduated-symbol-maps" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Graduated</span> <span class="pre">symbol</span> <span class="pre">maps</span></code> are also a great method for mapping points.  These are just like graduated color maps but instead of associating symbol color with data values they associate point size. Similarly,graduated symbol maps use <code class="docutils literal notranslate"><span class="pre">classification</span> <span class="pre">schemes</span></code> to set the size of point symbols.</p>
+<blockquote>
+<div><p>We demonstrate how to make graduated symbol maps along with some other mapping techniques in the <code class="docutils literal notranslate"><span class="pre">Optional</span> <span class="pre">Mapping</span> <span class="pre">notebook</span></code> which we encourage you to explore on your own. (<em><strong>Coming Soon</strong></em>)</p>
+</div></blockquote>
+</div>
+<div class="section" id="mapping-categorical-data">
+<h2>5.5 Mapping Categorical Data<a class="headerlink" href="#mapping-categorical-data" title="Permalink to this headline">¶</a></h2>
+<p>Mapping categorical data, also called qualitative data, is a bit more straightforward. There is no need to scale or classify data values. The goal of the color map is to provide a contrasting set of colors so as to clearly delineate different categories. Here’s a point-based example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;Org&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>5.6 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>We learned about important data driven mapping strategies and mapping concepts and can leverage what many of us know about <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p>
+<ul class="simple">
+<li><p>Choropleth Maps</p></li>
+<li><p>Point maps</p></li>
+<li><p>Color schemes</p></li>
+<li><p>Classifications</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="exercise-data-driven-mapping">
+<h1>Exercise: Data-Driven Mapping<a class="headerlink" href="#exercise-data-driven-mapping" title="Permalink to this headline">¶</a></h1>
+<p>Point and polygons are not the only geometry-types that we can use in data-driven mapping!</p>
+<p>Run the next cell to load a dataset containing Berkeley’s bicycle boulevards (which we’ll be using more in the following notebook).</p>
+<p>Then in the following cell, write your own code to:</p>
+<ol class="simple">
+<li><p>plot the bike boulevards;</p></li>
+<li><p>color them by status (find the correct column in the head of the dataframe, displayed below);</p></li>
+<li><p>color them using a fitting, good-looking qualitative colormap that you choose from <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html">The Matplotlib Colormap Reference</a>;</p></li>
+<li><p>set the line width to 5 (check the plot method’s documentation to find the right argument for this!);</p></li>
+<li><p>add the argument <code class="docutils literal notranslate"><span class="pre">figsize=[20,20]</span></code>, to make your map nice and big and visible!</p></li>
+</ol>
+<p>Then answer the questions posed in the last cell.</p>
+<br>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/transportation/BerkeleyBikeBlvds.geojson&#39;</span><span class="p">)</span>
+<span class="n">bike_blvds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h2>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION:
+
+bike_blvds.plot(column='Status', cmap='Dark2', linewidth=5, legend=True, figsize=[20,20])
+
+-->
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id2">
+<h3>Questions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>What does that map indicate about the status of the Berkeley bike boulevards?</p></li>
+<li><p>What does that map indicate about the status of your Berkeley bike-boulevard <em>dataset</em>?</p></li>
+</ol>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

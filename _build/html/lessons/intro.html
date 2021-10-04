@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Geospatial Fundamentals in Python: From A to Z to Fancy &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 1. Overview of Geospatial Data" href="01_Overview_Geospatial_Data.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   Welcome to Geospatial Fundamentals in Python: From A to Z to Fancy
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Attribute and Spatial Joins
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   Pulling it All Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Another Full Workflow
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-started-with-spatial-dataframes">
+     1. Getting Started with Spatial Dataframes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geoprocessing-and-analysis">
+     2. Geoprocessing and Analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     3. Exercises
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-fancy">
+     4. Get Fancy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-requisites">
+     Pre-requisites
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#knowledge-requirements">
+       Knowledge Requirements
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#technology-requirements">
+       Technology Requirements:
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-and-jupyter-notebook-installation">
+   1.0 Python and Jupyter Notebook installation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-anaconda">
+     1.1 Download Anaconda:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#launch-anaconda-and-open-a-jupyter-notebook">
+     1.2 Launch Anaconda and open a Jupyter Notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-geopandas">
+   2.0 Installing Geopandas
+  </a>
+  <ul class="nav section-nav flex-column">
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="welcome-to-geospatial-fundamentals-in-python-from-a-to-z-to-fancy">
+<h1>Welcome to Geospatial Fundamentals in Python: From A to Z to Fancy<a class="headerlink" href="#welcome-to-geospatial-fundamentals-in-python-from-a-to-z-to-fancy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Geospatial data are an important component of data visualization and analysis in the social sciences, humanities, and elsewhere. The Python programming language is a great platform for exploring these data and integrating them into your research. This JupyterBook explores everything from <em>A to Z</em> to get started to work with Geospatial data in Python. We then take you all the way to <em>fancy</em> to work with online data sources, basemaps, interactive maps, geocoding, tessellation, and raster data.</p>
+<div class="section" id="getting-started-with-spatial-dataframes">
+<h3>1. Getting Started with Spatial Dataframes<a class="headerlink" href="#getting-started-with-spatial-dataframes" title="Permalink to this headline">¶</a></h3>
+<p>Part one will introduce basic methods for working with geospatial data in Python using the <a class="reference external" href="https://geopandas.org">GeoPandas library</a>. You will learn how to import and export spatial data and store them as GeoPandas GeoDataFrames (or spatial dataframes). We will explore and compare several methods for mapping the data including the GeoPandas plot function and the matplotlib library. We will review coordinate reference systems and methods for reading, defining and transforming these.</p>
+</div>
+<div class="section" id="geoprocessing-and-analysis">
+<h3>2. Geoprocessing and Analysis<a class="headerlink" href="#geoprocessing-and-analysis" title="Permalink to this headline">¶</a></h3>
+<p>Part two dives deeper into data driven mapping in Python, using color palettes and data classification to communicate information with maps. We will also introduce basic methods for processing spatial data, which are the building blocks of common spatial analysis workflows.</p>
+</div>
+<div class="section" id="exercises">
+<h3>3. Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<p>Part 3 provides two full workflows for you to try to work through on your own. These exercises uses techniques and concepts from both the first and second parts.</p>
+</div>
+<div class="section" id="get-fancy">
+<h3>4. Get Fancy<a class="headerlink" href="#get-fancy" title="Permalink to this headline">¶</a></h3>
+<p>Part 4 dives builds off of the foundational work from the earlier sections. The topics included involve:</p>
+<ul class="simple">
+<li><p>Reading in online sources data</p></li>
+<li><p>Adding basemaps</p></li>
+<li><p>Creating interactive maps</p></li>
+<li><p>Geocoding addresses</p></li>
+<li><p>Using Altair for plotting</p></li>
+<li><p>Creating voronoi tessellations</p></li>
+<li><p>Starting out with raster data</p></li>
+</ul>
+</div>
+<div class="section" id="pre-requisites">
+<h3>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="knowledge-requirements">
+<h4>Knowledge Requirements<a class="headerlink" href="#knowledge-requirements" title="Permalink to this headline">¶</a></h4>
+<p>You’ll probably get the most out of this workshop if you have a basic foundation in Python and Pandas, similar to what you would have from taking the D-Lab Python Fundamentals workshop series. Here are a couple of suggestions for materials to check-out prior to the workshop.</p>
+<p><code class="docutils literal notranslate"><span class="pre">D-Lab</span> <span class="pre">Workshops</span></code>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/dlab-berkeley/python-fundamentals">Python Fundamentals</a></p></li>
+<li><p><a class="reference external" href="https://github.com/dlab-berkeley/introduction-to-pandas">Pandas</a></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Other</span></code>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/learn/python">Learn Python on Kaggle</a></p></li>
+<li><p><a class="reference external" href="http://swcarpentry.github.io/python-novice-inflammation/">Programming in Python - Software Carpentry</a></p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/learn/pandas">Learn Pandas on Kaggle</a></p></li>
+<li><p><a class="reference external" href="http://swcarpentry.github.io/python-novice-gapminder/">Plotting in Python - Software Carpentry</a>
+: Basic knowledge of geospatial data is expected. R experience equivalent to the D-Lab R Fundamentals workshop series is required to follow along with the tutorial. Knowledge of ggplot helpful.</p></li>
+</ul>
+</div>
+<div class="section" id="technology-requirements">
+<h4>Technology Requirements:<a class="headerlink" href="#technology-requirements" title="Permalink to this headline">¶</a></h4>
+<p>Bring a laptop with Python and the following packages installed: pandas, geopandas, matplotlib, descartes and dependencies. More details are provided on the workshop github page <a class="reference external" href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python">https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python</a>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="python-and-jupyter-notebook-installation">
+<h2>1.0 Python and Jupyter Notebook installation<a class="headerlink" href="#python-and-jupyter-notebook-installation" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to install python and python libraries, distributed as packages, on your computer. Here is one way that we recommend.</p>
+<ul class="simple">
+<li><p>Anaconda installs IDEs and several important packages like NumPy, Pandas, and so on, and this is a really convenient package which can be downloaded and installed.</p></li>
+</ul>
+<p>Anaconda is a free and open-source distribution of Python. Anaconda installs IDEs (integrated development environments, aka where you can write and run code) and several important packages like NumPy and Pandas, making it a really convenient package to use.</p>
+<div class="section" id="download-anaconda">
+<h3>1.1 Download Anaconda:<a class="headerlink" href="#download-anaconda" title="Permalink to this headline">¶</a></h3>
+<p>Follow this link to download Anaconda: <a class="reference external" href="https://www.anaconda.com/distribution">https://www.anaconda.com/distribution</a>. The same link can be used for Mac, Windows, and Linux.</p>
+<p>We recommend downloading the latest version, which will be Python 3.
+<img alt="downloadinstruc" src="../_images/anaconda_download_instructions.png" /></p>
+<p>Open the .exe file that was downloaded and follow the instructions in the installation wizard prompt.</p>
+</div>
+<div class="section" id="launch-anaconda-and-open-a-jupyter-notebook">
+<h3>1.2 Launch Anaconda and open a Jupyter Notebook<a class="headerlink" href="#launch-anaconda-and-open-a-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p>Once installation is complete open Anaconda Navigator and launch Jupyter Notebook.
+<img alt="launchnav" src="../_images/anaconda_navigator_launch.png" /></p>
+<p>Jupyter Notebook will open in your web browser (it does not require internet to work). In Jupyter, navigate to the folder where you saved the code file you plan to use and open the .ipynb file (the extension for Jupyter Notebook files written in Python) to view it in the Notebook.</p>
+</div>
+</div>
+<div class="section" id="installing-geopandas">
+<h2>2.0 Installing Geopandas<a class="headerlink" href="#installing-geopandas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>From within Anaconda Navigator click on the <code class="docutils literal notranslate"><span class="pre">Environments</span></code> selection in the left sidebar menu</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="anacondanav" src="../_images/anaconda1_navigator_home.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Click on the arrow to the right of your <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">(root)</span></code> environment and select <strong>Open Terminal</strong></p></li>
+</ul>
+<blockquote>
+<div><p><img alt="anacondanav" src="../_images/anaconda2_base_open_teriminal.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This will give you access to the command line interface (CLI) on your computer in a window that looks like this:</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="openterminal" src="../_images/anaconda2_base_open_teriminal.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Install some needed software by entering the following commands, one at a time:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">python</span><span class="o">=</span><span class="mi">3</span> <span class="n">geopandas</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">juypter</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">matplotlib</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">descartes</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">mapclassify</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">contextily</span>
+</pre></div>
+</div>
+<p>Once you have those libraries all installed you will be able to go to Anaconda Navigator, launch a <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code>, navigate to the workshop files and run all of the notebooks.</p>
+<p><em>Optionally you can create a virtual environment In the terminal window, type the <strong>conda</strong> commands shown on the <a class="reference external" href="https://geopandas.org/install.html#creating-a-new-environment">GeoPandas website</a> for installing Geopandas in a virtual environment. These are:</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">geo_env</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">geo_env</span>
+<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">env</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">env</span> <span class="o">--</span><span class="nb">set</span> <span class="n">channel_priority</span> <span class="n">strict</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">python</span><span class="o">=</span><span class="mi">3</span> <span class="n">geopandas</span>
+</pre></div>
+</div>
+<p><em>After creating your virtual environment, you can process and install the rest of your packages listed above. You will be able to select your <code class="docutils literal notranslate"><span class="pre">geo_env</span></code> in Anaconda Navigator.</em></p>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width=75 align=left>
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='right-next' id="next-link" href="01_Overview_Geospatial_Data.html" title="next page">Lesson 1. Overview of Geospatial Data</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

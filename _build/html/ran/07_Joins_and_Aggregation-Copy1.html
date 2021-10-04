@@ -1,0 +1,2206 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 7. Attribute and Spatial Joins &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/ran/07_Joins_and_Aggregation-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/ran/07_Joins_and_Aggregation-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question">
+     Question
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Question
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-choropleth-map">
+     Exercise: Choropleth Map
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#double-click-to-see-solution">
+     Double-click to see solution!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#census-tract-data-associated-with-each-school">
+     Census Tract Data Associated with Each School
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spatially-joining-our-schools-and-census-tracts">
+     Spatially Joining our Schools and Census Tracts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#questions">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-our-output">
+     Checking Our Output
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessing-the-relationship-between-median-household-income-and-api">
+     Assessing the Relationship between Median Household Income and API
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregation">
+   7.3: Aggregation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-the-aggregated-school-counts">
+     Getting the Aggregated School Counts
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-tract-polygons-with-school-counts">
+     Getting Tract Polygons with School Counts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-our-spatial-join-output">
+     Mapping our Spatial Join Output
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-mean-api-of-each-census-tract">
+     What is the mean API of each census tract?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Double-click to see solution!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recap">
+     7.4 Recap
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-7-attribute-and-spatial-joins">
+<h1>Lesson 7. Attribute and Spatial Joins<a class="headerlink" href="#lesson-7-attribute-and-spatial-joins" title="Permalink to this headline">¶</a></h1>
+<p>Now that we understand the logic of spatial relationship queries,
+let’s take a look at another fundamental spatial operation that relies on them.</p>
+<p>This operation, called a <strong>spatial join</strong>, is the process by which we can
+leverage the spatial relationships between distinct datasets to merge
+their information into a new, synthetic dataset.</p>
+<p>This operation can be thought as the spatial equivalent of an
+<strong>attribute join</strong>, in which multiple tabular datasets can be merged by
+aligning matching values in a common column that they both contain.
+Thus, we’ll start by developing an understanding of this operation first!</p>
+<ul class="simple">
+<li><p>7.0 Data Input and Prep</p></li>
+<li><p>7.1 Attribute Joins</p></li>
+<li><p><strong>Exercise</strong>: Choropleth Map</p></li>
+<li><p>7.2 Spatial Joins</p></li>
+<li><p>7.3 Aggregation</p></li>
+<li><p><strong>Exercise</strong>: Aggregation</p></li>
+<li><p>7.4 Recap</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/census/ACS5yr/census_variables_CA.csv’</p></li>
+<li><p>‘notebook_data/census/Tracts/cb_2013_06_tract_500k.zip’</p></li>
+<li><p>‘notebook_data/alco_schools.csv’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 45 minutes</p></li>
+<li><p>Exercises: 20 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-input-and-prep">
+<h1>7.0 Data Input and Prep<a class="headerlink" href="#data-input-and-prep" title="Permalink to this headline">¶</a></h1>
+<p>Let’s read in a table of data from the US Census’ 5-year American Community Survey (ACS5).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in the ACS5 data for CA into a pandas DataFrame.</span>
+<span class="c1"># Note: We force the FIPS_11_digit to be read in as a string to preserve any leading zeroes.</span>
+<span class="n">acs5_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;notebook_data/census/ACS5yr/census_variables_CA.csv&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;FIPS_11_digit&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">})</span>
+<span class="n">acs5_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NAME</th>
+      <th>c_race</th>
+      <th>c_white</th>
+      <th>c_black</th>
+      <th>c_asian</th>
+      <th>c_latinx</th>
+      <th>c_race_moe</th>
+      <th>c_white_moe</th>
+      <th>c_black_moe</th>
+      <th>c_asian_moe</th>
+      <th>...</th>
+      <th>p_stay</th>
+      <th>p_movelocal</th>
+      <th>p_movecounty</th>
+      <th>p_movestate</th>
+      <th>p_moveabroad</th>
+      <th>p_car</th>
+      <th>p_carpool</th>
+      <th>p_transit</th>
+      <th>p_bike</th>
+      <th>p_walk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Census Tract 4012, Alameda County, California</td>
+      <td>2456</td>
+      <td>1287</td>
+      <td>476</td>
+      <td>259</td>
+      <td>283</td>
+      <td>213</td>
+      <td>191</td>
+      <td>116</td>
+      <td>124</td>
+      <td>...</td>
+      <td>0.814951</td>
+      <td>0.103350</td>
+      <td>0.058415</td>
+      <td>0.010212</td>
+      <td>0.013072</td>
+      <td>0.551370</td>
+      <td>0.064384</td>
+      <td>0.189041</td>
+      <td>0.083562</td>
+      <td>0.058219</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Census Tract 4013, Alameda County, California</td>
+      <td>3983</td>
+      <td>845</td>
+      <td>1348</td>
+      <td>827</td>
+      <td>796</td>
+      <td>680</td>
+      <td>186</td>
+      <td>411</td>
+      <td>283</td>
+      <td>...</td>
+      <td>0.611865</td>
+      <td>0.280040</td>
+      <td>0.063348</td>
+      <td>0.022624</td>
+      <td>0.022122</td>
+      <td>0.341153</td>
+      <td>0.108993</td>
+      <td>0.391496</td>
+      <td>0.018084</td>
+      <td>0.104594</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Census Tract 4014, Alameda County, California</td>
+      <td>4340</td>
+      <td>713</td>
+      <td>1902</td>
+      <td>593</td>
+      <td>981</td>
+      <td>644</td>
+      <td>314</td>
+      <td>440</td>
+      <td>198</td>
+      <td>...</td>
+      <td>0.807683</td>
+      <td>0.163739</td>
+      <td>0.017803</td>
+      <td>0.006325</td>
+      <td>0.004451</td>
+      <td>0.470846</td>
+      <td>0.021317</td>
+      <td>0.255799</td>
+      <td>0.116614</td>
+      <td>0.102194</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Census Tract 4015, Alameda County, California</td>
+      <td>2080</td>
+      <td>563</td>
+      <td>1064</td>
+      <td>215</td>
+      <td>190</td>
+      <td>369</td>
+      <td>222</td>
+      <td>283</td>
+      <td>116</td>
+      <td>...</td>
+      <td>0.841346</td>
+      <td>0.101442</td>
+      <td>0.053846</td>
+      <td>0.003365</td>
+      <td>0.000000</td>
+      <td>0.502037</td>
+      <td>0.090631</td>
+      <td>0.230143</td>
+      <td>0.047862</td>
+      <td>0.017312</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Census Tract 4016, Alameda County, California</td>
+      <td>1889</td>
+      <td>324</td>
+      <td>960</td>
+      <td>247</td>
+      <td>274</td>
+      <td>400</td>
+      <td>135</td>
+      <td>376</td>
+      <td>164</td>
+      <td>...</td>
+      <td>0.830645</td>
+      <td>0.079570</td>
+      <td>0.082258</td>
+      <td>0.002151</td>
+      <td>0.005376</td>
+      <td>0.570481</td>
+      <td>0.122720</td>
+      <td>0.177446</td>
+      <td>0.063018</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 66 columns</p>
+</div></div></div>
+</div>
+<p><strong>Brief summary of the data</strong>:</p>
+<p>Below is a table of the variables in this table. They were combined from
+different ACS 5 year tables.</p>
+<p><u>NOTE</u>:</p>
+<ul class="simple">
+<li><p>variables that start with <code class="docutils literal notranslate"><span class="pre">c_</span></code> are counts</p></li>
+<li><p>variables that start with <code class="docutils literal notranslate"><span class="pre">med_</span></code> are medians</p></li>
+<li><p>variables that end in <code class="docutils literal notranslate"><span class="pre">_moe</span></code> are margin of error estimates</p></li>
+<li><p>variables that start with <code class="docutils literal notranslate"><span class="pre">_p</span></code> are proportions calcuated from the counts divided by the table denominator (the total count for whom that variable was assessed)</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_race</span></code></p></td>
+<td><p>Total population</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_white</span></code></p></td>
+<td><p>Total white non-Latinx</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_black</span></code></p></td>
+<td><p>Total black and African American non-Latinx</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_asian</span></code></p></td>
+<td><p>Total Asian non-Latinx</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_latinx</span></code></p></td>
+<td><p>Total Latinx</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state_fips</span></code></p></td>
+<td><p>State level FIPS code</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">county_fips</span></code></p></td>
+<td><p>County level FIPS code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tract_fips</span></code></p></td>
+<td><p>Tracts level FIPS code</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">med_rent</span></code></p></td>
+<td><p>Median rent</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">med_hhinc</span></code></p></td>
+<td><p>Median household income</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_tenants</span></code></p></td>
+<td><p>Total tenants</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_owners</span></code></p></td>
+<td><p>Total owners</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_renters</span></code></p></td>
+<td><p>Total renters</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_movers</span></code></p></td>
+<td><p>Total number of people who moved</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_stay</span></code></p></td>
+<td><p>Total number of people who stayed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_movelocal</span></code></p></td>
+<td><p>Number of people who moved locally</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_movecounty</span></code></p></td>
+<td><p>Number of people who moved counties</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_movestate</span></code></p></td>
+<td><p>Number of people who moved states</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_moveabroad</span></code></p></td>
+<td><p>Number of people who moved abroad</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_commute</span></code></p></td>
+<td><p>Total number of commuters</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_car</span></code></p></td>
+<td><p>Number of commuters who use a car</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_carpool</span></code></p></td>
+<td><p>Number of commuters who carpool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_transit</span></code></p></td>
+<td><p>Number of commuters who use public transit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c_bike</span></code></p></td>
+<td><p>Number of commuters who bike</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c_walk</span></code></p></td>
+<td><p>Number of commuters who bike</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>ACS data year</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FIPS_11_digit</span></code></p></td>
+<td><p>11-digit FIPS code</p></td>
+</tr>
+</tbody>
+</table>
+<p>We’re going to drop all of our <code class="docutils literal notranslate"><span class="pre">moe</span></code> columns by identifying all of those that end with <code class="docutils literal notranslate"><span class="pre">_moe</span></code>. We can do that in two steps, first by using <code class="docutils literal notranslate"><span class="pre">filter</span></code> to identify columns that contain the string <code class="docutils literal notranslate"><span class="pre">_moe</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moe_cols</span> <span class="o">=</span> <span class="n">acs5_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;_moe&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">moe_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c_race_moe&#39;, &#39;c_white_moe&#39;, &#39;c_black_moe&#39;, &#39;c_asian_moe&#39;,
+       &#39;c_latinx_moe&#39;, &#39;med_rent_moe&#39;, &#39;med_hhinc_moe&#39;, &#39;c_tenants_moe&#39;,
+       &#39;c_owners_moe&#39;, &#39;c_renters_moe&#39;, &#39;c_movers_moe&#39;, &#39;c_stay_moe&#39;,
+       &#39;c_movelocal_moe&#39;, &#39;c_movecounty_moe&#39;, &#39;c_movestate_moe&#39;,
+       &#39;c_moveabroad_moe&#39;, &#39;c_commute_moe&#39;, &#39;c_car_moe&#39;, &#39;c_carpool_moe&#39;,
+       &#39;c_transit_moe&#39;, &#39;c_bike_moe&#39;, &#39;c_walk_moe&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acs5_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">moe_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And lastly, let’s grab only the rows for year 2018 and county FIPS code 1 (i.e. Alameda County)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acs5_df_ac</span> <span class="o">=</span> <span class="n">acs5_df</span><span class="p">[(</span><span class="n">acs5_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">2018</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">acs5_df</span><span class="p">[</span><span class="s1">&#39;county_fips&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Now let’s also read in our census tracts again!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/census/Tracts/cb_2013_06_tract_500k.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>COUNTYFP</th>
+      <th>TRACTCE</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>06</td>
+      <td>001</td>
+      <td>400300</td>
+      <td>1400000US06001400300</td>
+      <td>06001400300</td>
+      <td>4003</td>
+      <td>CT</td>
+      <td>1105329</td>
+      <td>0</td>
+      <td>POLYGON ((-122.26416 37.84000, -122.26186 37.8...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>06</td>
+      <td>001</td>
+      <td>400900</td>
+      <td>1400000US06001400900</td>
+      <td>06001400900</td>
+      <td>4009</td>
+      <td>CT</td>
+      <td>420877</td>
+      <td>0</td>
+      <td>POLYGON ((-122.28558 37.83978, -122.28319 37.8...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>06</td>
+      <td>001</td>
+      <td>402200</td>
+      <td>1400000US06001402200</td>
+      <td>06001402200</td>
+      <td>4022</td>
+      <td>CT</td>
+      <td>712082</td>
+      <td>0</td>
+      <td>POLYGON ((-122.30403 37.80739, -122.30239 37.8...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>06</td>
+      <td>001</td>
+      <td>402800</td>
+      <td>1400000US06001402800</td>
+      <td>06001402800</td>
+      <td>4028</td>
+      <td>CT</td>
+      <td>398311</td>
+      <td>0</td>
+      <td>POLYGON ((-122.27598 37.80622, -122.27335 37.8...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>06</td>
+      <td>001</td>
+      <td>404800</td>
+      <td>1400000US06001404800</td>
+      <td>06001404800</td>
+      <td>4048</td>
+      <td>CT</td>
+      <td>628405</td>
+      <td>0</td>
+      <td>POLYGON ((-122.21825 37.80086, -122.21582 37.8...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf_ac</span> <span class="o">=</span> <span class="n">tracts_gdf</span><span class="p">[</span><span class="n">tracts_gdf</span><span class="p">[</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;001&#39;</span><span class="p">]</span>
+<span class="n">tracts_gdf_ac</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_14_0.png" src="../_images/07_Joins_and_Aggregation-Copy1_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="attribute-joins">
+<h1>7.1 Attribute Joins<a class="headerlink" href="#attribute-joins" title="Permalink to this headline">¶</a></h1>
+<p><strong>Attribute Joins  between Geodataframes and  Dataframes</strong></p>
+<p><em>We just mapped the census tracts. But what makes a map powerful is when you map the data associated with the locations.</em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tracts_gdf_ac</span></code>: These are polygon data in a GeoDataFrame. However, as we saw in the <code class="docutils literal notranslate"><span class="pre">head</span></code> of that dataset, they no attributes of interest!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">acs5_df_ac</span></code>: These are 2018 ACS data from a CSV file (‘census_variables_CA.csv’), imported and read in as a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame. However, they have no geometries!</p></li>
+</ul>
+<p>In order to map the ACS data we need to associate it with the tracts. Let’s do that now, by joining the columns from <code class="docutils literal notranslate"><span class="pre">acs5_df_ac</span></code> to the columns of <code class="docutils literal notranslate"><span class="pre">tracts_gdf_ac</span></code> using a common column as the key for matching rows. This process is called an <strong>attribute join</strong>.</p>
+<hr class="docutils" />
+<img src="https://documentation.mindsphere.io/resources/html/predictive-learning/en-US/Joins_Diagram.png">
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="question">
+<h2>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h2>
+</div>
+<p>The image above gives us a nice conceptual summary of the types of joins we could run.</p>
+<ol class="simple">
+<li><p>In general, why might we choose one type of join over another?</p></li>
+<li><p>In our case, do we want an inner, left, right, or outer (AKA ‘full’) join?</p></li>
+</ol>
+<p>(<strong>NOTE</strong>: You can read more about merging in <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <a class="reference external" href="http://geopandas.org/mergingdata.html#attribute-joins">here</a>.)</p>
+<p>Okay, here we go!</p>
+<p>Let’s take a look at the common column in both our DataFrames.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_gdf_ac</span><span class="p">[</span><span class="s1">&#39;GEOID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    06001400300
+1    06001400900
+2    06001402200
+3    06001402800
+4    06001404800
+Name: GEOID, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acs5_df_ac</span><span class="p">[</span><span class="s1">&#39;FIPS_11_digit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8323    06001441501
+8324    06001404700
+8325    06001442500
+8326    06001450300
+8327    06001450607
+Name: FIPS_11_digit, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that they are <strong>not named the same thing</strong>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    That&#39;s okay! We just need to know that they contain the same information.
+</pre></div>
+</div>
+<p>Also note that they are <strong>not in the same order</strong>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    That&#39;s not only okay... That&#39;s the point! (If they were in the same order already then we could just join them side by side, without having Python find and line up the matching rows from each!)
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Let’s do a <code class="docutils literal notranslate"><span class="pre">left</span></code> join to keep all of the census tracts in Alameda County and only the ACS data for those tracts.</p>
+<p><strong>NOTE</strong>: To figure out how to do this we could always take a peek at the documentation by calling
+<code class="docutils literal notranslate"><span class="pre">?tracts_gdf_ac.merge</span></code>, or <code class="docutils literal notranslate"><span class="pre">help(tracts_gdf_ac)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Left join keeps all tracts and the acs data for those tracts</span>
+<span class="n">tracts_acs_gdf_ac</span> <span class="o">=</span> <span class="n">tracts_gdf_ac</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">acs5_df_ac</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;FIPS_11_digit&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>COUNTYFP</th>
+      <th>TRACTCE</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME_x</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+      <th>...</th>
+      <th>p_stay</th>
+      <th>p_movelocal</th>
+      <th>p_movecounty</th>
+      <th>p_movestate</th>
+      <th>p_moveabroad</th>
+      <th>p_car</th>
+      <th>p_carpool</th>
+      <th>p_transit</th>
+      <th>p_bike</th>
+      <th>p_walk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>06</td>
+      <td>001</td>
+      <td>400300</td>
+      <td>1400000US06001400300</td>
+      <td>06001400300</td>
+      <td>4003</td>
+      <td>CT</td>
+      <td>1105329</td>
+      <td>0</td>
+      <td>POLYGON ((-122.26416 37.84000, -122.26186 37.8...</td>
+      <td>...</td>
+      <td>0.840542</td>
+      <td>0.045069</td>
+      <td>0.058407</td>
+      <td>0.031528</td>
+      <td>0.024454</td>
+      <td>0.420840</td>
+      <td>0.059496</td>
+      <td>0.280672</td>
+      <td>0.067899</td>
+      <td>0.057479</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>06</td>
+      <td>001</td>
+      <td>400900</td>
+      <td>1400000US06001400900</td>
+      <td>06001400900</td>
+      <td>4009</td>
+      <td>CT</td>
+      <td>420877</td>
+      <td>0</td>
+      <td>POLYGON ((-122.28558 37.83978, -122.28319 37.8...</td>
+      <td>...</td>
+      <td>0.906161</td>
+      <td>0.065687</td>
+      <td>0.005712</td>
+      <td>0.022440</td>
+      <td>0.000000</td>
+      <td>0.555718</td>
+      <td>0.068915</td>
+      <td>0.213343</td>
+      <td>0.060850</td>
+      <td>0.044721</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 54 columns</p>
+</div></div></div>
+</div>
+<p>Let’s check that we have all the variables we have in our dataset now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;STATEFP&#39;,
+ &#39;COUNTYFP&#39;,
+ &#39;TRACTCE&#39;,
+ &#39;AFFGEOID&#39;,
+ &#39;GEOID&#39;,
+ &#39;NAME_x&#39;,
+ &#39;LSAD&#39;,
+ &#39;ALAND&#39;,
+ &#39;AWATER&#39;,
+ &#39;geometry&#39;,
+ &#39;NAME_y&#39;,
+ &#39;c_race&#39;,
+ &#39;c_white&#39;,
+ &#39;c_black&#39;,
+ &#39;c_asian&#39;,
+ &#39;c_latinx&#39;,
+ &#39;state_fips&#39;,
+ &#39;county_fips&#39;,
+ &#39;tract_fips&#39;,
+ &#39;med_rent&#39;,
+ &#39;med_hhinc&#39;,
+ &#39;c_tenants&#39;,
+ &#39;c_owners&#39;,
+ &#39;c_renters&#39;,
+ &#39;c_movers&#39;,
+ &#39;c_stay&#39;,
+ &#39;c_movelocal&#39;,
+ &#39;c_movecounty&#39;,
+ &#39;c_movestate&#39;,
+ &#39;c_moveabroad&#39;,
+ &#39;c_commute&#39;,
+ &#39;c_car&#39;,
+ &#39;c_carpool&#39;,
+ &#39;c_transit&#39;,
+ &#39;c_bike&#39;,
+ &#39;c_walk&#39;,
+ &#39;year&#39;,
+ &#39;FIPS_11_digit&#39;,
+ &#39;p_white&#39;,
+ &#39;p_black&#39;,
+ &#39;p_asian&#39;,
+ &#39;p_latinx&#39;,
+ &#39;p_owners&#39;,
+ &#39;p_renters&#39;,
+ &#39;p_stay&#39;,
+ &#39;p_movelocal&#39;,
+ &#39;p_movecounty&#39;,
+ &#39;p_movestate&#39;,
+ &#39;p_moveabroad&#39;,
+ &#39;p_car&#39;,
+ &#39;p_carpool&#39;,
+ &#39;p_transit&#39;,
+ &#39;p_bike&#39;,
+ &#39;p_walk&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+</div>
+<div class="section" id="id1">
+<h2>Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<p>It’s always important to run sanity checks on our results, at each step of the way!</p>
+<p>In this case, how many rows and columns should we have?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rows and columns in the Alameda County Census tract gdf:</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tracts_gdf_ac</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Row and columns in the ACS5 2018 data:</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">acs5_df_ac</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rows and columns in the Alameda County Census tract gdf joined to the ACS data:</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows and columns in the Alameda County Census tract gdf:
+	 (361, 10)
+Row and columns in the ACS5 2018 data:
+	 (361, 44)
+Rows and columns in the Alameda County Census tract gdf joined to the ACS data:
+	 (361, 54)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s save out our merged data so we can use it in the final notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;outdata/tracts_acs_gdf_ac.json&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;GeoJSON&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-choropleth-map">
+<h2>Exercise: Choropleth Map<a class="headerlink" href="#exercise-choropleth-map" title="Permalink to this headline">¶</a></h2>
+<p>We can now make choropleth maps using our attribute joined geodataframe. Go ahead and pick one variable to color the map, then map it. You can go back to lesson 5 if you need a refresher on how to make this!</p>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h2>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION:
+fig, ax = plt.subplots(figsize = (10,5)) 
+tracts_acs_gdf_ac.plot(column='p_renters', 
+                   scheme="quantiles",
+                   legend=True,
+                   ax=ax,cmap='magma'
+                   )
+ax.set_title("Percentage of Renters")
+
+--></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="spatial-joins">
+<h1>7.2 Spatial Joins<a class="headerlink" href="#spatial-joins" title="Permalink to this headline">¶</a></h1>
+<p>Great! We’ve wrapped our heads around the concept of an attribute join.</p>
+<p>Now let’s extend that concept to its spatially explicit equivalent: the <strong>spatial join</strong>!</p>
+<br>
+<p>To start, we’ll read in some other data: The Alameda County schools data.</p>
+<p>Then we’ll work with that data and our <code class="docutils literal notranslate"><span class="pre">tracts_acs_gdf_ac</span></code> data together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;notebook_data/alco_schools.csv&#39;</span><span class="p">)</span>
+<span class="n">schools_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">schools_df</span><span class="p">,</span> 
+                               <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">schools_df</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">schools_df</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check if we have to transform the schools to match the<code class="docutils literal notranslate"><span class="pre">tracts_acs_gdf_ac</span></code>’s CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;schools_gdf CRS:&#39;</span><span class="p">,</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tracts_acs_gdf_ac CRS:&#39;</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>schools_gdf CRS: epsg:4326
+tracts_acs_gdf_ac CRS: epsg:4269
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yes we do! Let’s do that.</p>
+<p><strong>NOTE</strong>: Explicit syntax aiming at that dataset’s CRS leaves less room for human error!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span> <span class="o">=</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;schools_gdf CRS:&#39;</span><span class="p">,</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tracts_acs_gdf_ac CRS:&#39;</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>schools_gdf CRS: epsg:4269
+tracts_acs_gdf_ac CRS: epsg:4269
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’re ready to combine the datasets in an analysis.</p>
+<p><strong>In this case, we want to get data from the census tract within which each school is located.</strong></p>
+<p>But how can we do that? The two datasets don’t share a common column to use for a join.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;STATEFP&#39;, &#39;COUNTYFP&#39;, &#39;TRACTCE&#39;, &#39;AFFGEOID&#39;, &#39;GEOID&#39;, &#39;NAME_x&#39;, &#39;LSAD&#39;,
+       &#39;ALAND&#39;, &#39;AWATER&#39;, &#39;geometry&#39;, &#39;NAME_y&#39;, &#39;c_race&#39;, &#39;c_white&#39;, &#39;c_black&#39;,
+       &#39;c_asian&#39;, &#39;c_latinx&#39;, &#39;state_fips&#39;, &#39;county_fips&#39;, &#39;tract_fips&#39;,
+       &#39;med_rent&#39;, &#39;med_hhinc&#39;, &#39;c_tenants&#39;, &#39;c_owners&#39;, &#39;c_renters&#39;,
+       &#39;c_movers&#39;, &#39;c_stay&#39;, &#39;c_movelocal&#39;, &#39;c_movecounty&#39;, &#39;c_movestate&#39;,
+       &#39;c_moveabroad&#39;, &#39;c_commute&#39;, &#39;c_car&#39;, &#39;c_carpool&#39;, &#39;c_transit&#39;,
+       &#39;c_bike&#39;, &#39;c_walk&#39;, &#39;year&#39;, &#39;FIPS_11_digit&#39;, &#39;p_white&#39;, &#39;p_black&#39;,
+       &#39;p_asian&#39;, &#39;p_latinx&#39;, &#39;p_owners&#39;, &#39;p_renters&#39;, &#39;p_stay&#39;, &#39;p_movelocal&#39;,
+       &#39;p_movecounty&#39;, &#39;p_movestate&#39;, &#39;p_moveabroad&#39;, &#39;p_car&#39;, &#39;p_carpool&#39;,
+       &#39;p_transit&#39;, &#39;p_bike&#39;, &#39;p_walk&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;X&#39;, &#39;Y&#39;, &#39;Site&#39;, &#39;Address&#39;, &#39;City&#39;, &#39;State&#39;, &#39;Type&#39;, &#39;API&#39;, &#39;Org&#39;,
+       &#39;geometry&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, they do have a shared relationship by way of space!</p>
+<p>So, we’ll use a spatial relationship query to figure out the census tract that
+each school is in, then associate the tract’s data with that school (as additional data in the school’s row).
+This is a <strong>spatial join</strong>!</p>
+<hr class="docutils" />
+<div class="section" id="census-tract-data-associated-with-each-school">
+<h2>Census Tract Data Associated with Each School<a class="headerlink" href="#census-tract-data-associated-with-each-school" title="Permalink to this headline">¶</a></h2>
+<p>In this case, let’s say we’re interested in the relationship between the median household income
+in a census tract (<code class="docutils literal notranslate"><span class="pre">tracts_acs_gdf_ac['med_hhinc']</span></code>) and a school’s Academic Performance Index
+(<code class="docutils literal notranslate"><span class="pre">schools_gdf['API']</span></code>).</p>
+<p>To start, let’s take a look at the distributions of our two variables of interest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;med_hhinc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fa6ca1bda00&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_45_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_45_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fa6ca5d8730&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_46_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_46_1.png" />
+</div>
+</div>
+<p>Oh, right! Those pesky schools with no reported APIs (i.e. API == 0)! Let’s drop those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf_api</span> <span class="o">=</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">schools_gdf</span><span class="p">[</span><span class="s1">&#39;API&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf_api</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fa6c9ce9e20&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_49_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_49_1.png" />
+</div>
+</div>
+<p>Much better!</p>
+<p>Now, maybe we think there ought to be some correlation between the two variables?
+As a first pass at this possibility, let’s overlay the two datasets, coloring each one by
+its variable of interest. This should give us a sense of whether or not similar values co-occur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;med_hhinc&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cividis&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span>
+                            <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;median household income ($)&quot;</span><span class="p">,</span>
+                                                      <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">})</span>
+<span class="n">schools_gdf_api</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;API&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cividis&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                     <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;API&quot;</span><span class="p">,</span> <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa6ca74d6d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_51_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_51_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="spatially-joining-our-schools-and-census-tracts">
+<h2>Spatially Joining our Schools and Census Tracts<a class="headerlink" href="#spatially-joining-our-schools-and-census-tracts" title="Permalink to this headline">¶</a></h2>
+<p>Though it’s hard to say for sure, it certainly looks possible.
+It would be ideal to scatterplot the variables! But in order to do that,
+we need to know the median household income in each school’s tract, which
+means we definitely need our <strong>spatial join</strong>!</p>
+<p>We’ll first take a look at the documentation for the spatial join function, <code class="docutils literal notranslate"><span class="pre">gpd.sjoin</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function sjoin in module geopandas.tools.sjoin:
+
+sjoin(left_df, right_df, how=&#39;inner&#39;, op=&#39;intersects&#39;, lsuffix=&#39;left&#39;, rsuffix=&#39;right&#39;)
+    Spatial join of two GeoDataFrames.
+    
+    Parameters
+    ----------
+    left_df, right_df : GeoDataFrames
+    how : string, default &#39;inner&#39;
+        The type of join:
+    
+        * &#39;left&#39;: use keys from left_df; retain only left_df geometry column
+        * &#39;right&#39;: use keys from right_df; retain only right_df geometry column
+        * &#39;inner&#39;: use intersection of keys from both dfs; retain only
+          left_df geometry column
+    op : string, default &#39;intersects&#39;
+        Binary predicate, one of {&#39;intersects&#39;, &#39;contains&#39;, &#39;within&#39;}.
+        See http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates.
+    lsuffix : string, default &#39;left&#39;
+        Suffix to apply to overlapping column names (left GeoDataFrame).
+    rsuffix : string, default &#39;right&#39;
+        Suffix to apply to overlapping column names (right GeoDataFrame).
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks like the key arguments to consider are:</p>
+<ul class="simple">
+<li><p>the two GeoDataFrames (<strong><code class="docutils literal notranslate"><span class="pre">left_df</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">right_df</span></code></strong>)</p></li>
+<li><p>the type of join to run (<strong><code class="docutils literal notranslate"><span class="pre">how</span></code></strong>), which can take the values <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, or <code class="docutils literal notranslate"><span class="pre">inner</span></code></p></li>
+<li><p>the spatial relationship query to use (<strong><code class="docutils literal notranslate"><span class="pre">op</span></code></strong>)</p></li>
+</ul>
+<p><strong>NOTE</strong>:</p>
+<ul class="simple">
+<li><p>By default <code class="docutils literal notranslate"><span class="pre">sjoin</span></code> is an inner join. It keeps the data from both geodataframes only where the locations spatially intersect.</p></li>
+<li><p>By default <code class="docutils literal notranslate"><span class="pre">sjoin</span></code> maintains the geometry of first geodataframe input to the operation.</p></li>
+</ul>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>Which GeoDataFrame are we joining onto which (i.e. which one is getting the other one’s data added to it)?</p></li>
+<li><p>What happened to ‘outer’ as a join type?</p></li>
+<li><p>Thus, in our operation, which GeoDataFrame should be the <code class="docutils literal notranslate"><span class="pre">left_df</span></code>, which should be the <code class="docutils literal notranslate"><span class="pre">right_df</span></code>, and <code class="docutils literal notranslate"><span class="pre">how</span></code> do we want our join to run?</p></li>
+</ol>
+<p>Alright! Let’s run our join!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_jointracts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">schools_gdf_api</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-our-output">
+<h2>Checking Our Output<a class="headerlink" href="#checking-our-output" title="Permalink to this headline">¶</a></h2>
+<br>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id2">
+<h3>Questions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>As always, we want to sanity-check our intermediate result before we rush ahead.</p>
+<p>One way to do that is to introspect the structure of the result object a bit.</p>
+<ol class="simple">
+<li><p>What type of object should that have given us?</p></li>
+<li><p>What should the dimensions of that object be, and why?</p></li>
+<li><p>If we wanted a visual check of our results (i.e. a plot or map), what could we do?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">schools_jointracts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(325, 64)
+(550, 10)
+(361, 54)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_jointracts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Site</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Type</th>
+      <th>API</th>
+      <th>Org</th>
+      <th>geometry</th>
+      <th>...</th>
+      <th>p_stay</th>
+      <th>p_movelocal</th>
+      <th>p_movecounty</th>
+      <th>p_movestate</th>
+      <th>p_moveabroad</th>
+      <th>p_car</th>
+      <th>p_carpool</th>
+      <th>p_transit</th>
+      <th>p_bike</th>
+      <th>p_walk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.238761</td>
+      <td>37.744764</td>
+      <td>Amelia Earhart Elementary</td>
+      <td>400 Packet Landing Rd</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>933</td>
+      <td>Public</td>
+      <td>POINT (-122.23876 37.74476)</td>
+      <td>...</td>
+      <td>0.901694</td>
+      <td>0.053120</td>
+      <td>0.013314</td>
+      <td>0.023534</td>
+      <td>0.008338</td>
+      <td>0.680745</td>
+      <td>0.077650</td>
+      <td>0.107293</td>
+      <td>0.004722</td>
+      <td>0.019150</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.251856</td>
+      <td>37.738999</td>
+      <td>Bay Farm Elementary</td>
+      <td>200 Aughinbaugh Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>932</td>
+      <td>Public</td>
+      <td>POINT (-122.25186 37.73900)</td>
+      <td>...</td>
+      <td>0.901694</td>
+      <td>0.053120</td>
+      <td>0.013314</td>
+      <td>0.023534</td>
+      <td>0.008338</td>
+      <td>0.680745</td>
+      <td>0.077650</td>
+      <td>0.107293</td>
+      <td>0.004722</td>
+      <td>0.019150</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.258915</td>
+      <td>37.762058</td>
+      <td>Donald D. Lum Elementary</td>
+      <td>1801 Sandcreek Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>853</td>
+      <td>Public</td>
+      <td>POINT (-122.25892 37.76206)</td>
+      <td>...</td>
+      <td>0.845120</td>
+      <td>0.090240</td>
+      <td>0.032640</td>
+      <td>0.032000</td>
+      <td>0.000000</td>
+      <td>0.601057</td>
+      <td>0.042933</td>
+      <td>0.247028</td>
+      <td>0.033025</td>
+      <td>0.011889</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.234841</td>
+      <td>37.765250</td>
+      <td>Edison Elementary</td>
+      <td>2700 Buena Vista Ave</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>927</td>
+      <td>Public</td>
+      <td>POINT (-122.23484 37.76525)</td>
+      <td>...</td>
+      <td>0.939313</td>
+      <td>0.032492</td>
+      <td>0.023093</td>
+      <td>0.000000</td>
+      <td>0.005102</td>
+      <td>0.561823</td>
+      <td>0.077493</td>
+      <td>0.172650</td>
+      <td>0.018803</td>
+      <td>0.036467</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.238078</td>
+      <td>37.753964</td>
+      <td>Frank Otis Elementary</td>
+      <td>3010 Fillmore St</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>894</td>
+      <td>Public</td>
+      <td>POINT (-122.23808 37.75396)</td>
+      <td>...</td>
+      <td>0.934416</td>
+      <td>0.031122</td>
+      <td>0.010779</td>
+      <td>0.021406</td>
+      <td>0.002277</td>
+      <td>0.645532</td>
+      <td>0.067532</td>
+      <td>0.150398</td>
+      <td>0.015040</td>
+      <td>0.031849</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 64 columns</p>
+</div></div></div>
+</div>
+<p>Confirmed! The output of the our <code class="docutils literal notranslate"><span class="pre">sjoin</span></code> operation is a GeoDataFrame (<code class="docutils literal notranslate"><span class="pre">schools_jointracts</span></code>) with:</p>
+<ul class="simple">
+<li><p>a row for each school that is located inside a census tract (all of them are)</p></li>
+<li><p>the <strong>point geometry</strong> of that school</p></li>
+<li><p>all of the attribute data columns (non-geometry columns) from both input GeoDataFrames</p></li>
+</ul>
+<hr class="docutils" />
+<p>Let’s also take a look at an overlay map of the schools on the tracts.
+If we color the schools categorically by their tracts IDs, then we should see
+that all schools within a given tract polygon are the same color.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+<span class="n">schools_jointracts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa6ca74d5e0&gt;
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_64_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_64_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="assessing-the-relationship-between-median-household-income-and-api">
+<h2>Assessing the Relationship between Median Household Income and API<a class="headerlink" href="#assessing-the-relationship-between-median-household-income-and-api" title="Permalink to this headline">¶</a></h2>
+<p>Fantastic! That looks right!</p>
+<p>Now we can create that scatterplot we were thinking about!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">schools_jointracts</span><span class="o">.</span><span class="n">med_hhinc</span><span class="p">,</span> <span class="n">schools_jointracts</span><span class="o">.</span><span class="n">API</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;median household income ($)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;API&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;API&#39;)
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_66_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_66_1.png" />
+</div>
+</div>
+<p>Wow! Just as we suspected based on our overlay map,
+there’s a pretty obvious, strong, and positive correlation
+between median household income in a school’s tract
+and the school’s API.</p>
+</div>
+</div>
+<div class="section" id="aggregation">
+<h1>7.3: Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h1>
+<p>We just saw that a spatial join in one way to leverage the spatial relationship
+between two datasets in order to create a new, synthetic dataset.</p>
+<p>An <strong>aggregation</strong> is another way we can generate new data from this relationship.
+In this case, for each feature in one dataset we find all the features in another
+dataset that satisfy our chosen spatial relationship query with it (e.g. within, intersects),
+then aggregate them using some summary function (e.g. count, mean).</p>
+<hr class="docutils" />
+<div class="section" id="getting-the-aggregated-school-counts">
+<h2>Getting the Aggregated School Counts<a class="headerlink" href="#getting-the-aggregated-school-counts" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take this for a spin with our data. We’ll count all the schools within each census tract.</p>
+<p>Note that we’ve already done the first step of spatially joining the data from the aggregating features
+(the tracts) onto the data to be aggregated (our schools).</p>
+<p>The next step is to group our GeoDataFrame by census tract, and then summarize our data by group.
+We do this using the DataFrame method <code class="docutils literal notranslate"><span class="pre">groupy</span></code>.</p>
+<p>To get the correct count, lets rejoin our schools on our tracts, this time keeping all schools
+(not just those with APIs &gt; 0, as before).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_jointracts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">schools_gdf</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now for the <code class="docutils literal notranslate"><span class="pre">groupy</span></code> operation.</p>
+<p><strong>NOTE</strong>: We could really use any column, since we’re just taking a count. For now we’ll just use the school names (‘Site’).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_countsbytract</span> <span class="o">=</span> <span class="n">schools_jointracts</span><span class="p">[[</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span><span class="s1">&#39;Site&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Counts, rows and columns:&quot;</span><span class="p">,</span> <span class="n">schools_countsbytract</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tracts, rows and columns:&quot;</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># take a look at the data</span>
+<span class="n">schools_countsbytract</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counts, rows and columns: (263, 2)
+Tracts, rows and columns: (361, 54)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GEOID</th>
+      <th>Site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>06001400100</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>06001400200</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>06001400400</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>06001400500</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>06001400700</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="getting-tract-polygons-with-school-counts">
+<h2>Getting Tract Polygons with School Counts<a class="headerlink" href="#getting-tract-polygons-with-school-counts" title="Permalink to this headline">¶</a></h2>
+<p>The above <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">count</span></code> operations give us the counts we wanted.</p>
+<ul class="simple">
+<li><p>We have the 263 (of 361) census tracts that have at least one school</p></li>
+<li><p>We have the number of schools within each of those tracts</p></li>
+</ul>
+<p>But the output of <code class="docutils literal notranslate"><span class="pre">groupby</span></code> is a plain DataFrame not a GeoDataFrame.</p>
+<p>If we want a GeoDataFrame then we have two options:</p>
+<ol class="simple">
+<li><p>We could join the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> output to <code class="docutils literal notranslate"><span class="pre">tracts_acs_gdf_ac</span></code> by the attribute <code class="docutils literal notranslate"><span class="pre">GEOID</span></code>
+or</p></li>
+<li><p>We could start over, using the GeoDataFrame <code class="docutils literal notranslate"><span class="pre">dissolve</span></code> method, which we can think of as a spatial <code class="docutils literal notranslate"><span class="pre">groupby</span></code>.</p></li>
+</ol>
+<hr class="docutils" />
+<p>Since we already know how to do an attribute join, we’ll do the <code class="docutils literal notranslate"><span class="pre">dissolve</span></code>!</p>
+<p>First, let’s run a new spatial join.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_joinschools</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">schools_gdf</span><span class="p">,</span> <span class="n">tracts_acs_gdf_ac</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s run our dissolve!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracts_schoolcounts</span> <span class="o">=</span> <span class="n">tracts_joinschools</span><span class="p">[[</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span> <span class="s1">&#39;Site&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Counts, rows and columns:&quot;</span><span class="p">,</span> <span class="n">tracts_schoolcounts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># take a look</span>
+<span class="n">tracts_schoolcounts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counts, rows and columns: (361, 2)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>Site</th>
+    </tr>
+    <tr>
+      <th>GEOID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>06001400100</th>
+      <td>POLYGON ((-122.24692 37.88544, -122.24197 37.8...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>06001400200</th>
+      <td>POLYGON ((-122.25742 37.84310, -122.25620 37.8...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>06001400300</th>
+      <td>POLYGON ((-122.26416 37.84000, -122.26186 37.8...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>06001400400</th>
+      <td>POLYGON ((-122.26180 37.84179, -122.26130 37.8...</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>06001400500</th>
+      <td>POLYGON ((-122.26941 37.84811, -122.26891 37.8...</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Nice! Let’s break that down.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dissolve</span></code> operation requires a geometry column and a grouping column (in our case, ‘GEOID’). Any geometries within the <strong>same group</strong> will be dissolved if they have the same geometry or nested geometries.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code>, or aggregation function, of the dissolve operation will be applied to all numeric columns in the input geodataframe (unless the function is <code class="docutils literal notranslate"><span class="pre">count</span></code> in which case it will count rows.)</p></li>
+</ul>
+<p>Check out the Geopandas documentation on <a class="reference external" href="https://geopandas.org/aggregation_with_dissolve.html?highlight=dissolve">dissolve</a> for more information.</p>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="id3">
+<h3>Questions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>Above we selected three columns from the input GeoDataFrame to create a subset as input to the dissolve operation. Why?</p></li>
+<li><p>Why did we run a new spatial join? What would have happened if we had used the <code class="docutils literal notranslate"><span class="pre">schools_jointracts</span></code> object instead?</p></li>
+<li><p>What explains the dimensions of the new object (361, 2)?</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="mapping-our-spatial-join-output">
+<h2>Mapping our Spatial Join Output<a class="headerlink" href="#mapping-our-spatial-join-output" title="Permalink to this headline">¶</a></h2>
+<p>Also, because our <code class="docutils literal notranslate"><span class="pre">sjoin</span></code> plus <code class="docutils literal notranslate"><span class="pre">dissolve</span></code> pipeline outputs a GeoDataFrame, we can now easily map the school count by census tract!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+
+<span class="c1"># Display the output of our spatial join</span>
+<span class="n">tracts_schoolcounts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;Site&#39;</span><span class="p">,</span> 
+                         <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;user_defined&quot;</span><span class="p">,</span>
+                         <span class="n">classification_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bins&#39;</span><span class="p">:[</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]},</span>
+                         <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;PuRd_r&quot;</span><span class="p">,</span>
+                         <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+                         <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                         <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Number of schools&#39;</span><span class="p">})</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa6cae870d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/07_Joins_and_Aggregation-Copy1_82_1.png" src="../_images/07_Joins_and_Aggregation-Copy1_82_1.png" />
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-aggregation">
+<h1>Exercise: Aggregation<a class="headerlink" href="#exercise-aggregation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-the-mean-api-of-each-census-tract">
+<h2>What is the mean API of each census tract?<a class="headerlink" href="#what-is-the-mean-api-of-each-census-tract" title="Permalink to this headline">¶</a></h2>
+<p>As we mentioned, the spatial aggregation workflow that we just put together above
+could have been used not to generate a new count variable, but also
+to generate any other new variable the results from calling an aggregation function
+on an attribute column.</p>
+<p>In this case, we want to calculate and map the mean API of the schools in each census tract.</p>
+<p>Copy and paste code from above where useful, then tweak and/or add to that code such that your new code:</p>
+<ol class="simple">
+<li><p>joins the schools onto the tracts (<strong>HINT</strong>: make sure to decide whether or not you want to include schools with API = 0!)</p></li>
+<li><p>dissolves that joined object by the tract IDs, giving you a new GeoDataFrame with each tract’s mean API (<strong>HINT</strong>: because this is now a different calculation, different problems may arise and need handling!)</p></li>
+<li><p>plots the tracts, colored by API scores (<strong>HINT</strong>: overlay the schools points again, visualizing them in a way that will help you visually check your results!)</p></li>
+</ol>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Double-click to see solution!<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION:
+
+# join the schools onto the tracks (excluding 0-API schools so that they don't skew our results!)
+tracts_joinschools_api = gpd.sjoin(schools_gdf_api, tracts_acs_gdf_ac, how='right')
+
+# dissolve the tracts by GEOID, using 'API' as the column we'll aggregate and 'mean' as our aggfunc
+tracts_meanAPI = tracts_joinschools_api[['GEOID', 'API', 'geometry']].dropna(how='any').dissolve(by='GEOID',
+                                                                                                 aggfunc='mean')
+
+# plot the tracts, coloring them by mean API
+fig, ax = plt.subplots(figsize = (20,20)) 
+tracts_meanAPI.plot(ax=ax,column='API', 
+                    scheme='equalinterval',
+                    cmap="cool_r",
+                    edgecolor="grey",
+                    legend=True, legend_kwds={'title': 'mean API (tracts)'})
+# add the schools, coloring them by API (so we can check that the mean APIs we calculated are resonable)
+schools_gdf_api.plot(ax=ax, column='API', cmap='cool_r', edgecolor='black', linewidth=0.3, markersize=25,
+                 legend=True, legend_kwds={'label': "API (schools)", 'orientation': "horizontal"})
+
+-->
+</div>
+<hr class="docutils" />
+<div class="section" id="recap">
+<h2>7.4 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>We discussed how we can combine datasets to enhance any geospatial data analyses you could do. Key concepts include:</p>
+<ul class="simple">
+<li><p>Attribute joins</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.merge()</span></code></p></li>
+</ul>
+</li>
+<li><p>Spatial joins (order matters!)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpd.sjoin()</span></code></p></li>
+</ul>
+</li>
+<li><p>Aggregation
+-<code class="docutils literal notranslate"><span class="pre">.groupby()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code> (preserves geometry)</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ran"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

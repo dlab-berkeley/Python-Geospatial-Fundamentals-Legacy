@@ -1,0 +1,1367 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 4. More Data, More Maps! &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lessons/16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/ran/04_More_Data_More_Maps-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/ran/04_More_Data_More_Maps-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import Libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#berkeley-bike-boulevards">
+   4.1 Berkeley Bike Boulevards
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question">
+     Question
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alameda-county-schools">
+   4.2 Alameda County Schools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-even-more-data">
+   Exercise: Even More Data!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#double-click-to-see-solution">
+   Double-click to see solution!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-overlays-with-matplotlib">
+   4.3 Map Overlays with Matplotlib
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   4.4 Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-overlay-mapping">
+   Exercise: Overlay Mapping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#double-click-the-see-the-solution">
+   Double-click the see the solution!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teaser-for-day-2">
+   4.5 Teaser for Day 2…
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-4-more-data-more-maps">
+<h1>Lesson 4. More Data, More Maps!<a class="headerlink" href="#lesson-4-more-data-more-maps" title="Permalink to this headline">¶</a></h1>
+<p>Now that we know how to pull in data, check and transform Coordinate Reference Systems (CRS), and plot GeoDataFrames together - let’s practice doing the same thing with other geometry types. In this notebook we’ll be bringing in bike boulevards and schools, which will get us primed to think about spatial relationship questions.</p>
+<ul class="simple">
+<li><p>4.1 Berkeley Bike Boulevards</p></li>
+<li><p>4.2 Alameda County Schools</p></li>
+<li><p><strong>Exercise</strong>: Even More Data!</p></li>
+<li><p>4.3 Map Overlays with Matplotlib</p></li>
+<li><p>4.4 Recap</p></li>
+<li><p><strong>Exercise</strong>: Overlay Mapping</p></li>
+<li><p>4.5 Teaser for Day 2</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/transportation/BerkeleyBikeBlvds.geojson’</p></li>
+<li><p>‘notebook_data/alco_schools.csv’</p></li>
+<li><p>‘notebook_data/parcels/parcel_pts_rand30pct.geojson’</p></li>
+<li><p>‘notebook_data/berkeley/BerkeleyCityLimits.shp’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 30 minutes</p></li>
+<li><p>Exercises: 20 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="import-libraries">
+<h2>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="berkeley-bike-boulevards">
+<h2>4.1 Berkeley Bike Boulevards<a class="headerlink" href="#berkeley-bike-boulevards" title="Permalink to this headline">¶</a></h2>
+<p>We’re going to bring in data bike boulevards in Berkeley. Note two things that are different from our previous data:</p>
+<ul class="simple">
+<li><p>We’re bringing in a <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> this time and not a shapefile</p></li>
+<li><p>We have a <strong>line</strong> geometry GeoDataFrame (our county and states data had <strong>polygon</strong> geometries)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/transportation/BerkeleyBikeBlvds.geojson&#39;</span><span class="p">)</span>
+<span class="n">bike_blvds</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_4_1.png" src="../_images/04_More_Data_More_Maps-Copy1_4_1.png" />
+</div>
+</div>
+<p>As usual, we’ll want to do our usual data exploration…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BB_STRNAM</th>
+      <th>BB_STRID</th>
+      <th>BB_FRO</th>
+      <th>BB_TO</th>
+      <th>BB_SECID</th>
+      <th>DIR_</th>
+      <th>Status</th>
+      <th>ALT_bikeCA</th>
+      <th>Shape_len</th>
+      <th>len_km</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>7th</td>
+      <td>8th</td>
+      <td>RUS01</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>101.128166</td>
+      <td>0.101</td>
+      <td>MULTILINESTRING ((562293.786 4189795.092, 5623...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>8th</td>
+      <td>9th</td>
+      <td>RUS02</td>
+      <td>E/W</td>
+      <td>Ezisting</td>
+      <td>No</td>
+      <td>100.814072</td>
+      <td>0.101</td>
+      <td>MULTILINESTRING ((562391.553 4189820.949, 5624...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>9th</td>
+      <td>10th</td>
+      <td>RUS03</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>100.037396</td>
+      <td>0.100</td>
+      <td>MULTILINESTRING ((562489.017 4189846.721, 5625...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>10th</td>
+      <td>San Pablo</td>
+      <td>RUS04</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>106.592878</td>
+      <td>0.107</td>
+      <td>MULTILINESTRING ((562585.723 4189872.321, 5626...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>San Pablo</td>
+      <td>RUS</td>
+      <td>Heinz</td>
+      <td>Russell</td>
+      <td>RUS05</td>
+      <td>N/S</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>89.563478</td>
+      <td>0.090</td>
+      <td>MULTILINESTRING ((562688.854 4189899.267, 5627...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(211, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;BB_STRNAM&#39;, &#39;BB_STRID&#39;, &#39;BB_FRO&#39;, &#39;BB_TO&#39;, &#39;BB_SECID&#39;, &#39;DIR_&#39;,
+       &#39;Status&#39;, &#39;ALT_bikeCA&#39;, &#39;Shape_len&#39;, &#39;len_km&#39;, &#39;geometry&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our bike boulevard data includes the following information:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BB_STRNAM</span></code> - bike boulevard Streetname</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BB_STRID</span></code> - bike boulevard Street ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BB_FRO</span></code> - bike boulevard origin street</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BB_TO</span></code> - bike boulevard end street</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BB_SECID</span></code>- bike boulevard section id</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DIR_</span></code> - cardinal directions the bike boulevard runs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Status</span></code> - status on whether the bike boulevard exists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALT_bikeCA</span></code> - ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Shape_len</span></code> - length of the boulevard in meters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len_km</span></code> - length of the boulevard in kilometers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometry</span></code></p></li>
+</ul>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="question">
+<h3>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>Why are there 211 features when we only have 8 bike boulevards?</p>
+<p>And now take a look at our CRS…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: EPSG:32610&gt;
+Name: WGS 84 / UTM zone 10N
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- name: World - N hemisphere - 126°W to 120°W - by country
+- bounds: (-126.0, 0.0, -120.0, 84.0)
+Coordinate Operation:
+- name: UTM zone 10N
+- method: Transverse Mercator
+Datum: World Geodetic System 1984
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s tranform our CRS to UTM Zone 10N, NAD83 that we used in the last lesson.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_utm10</span> <span class="o">=</span> <span class="n">bike_blvds</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BB_STRNAM</th>
+      <th>BB_STRID</th>
+      <th>BB_FRO</th>
+      <th>BB_TO</th>
+      <th>BB_SECID</th>
+      <th>DIR_</th>
+      <th>Status</th>
+      <th>ALT_bikeCA</th>
+      <th>Shape_len</th>
+      <th>len_km</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>7th</td>
+      <td>8th</td>
+      <td>RUS01</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>101.128166</td>
+      <td>0.101</td>
+      <td>MULTILINESTRING ((562293.837 4189794.938, 5623...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>8th</td>
+      <td>9th</td>
+      <td>RUS02</td>
+      <td>E/W</td>
+      <td>Ezisting</td>
+      <td>No</td>
+      <td>100.814072</td>
+      <td>0.101</td>
+      <td>MULTILINESTRING ((562391.603 4189820.796, 5624...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>9th</td>
+      <td>10th</td>
+      <td>RUS03</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>100.037396</td>
+      <td>0.100</td>
+      <td>MULTILINESTRING ((562489.067 4189846.568, 5625...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Heinz/Russell</td>
+      <td>RUS</td>
+      <td>10th</td>
+      <td>San Pablo</td>
+      <td>RUS04</td>
+      <td>E/W</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>106.592878</td>
+      <td>0.107</td>
+      <td>MULTILINESTRING ((562585.773 4189872.168, 5626...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>San Pablo</td>
+      <td>RUS</td>
+      <td>Heinz</td>
+      <td>Russell</td>
+      <td>RUS05</td>
+      <td>N/S</td>
+      <td>Existing</td>
+      <td>No</td>
+      <td>89.563478</td>
+      <td>0.090</td>
+      <td>MULTILINESTRING ((562688.904 4189899.113, 5627...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="alameda-county-schools">
+<h2>4.2 Alameda County Schools<a class="headerlink" href="#alameda-county-schools" title="Permalink to this headline">¶</a></h2>
+<p>Alright! Now that we have our bike boulevard data squared away, we’re going to bring in our Alameda County school data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;notebook_data/alco_schools.csv&#39;</span><span class="p">)</span>
+<span class="n">schools_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Site</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Type</th>
+      <th>API</th>
+      <th>Org</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.238761</td>
+      <td>37.744764</td>
+      <td>Amelia Earhart Elementary</td>
+      <td>400 Packet Landing Rd</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>933</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.251856</td>
+      <td>37.738999</td>
+      <td>Bay Farm Elementary</td>
+      <td>200 Aughinbaugh Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>932</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.258915</td>
+      <td>37.762058</td>
+      <td>Donald D. Lum Elementary</td>
+      <td>1801 Sandcreek Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>853</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.234841</td>
+      <td>37.765250</td>
+      <td>Edison Elementary</td>
+      <td>2700 Buena Vista Ave</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>927</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.238078</td>
+      <td>37.753964</td>
+      <td>Frank Otis Elementary</td>
+      <td>3010 Fillmore St</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>894</td>
+      <td>Public</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(550, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="20" align=left >  <strong>Questions</strong></p>
+<p>Without looking ahead:</p>
+<ol class="simple">
+<li><p>Is this a geodataframe?</p></li>
+<li><p>How do you know?</p></li>
+</ol>
+<br>
+<br>
+This is not a GeoDataFrame! A couple of clues to figure that out are..
+<ol class="simple">
+<li><p>We’re pulling in a Comma Separated Value (CSV) file, which is not a geospatial data format</p></li>
+<li><p>There is no geometry column (although we do have latitude and longitude values)</p></li>
+</ol>
+<hr class="docutils" />
+<p>Although our school data is not starting off as a GeoDataFrame, we actually have the tools and information to make it one. Using the <code class="docutils literal notranslate"><span class="pre">gpd.GeoDataFrame</span></code> constructor, we can transform our plain DataFrame into a GeoDataFrame (specifying the geometry information and then the CRS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">schools_df</span><span class="p">,</span> 
+                               <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">schools_df</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">schools_df</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Site</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Type</th>
+      <th>API</th>
+      <th>Org</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.238761</td>
+      <td>37.744764</td>
+      <td>Amelia Earhart Elementary</td>
+      <td>400 Packet Landing Rd</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>933</td>
+      <td>Public</td>
+      <td>POINT (-122.23876 37.74476)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.251856</td>
+      <td>37.738999</td>
+      <td>Bay Farm Elementary</td>
+      <td>200 Aughinbaugh Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>932</td>
+      <td>Public</td>
+      <td>POINT (-122.25186 37.73900)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.258915</td>
+      <td>37.762058</td>
+      <td>Donald D. Lum Elementary</td>
+      <td>1801 Sandcreek Way</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>853</td>
+      <td>Public</td>
+      <td>POINT (-122.25892 37.76206)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.234841</td>
+      <td>37.765250</td>
+      <td>Edison Elementary</td>
+      <td>2700 Buena Vista Ave</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>927</td>
+      <td>Public</td>
+      <td>POINT (-122.23484 37.76525)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.238078</td>
+      <td>37.753964</td>
+      <td>Frank Otis Elementary</td>
+      <td>3010 Fillmore St</td>
+      <td>Alameda</td>
+      <td>CA</td>
+      <td>ES</td>
+      <td>894</td>
+      <td>Public</td>
+      <td>POINT (-122.23808 37.75396)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You’ll notice that the shape is the same from what we had as a dataframe, just with the added <code class="docutils literal notranslate"><span class="pre">geometry</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(550, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>And with it being a GeoDataFrame, we can plot it as we did for our other data sets.
+Notice that we have our first <strong>point</strong> geometry GeoDataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_27_1.png" src="../_images/04_More_Data_More_Maps-Copy1_27_1.png" />
+</div>
+</div>
+<p>But of course we’ll want to transform the CRS, so that we can later plot it with our bike boulevard data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_gdf_utm10</span> <span class="o">=</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+<span class="n">schools_gdf_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_29_1.png" src="../_images/04_More_Data_More_Maps-Copy1_29_1.png" />
+</div>
+</div>
+<p><em>In Lesson 2 we discussed that you can save out GeoDataFrames in multiple file formats. You could opt for a GeoJSON, a shapefile, etc… for point data sets it is also an option to save it out as a CSV since the geometry isn’t complicated</em></p>
+</div>
+<div class="section" id="exercise-even-more-data">
+<h2>Exercise: Even More Data!<a class="headerlink" href="#exercise-even-more-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s play around with another point GeoDataFrame.</p>
+<p>In the code cell provided below, compose code to:</p>
+<ol class="simple">
+<li><p>Read in the parcel points data (<code class="docutils literal notranslate"><span class="pre">notebook_data/parcels/parcel_pts_rand30pct.geojson</span></code>)</p></li>
+<li><p>Set the CRS to be 4326</p></li>
+<li><p>Transform the CRS to 26910</p></li>
+<li><p>Plot and customize as desired!</p></li>
+</ol>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h2>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION
+# 1. Read in the parcel points data ('notebook_data/parcels/parcel_pts_rand30pct.geojson')
+parcel_pts_gdf = gpd.read_file('notebook_data/parcels/parcel_pts_rand30pct.geojson')
+parcel_pts_gdf.head()
+# 2. Transform CRS to EPSG code 4326 if need be
+parcel_pts_gdf.crs
+parcel_pts_gdf.crs = "epsg:4326"
+parcel_pts_gdf_utm10 = parcel_pts_gdf.to_crs("epsg:26910")
+
+# 3. Plot and customize!
+parcel_pts_gdf.plot(markersize=5, color='violet', edgecolor='black',
+                          linewidth=0.5, alpha=0.3, figsize=[6,6])
+parcel_pts_gdf_utm10.plot(markersize=5, color='limegreen', edgecolor='black',
+                          linewidth=0.5, alpha=0.3, figsize=[6,6])
+
+-->
+</div>
+<hr class="docutils" />
+<div class="section" id="map-overlays-with-matplotlib">
+<h2>4.3 Map Overlays with Matplotlib<a class="headerlink" href="#map-overlays-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<p>No matter the geometry type we have for our GeoDataFrame, we can create overlay plots.</p>
+<p>Since we’ve already done the legwork of transforming our CRS, we can go ahead and plot them together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">schools_gdf_utm10</span> <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_35_1.png" src="../_images/04_More_Data_More_Maps-Copy1_35_1.png" />
+</div>
+</div>
+<p>If we want to answer questions like <em>“What schools are close to bike boulevards in Berkeley?”</em>, the above plot isn’t super helpful, since the extent covers all of Alameda county.</p>
+<p>Luckily, GeoDataFrames have an easy method to extract the minimium and maximum values for both x and y, so we can use that information to set the bounds for our plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">bike_blvds</span><span class="o">.</span><span class="n">total_bounds</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>561541.1531499997 4189007.11635 566451.5549499998 4193483.09445
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">xlim</span></code> and <code class="docutils literal notranslate"><span class="pre">ylim</span></code> we can zoom in to see if there are schools proximal to the bike boulevards.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">schools_gdf_utm10</span> <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">minx</span><span class="p">,</span> <span class="n">maxx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">miny</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4189007.11635, 4193483.09445)
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_39_1.png" src="../_images/04_More_Data_More_Maps-Copy1_39_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>4.4 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson we learned a several new skills:</p>
+<ul class="simple">
+<li><p>Transformed an a-spatial dataframe into a geospatial one</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpd.GeoDataFrame</span></code></p></li>
+</ul>
+</li>
+<li><p>Worked with point and line GeoDataFrames</p></li>
+<li><p>Overlayed point and line GeoDataFrames</p></li>
+<li><p>Limited the extent of a map</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_bounds</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="exercise-overlay-mapping">
+<h2>Exercise: Overlay Mapping<a class="headerlink" href="#exercise-overlay-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take some time to practice reading in and reconciling new datasets, then mapping them together.</p>
+<p>In the code cell provided below, write code to:</p>
+<ol class="simple">
+<li><p>Bring in your Berkeley places shapefile (and don’t forget to check/transform the crs!) (<code class="docutils literal notranslate"><span class="pre">notebook_data/berkeley/BerkeleyCityLimits.shp</span></code>)</p></li>
+<li><p>Overlay the parcel points on top of the bike boulevards</p></li>
+<li><p>Create the same plot but limit it to the extent of Berkeley city limits</p></li>
+</ol>
+<p><em><strong>BONUS</strong></em>: <em>Add the Berkeley outline to your last plot!</em></p>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-the-see-the-solution">
+<h2>Double-click the see the solution!<a class="headerlink" href="#double-click-the-see-the-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION
+
+# 1. Bring in your Berkeley places shapefile
+berkeley_places = gpd.read_file("notebook_data/berkeley/BerkeleyCityLimits.shp")
+berkeley_places.crs
+berkeley_places_utm10 = berkeley_places.to_crs("epsg:26910")
+
+# 2. Overlay the parcel points on top of the bike boulevards
+fig, ax = plt.subplots(figsize=(10,10))
+bike_blvds_utm10.plot(ax=ax, color='black')
+parcel_pts_gdf_utm10.plot(ax=ax, color='orange', markersize=5)
+
+# 3. Create the same plot but limit it to the extent of Berkeley cit limits
+minx, miny, maxx, maxy = berkeley_places_utm10.total_bounds
+fig, ax = plt.subplots(figsize=(10,10))
+bike_blvds_utm10.plot(ax=ax, color='black')
+parcel_pts_gdf_utm10.plot(ax=ax, color='orange', markersize=5)
+plt.xlim(minx, maxx)
+plt.ylim(miny, maxy)
+
+
+# BONUS: Add the Berkeley outline to your last plot
+fig, ax = plt.subplots(figsize=(10,10))
+berkeley_places_utm10.plot(ax=ax, color='grey')
+bike_blvds_utm10.plot(ax=ax, color='black')
+parcel_pts_gdf_utm10.plot(ax=ax, color='orange', markersize=5)
+plt.xlim(minx, maxx)
+plt.ylim(miny, maxy)
+
+-->
+</div>
+<hr class="docutils" />
+<div class="section" id="teaser-for-day-2">
+<h2>4.5 Teaser for Day 2…<a class="headerlink" href="#teaser-for-day-2" title="Permalink to this headline">¶</a></h2>
+<p>You may be wondering if and how we could make our maps more interesting and informative than this.</p>
+<p>To give you a tantalizing taste of Day 2, the answer is: Yes, we can! And here’s how!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">schools_gdf_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;Org&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;winter&#39;</span><span class="p">,</span> 
+                               <span class="n">markersize</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                               <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Public and Private Schools, Alameda County&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Public and Private Schools, Alameda County&#39;)
+</pre></div>
+</div>
+<img alt="../_images/04_More_Data_More_Maps-Copy1_45_1.png" src="../_images/04_More_Data_More_Maps-Copy1_45_1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env"
+        },
+        kernelOptions: {
+            kernelName: "geo_env",
+            path: "./ran"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

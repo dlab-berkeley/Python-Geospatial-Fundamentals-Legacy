@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 3. Coordinate Reference Systems (CRS) &amp; Map Projections &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 4. More Data, More Maps!" href="04_More_Data_More_Maps.html" />
+    <link rel="prev" title="Lesson 2. Introduction to Geopandas" href="02_Introduction_to_GeoPandas.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html">
+   Lesson 6. Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Spatial_Queries.html#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Lesson 7. Attribute and Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#data-input-and-prep">
+   7.0 Data Input and Prep
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#attribute-joins">
+   7.1 Attribute Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#spatial-joins">
+   7.2 Spatial Joins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#aggregation">
+   7.3: Aggregation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html#exercise-aggregation">
+   Exercise: Aggregation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   08. Pulling it all Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html#congrats-thanks-for-joining-us-for-geospatial-fundamentals">
+   Congrats!! Thanks for Joining Us for Geospatial Fundamentals!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Lesson 9. On Your Own: A Full Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#spatial-join">
+   9.3 Spatial Join
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html#you-re-done">
+   You’re done!!!!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   11. Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html#learning-more">
+   Learning More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/03_CRS_Map_Projections.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/03_CRS_Map_Projections.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-libraries">
+   Import Libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#california-county-shapefile">
+   3.1 California County shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usa-state-shapefile">
+   3.2 USA State shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-the-two-together">
+   3.3 Plot the two together
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coordinate-reference-systems-crs">
+   3.4 Coordinate Reference Systems (CRS)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-geographic-vs-projected-crs">
+     A Geographic vs Projected CRS
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#there-are-many-many-crss">
+       There are many, many CRSs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-are-crss-important">
+       Why are CRSs Important?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-you-need-to-know-when-working-with-crss">
+       What you need to know when working with CRSs
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#codes-for-crss-commonly-used-with-ca-data">
+     Codes for CRSs commonly used with CA data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#geographic-crss">
+       Geographic CRSs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#projected-crss">
+       Projected CRSs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-the-crs">
+   3.5 Getting the CRS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-the-crs-of-a-gdf">
+     Getting the CRS of a gdf
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-the-crs">
+   3.6 Setting the CRS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transforming-or-reprojecting-the-crs">
+   3.7 Transforming or Reprojecting the CRS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions">
+     Questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-states-and-counties-together">
+   3.8 Plotting states and counties together
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   3.9 Recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-crs-management">
+   Exercise: CRS Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#double-click-to-see-solution">
+   Double-click to see solution!
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-3-coordinate-reference-systems-crs-map-projections">
+<h1>Lesson 3. Coordinate Reference Systems (CRS) &amp; Map Projections<a class="headerlink" href="#lesson-3-coordinate-reference-systems-crs-map-projections" title="Permalink to this headline">¶</a></h1>
+<p>Building off of what we learned in the previous notebook, we’ll get to understand an integral aspect of geospatial data: Coordinate Reference Systems.</p>
+<ul class="simple">
+<li><p>3.1 California County Shapefile</p></li>
+<li><p>3.2 USA State Shapefile</p></li>
+<li><p>3.3 Plot the Two Together</p></li>
+<li><p>3.4 Coordinate Reference System (CRS)</p></li>
+<li><p>3.5 Getting the CRS</p></li>
+<li><p>3.6 Setting the CRS</p></li>
+<li><p>3.7 Transforming or Reprojecting the CRS</p></li>
+<li><p>3.8 Plotting States and Counties Togther</p></li>
+<li><p>3.9 Recap</p></li>
+<li><p><strong>Exercise</strong>: CRS Management</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/california_counties/CaliforniaCounties.shp’</p></li>
+<li><p>‘notebook_data/us_states/us_states.shp’</p></li>
+<li><p>‘notebook_data/census/Places/cb_2018_06_place_500k.zip’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 45 minutes</p></li>
+<li><p>Exercises: 10 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="import-libraries">
+<h2>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="california-county-shapefile">
+<h2>3.1 California County shapefile<a class="headerlink" href="#california-county-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>Let’s go ahead and bring back in our California County shapefile. As before, we can read the file in using <code class="docutils literal notranslate"><span class="pre">gpd.read_file</span></code> and plot it straight away.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/california_counties/CaliforniaCounties.shp&#39;</span><span class="p">)</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Even if we have an awesome map like this, sometimes we want to have more geographical context, or we just want additional information. We’re going to try <strong>overlaying</strong> our counties GeoDataFrame on our USA states shapefile.</p>
+</div>
+<div class="section" id="usa-state-shapefile">
+<h2>3.2 USA State shapefile<a class="headerlink" href="#usa-state-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>We’re going to bring in our states geodataframe, and let’s do the usual operations to start exploring our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in states shapefile</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/us_states/us_states.shp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the first few rows</span>
+<span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count how many rows and columns we have</span>
+<span class="n">states</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot our states data</span>
+<span class="n">states</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might have noticed that our plot extends beyond the 50 states (which we also saw when we executed the <code class="docutils literal notranslate"><span class="pre">shape</span></code> method). Let’s double check what states we have included in our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;STATE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Beyond the 50 states we seem to have American Samoa, Puerto Rico, Guam, Commonwealth of the Northern Mariana Islands, and United States Virgin Islands included in this geodataframe. To make our map cleaner, let’s limit the states to the contiguous states (so we’ll also exclude Alaska and Hawaii).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define list of non-contiguous states</span>
+<span class="n">non_contiguous_us</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;American Samoa&#39;</span><span class="p">,</span><span class="s1">&#39;Puerto Rico&#39;</span><span class="p">,</span><span class="s1">&#39;Guam&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Commonwealth of the Northern Mariana Islands&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;United States Virgin Islands&#39;</span><span class="p">,</span> <span class="s1">&#39;Alaska&#39;</span><span class="p">,</span><span class="s1">&#39;Hawaii&#39;</span><span class="p">]</span>
+<span class="c1"># Limit data according to above list</span>
+<span class="n">states_limited</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;STATE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">non_contiguous_us</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To prepare for our mapping overlay, let’s make our states a nice, light grey color.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_limited</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-the-two-together">
+<h2>3.3 Plot the two together<a class="headerlink" href="#plot-the-two-together" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have both geodataframes in our environment, we can plot both in the same figure.</p>
+<p><strong>NOTE</strong>: To do this, note that we’re getting a Matplotlib Axes object (<code class="docutils literal notranslate"><span class="pre">ax</span></code>), then explicitly adding each our layers to it
+by providing the <code class="docutils literal notranslate"><span class="pre">ax=ax</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh no, what happened here?</p>
+<p><img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="20" align=left >  <strong>Question</strong> Without looking ahead, what do you think happened?</p>
+<br>
+<br>
+If you look at the numbers we have on the x and y axes in our two plots, you'll see that the county data has much larger numbers than our states data. It's represented in some different type of unit other than decimal degrees! 
+<p>In fact, that means if we zoom in really close into our plot we’ll probably see the states data plotted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">140</span><span class="p">,</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a key issue that you’ll have to resolve time and time again when working with geospatial data!</p>
+<p>It all revolves around <strong>coordinate reference systems</strong> and <strong>projections</strong>.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="coordinate-reference-systems-crs">
+<h2>3.4 Coordinate Reference Systems (CRS)<a class="headerlink" href="#coordinate-reference-systems-crs" title="Permalink to this headline">¶</a></h2>
+<p><img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="20" align=left >  <strong>Question</strong> Do you have experience with Coordinate Reference Systems?</p>
+<p><br><br>As a refresher, a CRS describes how the coordinates in a geospatial dataset relate to locations on the surface of the earth.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">geographic</span> <span class="pre">CRS</span></code> consists of:</p>
+<ul class="simple">
+<li><p>a 3D model of the shape of the earth (a <strong>datum</strong>), approximated as a sphere or spheroid (aka ellipsoid)</p></li>
+<li><p>the <strong>units</strong> of the coordinate system (e.g, decimal degrees, meters, feet) and</p></li>
+<li><p>the <strong>origin</strong> (i.e. the 0,0 location), specified as the meeting of the <strong>equator</strong> and the <strong>prime meridian</strong>(</p></li>
+</ul>
+<p>A <code class="docutils literal notranslate"><span class="pre">projected</span> <span class="pre">CRS</span></code> consists of</p>
+<ul class="simple">
+<li><p>a geographic CRS</p></li>
+<li><p>a <strong>map projection</strong> and related parameters used to transform the geographic coordinates to <code class="docutils literal notranslate"><span class="pre">2D</span></code> space.</p>
+<ul>
+<li><p>a map projection is a mathematical model used to transform coordinate data</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="a-geographic-vs-projected-crs">
+<h3>A Geographic vs Projected CRS<a class="headerlink" href="#a-geographic-vs-projected-crs" title="Permalink to this headline">¶</a></h3>
+<img src ="assets/images/fig_create2.jpg" width="600"><div class="section" id="there-are-many-many-crss">
+<h4>There are many, many CRSs<a class="headerlink" href="#there-are-many-many-crss" title="Permalink to this headline">¶</a></h4>
+<p>Theoretically the number of CRSs is unlimited!</p>
+<p>Why? Primariy, because there are many different definitions of the shape of the earth, multiplied by many different ways to cast its surface into 2 dimensions. Our understanding of the earth’s shape and our ability to measure it has changed greatly over time.</p>
+</div>
+<div class="section" id="why-are-crss-important">
+<h4>Why are CRSs Important?<a class="headerlink" href="#why-are-crss-important" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>You need to know the data about your data (or <code class="docutils literal notranslate"><span class="pre">metadata</span></code>) to use it appropriately.</p></li>
+<li><p>All projected CRSs introduce distortion in shape, area, and/or distance. So understanding what CRS best maintains the characteristics you need for your area of interest and your analysis is important.</p></li>
+<li><p>Some analysis methods expect geospatial data to be in a projected CRS</p>
+<ul>
+<li><p>For example, <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> expects a geodataframe to be in a projected CRS for area or distance based analyses.</p></li>
+</ul>
+</li>
+<li><p>Some Python libraries, but not all, implement dynamic reprojection from the input CRS to the required CRS and assume a specific CRS (WGS84) when a CRS is not explicitly defined.</p></li>
+<li><p>Most Python spatial libraries, including Geopandas, require geospatial data to be in the same CRS if they are being analysed together.</p></li>
+</ul>
+</div>
+<div class="section" id="what-you-need-to-know-when-working-with-crss">
+<h4>What you need to know when working with CRSs<a class="headerlink" href="#what-you-need-to-know-when-working-with-crss" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>What CRSs used in your study area and their main characteristics</p></li>
+<li><p>How to identify, or <code class="docutils literal notranslate"><span class="pre">get</span></code>, the CRS of a geodataframe</p></li>
+<li><p>How to <code class="docutils literal notranslate"><span class="pre">set</span></code> the CRS of geodataframe (i.e. define the projection)</p></li>
+<li><p>Hot to <code class="docutils literal notranslate"><span class="pre">transform</span></code> the CRS of a geodataframe (i.e. reproject the data)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="codes-for-crss-commonly-used-with-ca-data">
+<h3>Codes for CRSs commonly used with CA data<a class="headerlink" href="#codes-for-crss-commonly-used-with-ca-data" title="Permalink to this headline">¶</a></h3>
+<p>CRSs are typically referenced by an <a class="reference external" href="http://wiki.gis.com/wiki/index.php/European_Petroleum_Survey_Group">EPSG code</a>.</p>
+<p>It’s important to know the commonly used CRSs and their EPSG codes for your geographic area of interest.</p>
+<p>For example, below is a list of commonly used CRSs for California geospatial data along with their EPSG codes.</p>
+<div class="section" id="geographic-crss">
+<h4>Geographic CRSs<a class="headerlink" href="#geographic-crss" title="Permalink to this headline">¶</a></h4>
+<p>-<code class="docutils literal notranslate"><span class="pre">4326:</span> <span class="pre">WGS84</span></code> (units decimal degrees) - the most commonly used geographic CRS</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">4269:</span> <span class="pre">NAD83</span></code> (units decimal degrees) - the geographic CRS customized to best fit the USA. This is used by all Census geographic data.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">NAD83</span> <span class="pre">(epsg:4269)</span></code> are approximately the same as <code class="docutils literal notranslate"><span class="pre">WGS84(epsg:4326)</span></code> although locations can differ by up to 1 meter in the continental USA and elsewhere up to 3m. That is not a big issue with census tract data as these data are only accurate within +/-7meters.</p>
+</div></blockquote>
+</div>
+<div class="section" id="projected-crss">
+<h4>Projected CRSs<a class="headerlink" href="#projected-crss" title="Permalink to this headline">¶</a></h4>
+<p>-<code class="docutils literal notranslate"><span class="pre">5070:</span> <span class="pre">CONUS</span> <span class="pre">NAD83</span></code> (units meters) projected CRS for mapping the entire contiguous USA (CONUS)</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">3857:</span> <span class="pre">Web</span> <span class="pre">Mercator</span></code> (units meters) conformal (shape preserving) CRS used as the default in web mapping</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">3310:</span> <span class="pre">CA</span> <span class="pre">Albers</span> <span class="pre">Equal</span> <span class="pre">Area,</span> <span class="pre">NAD83</span></code> (units meters)  projected CRS for CA statewide mapping and spatial analysis</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">26910:</span> <span class="pre">UTM</span> <span class="pre">Zone</span> <span class="pre">10N,</span> <span class="pre">NAD83</span></code> (units meters) projected CRS for northern CA mapping &amp; analysis</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">26911:</span> <span class="pre">UTM</span> <span class="pre">Zone</span> <span class="pre">11N,</span> <span class="pre">NAD83</span></code> (units meters) projected CRS for Southern CA mapping &amp; analysis</p>
+<p>-<code class="docutils literal notranslate"><span class="pre">102641</span> <span class="pre">to</span> <span class="pre">102646:</span> <span class="pre">CA</span> <span class="pre">State</span> <span class="pre">Plane</span> <span class="pre">zones</span> <span class="pre">1-6,</span> <span class="pre">NAD83</span></code> (units feet) projected CRS used for local analysis.</p>
+<p>You can find the full CRS details on the website <a class="reference external" href="https://www.spatialreference.org">https://www.spatialreference.org</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="getting-the-crs">
+<h2>3.5 Getting the CRS<a class="headerlink" href="#getting-the-crs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getting-the-crs-of-a-gdf">
+<h3>Getting the CRS of a gdf<a class="headerlink" href="#getting-the-crs-of-a-gdf" title="Permalink to this headline">¶</a></h3>
+<p>GeoPandas GeoDataFrames have a <code class="docutils literal notranslate"><span class="pre">crs</span></code> attribute that returns the CRS of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can clearly see from those two printouts (even if we don’t understand all the content!),
+the CRSs of our two datasets are different! <strong>This explains why we couldn’t overlay them correctly!</strong></p>
+<hr class="docutils" />
+<p>The above CRS definition specifies</p>
+<ul class="simple">
+<li><p>the name of the CRS (<code class="docutils literal notranslate"><span class="pre">WGS84</span></code>),</p></li>
+<li><p>the axis units (<code class="docutils literal notranslate"><span class="pre">degree</span></code>)</p></li>
+<li><p>the shape (<code class="docutils literal notranslate"><span class="pre">datum</span></code>),</p></li>
+<li><p>and the origin (<code class="docutils literal notranslate"><span class="pre">Prime</span> <span class="pre">Meridian</span></code>, and the equator)</p></li>
+<li><p>and the area for which it is best suited (<code class="docutils literal notranslate"><span class="pre">World</span></code>)</p></li>
+</ul>
+<blockquote>
+<div><p>Notes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geocentric</span></code> latitude and longitude assume a spherical (round) model of the shape of the earth</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geodetic</span></code> latitude and longitude assume a spheriodal (ellipsoidal) model, which is closer to the true shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geodesy</span></code> is the study of the shape of the earth.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>NOTE</strong>: If you print a <code class="docutils literal notranslate"><span class="pre">crs</span></code> call, Python will just display the EPSG code used to initiate the CRS object. Depending on your versions of Geopandas and its dependencies, this may or may not look different from what we just saw above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-the-crs">
+<h2>3.6 Setting the CRS<a class="headerlink" href="#setting-the-crs" title="Permalink to this headline">¶</a></h2>
+<p>You can also set the CRS of a gdf using the <code class="docutils literal notranslate"><span class="pre">crs</span></code> attribute.  You would set the CRS if is not defined or if you think it is incorrectly defined.</p>
+<blockquote>
+<div><p>In desktop GIS terminology setting the CRS is called <strong>defining the CRS</strong></p>
+</div></blockquote>
+<p>As an example, let’s set the CRS of our data to <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first set the CRS to None</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check it again</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>…hummm…</p>
+<p>If a variable has a null value (None) then displaying it without printing it won’t display anything!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check it again</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’ll set it back to its correct CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set it to 4326</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show it</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>NOTE</strong>: You can set the CRS to anything you like, but <strong>that doesn’t make it correct</strong>! This is because setting the CRS does not change the coordinate data; it just tells the software how to interpret it.</p>
+</div>
+<div class="section" id="transforming-or-reprojecting-the-crs">
+<h2>3.7 Transforming or Reprojecting the CRS<a class="headerlink" href="#transforming-or-reprojecting-the-crs" title="Permalink to this headline">¶</a></h2>
+<p>You can transform the CRS of a geodataframe with the <code class="docutils literal notranslate"><span class="pre">to_crs</span></code> method.</p>
+<blockquote>
+<div><p>In desktop GIS terminology transforming the CRS is called <strong>projecting the data</strong> (or <strong>reprojecting the data</strong>)</p>
+</div></blockquote>
+<p>When you do this you want to save the output to a new GeoDataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_limited_utm10</span> <span class="o">=</span> <span class="n">states_limited</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now take a look at the CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_limited_utm10</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see the result immediately by plotting the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot geographic gdf</span>
+<span class="n">states_limited</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">);</span>
+
+<span class="c1"># plot utm gdf</span>
+<span class="n">states_limited_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your thoughts here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>What two key differences do you see between the two plots above?</p></li>
+<li><p>Do either of these plotted USA maps look good?</p></li>
+<li><p>Try looking at the common CRS EPSG codes above and see if any of them look better for the whole country than what we have now. Then try transforming the states data to the CRS that you think would be best and plotting it. (Use the code cell two cells below.)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Double-click to see solution!</strong></p>
+<!--
+#SOLUTION 
+states_limited_conus = states_limited.to_crs("epsg:5070")
+states_limited_conus.plot();
+plt.axis('square')
+--></div>
+</div>
+<div class="section" id="plotting-states-and-counties-together">
+<h2>3.8 Plotting states and counties together<a class="headerlink" href="#plotting-states-and-counties-together" title="Permalink to this headline">¶</a></h2>
+<p>Now that we know what a CRS is and how we can set them, let’s convert our counties GeoDataFrame to match up with out states’ crs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert counties data to NAD83 </span>
+<span class="n">counties_utm10</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it together!</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">states_limited_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">counties_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we know that the best CRS to plot the contiguous US from the above question is 5070, let’s also transform and plot everything in that CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties_conus</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;epsg:5070&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">states_limited_conus</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">counties_conus</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>3.9 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson we learned about…</p>
+<ul class="simple">
+<li><p>Coordinate Reference Systems</p></li>
+<li><p>Getting the CRS of a geodataframe</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">crs</span></code></p></li>
+</ul>
+</li>
+<li><p>Transforming/repojecting CRS</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_crs</span></code></p></li>
+</ul>
+</li>
+<li><p>Overlaying maps</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-crs-management">
+<h2>Exercise: CRS Management<a class="headerlink" href="#exercise-crs-management" title="Permalink to this headline">¶</a></h2>
+<p>Now it’s time to take a crack and managing the CRS of a new dataset. In the code cell below, write code to:</p>
+<ol class="simple">
+<li><p>Bring in the CA places data (<code class="docutils literal notranslate"><span class="pre">notebook_data/census/Places/cb_2018_06_place_500k.zip</span></code>)</p></li>
+<li><p>Check if the CRS is EPSG code 26910. If not, transform the CRS</p></li>
+<li><p>Plot the California counties and places together.</p></li>
+</ol>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h2>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h2>
+<!--
+
+# SOLUTION
+
+# 1. Bring in the CA places data
+california_places = gpd.read_file('zip://notebook_data/census/Places/cb_2018_06_place_500k.zip')
+california_places.head()
+
+# 2. Check and transorm the CRS if needed
+california_places.crs
+california_places_utm10 = california_places.to_crs( "epsg:26910")
+
+# 3. Plot the California counties and places together
+fig, ax = plt.subplots(figsize=(10,10))
+counties_utm10.plot(color='lightgrey', ax=ax)
+california_places_utm10 .plot(color='purple',ax=ax)
+
+--><hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="02_Introduction_to_GeoPandas.html" title="previous page">Lesson 2. Introduction to Geopandas</a>
+    <a class='right-next' id="next-link" href="04_More_Data_More_Maps.html" title="next page">Lesson 4. More Data, More Maps!</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

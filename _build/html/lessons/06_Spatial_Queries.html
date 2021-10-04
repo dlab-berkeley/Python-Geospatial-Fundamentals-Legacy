@@ -1,0 +1,1087 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson 6. Spatial Queries &#8212; Geospatial Fundamentals in Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 7. Attribute and Spatial Joins" href="07_Joins_and_Aggregation.html" />
+    <link rel="prev" title="Lesson 4. More Data, More Maps!" href="04_More_Data_More_Maps.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dlab_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Geospatial Fundamentals in Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Geospatial Fundamentals in Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction to Geospatial Concepts
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Overview_Geospatial_Data.html">
+   Overview of Geospatial Data
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started with spatial dataframes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Introduction_to_GeoPandas.html">
+   Introduction to GeoPandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_CRS_Map_Projections.html">
+   Coordinate Reference Systems (CRS) &amp; Map Projections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_More_Data_More_Maps.html">
+   More Data, More Maps!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geoprocessing and analysis
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Spatial Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Joins_and_Aggregation.html">
+   Attribute and Spatial Joins
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Pulling_It_All_Together.html">
+   Pulling it All Together
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_ON_YOUR_OWN_A_Full_Workflow.html">
+   Another Full Workflow
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Fancy
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_OPTIONAL_Fetching_Data.html">
+   Read in Data from Online Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_OPTIONAL_Basemap_with_Contextily.html">
+   Adding Basemaps with Contextily
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_OPTIONAL_Interactive_Mapping_with_Folium.html">
+   Interactive Mapping with Folium
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_OPTIONAL_geocoding.html">
+   Geocoding Addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_OPTIONAL_Plotting_and_Mapping_with_Altair.html">
+   Plotting and Mapping with Altair
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_OPTIONAL_Voronoi_Tessellation.html">
+   Voronoi Tessellation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_OPTIONAL_Introduction_to_Raster_Data.html">
+   Introduction to Raster Data
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lessons/06_Spatial_Queries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dlab-berkeley/Geospatial-Fundamentals-in-Python/master?urlpath=tree/lessons/06_Spatial_Queries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-prep-some-data">
+   6.0 Load and prep some data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurement-queries">
+   6.1 Measurement Queries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question">
+     Question
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Question
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#relationship-queries">
+   6.2 Relationship Queries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-spatial-relationship-query">
+   Exercise: Spatial Relationship Query
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#double-click-to-see-solution">
+     Double-click to see solution!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proximity-analysis">
+   6.3 Proximity Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-proximity-analysis">
+   Exercise: Proximity Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Double-click to see solution!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   6.4 Recap
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-6-spatial-queries">
+<h1>Lesson 6. Spatial Queries<a class="headerlink" href="#lesson-6-spatial-queries" title="Permalink to this headline">¶</a></h1>
+<p>In spatial analysis, our goal is not just to make nice maps,
+but to actually run analyses that leverage the explicitly spatial
+nature of our data. The process of doing this is known as
+<strong>spatial analysis</strong>.</p>
+<p>To construct spatial analyses, we string together series of spatial
+operations in such a way that the end result answers our question of interest.
+There are many such spatial operations. These are known as <strong>spatial queries</strong>.</p>
+<ul class="simple">
+<li><p>6.0 Load and prep some data</p></li>
+<li><p>6.1 Measurement Queries</p></li>
+<li><p>6.2 Relationship Queries</p></li>
+<li><p><strong>Exercise</strong>: Spatial Relationship Query</p></li>
+<li><p>6.3 Proximity Analysis</p></li>
+<li><p><strong>Exercise</strong>: Proximity Analysis</p></li>
+<li><p>6.4 Recap</p></li>
+</ul>
+<br>
+<font color='grey'>
+    <b>Instructor Notes</b>
+<ul class="simple">
+<li><p>Datasets used</p>
+<ul>
+<li><p>‘notebook_data/census/Tracts/cb_2013_06_tract_500k.zip’</p></li>
+<li><p>‘notebook_data/protected_areas/CPAD_2020a_Units.shp’</p></li>
+<li><p>‘notebook_data/berkeley/BerkeleyCityLimits.shp’</p></li>
+<li><p>‘notebook_data/alco_schools.csv’</p></li>
+<li><p>‘notebook_data/transportation/BerkeleyBikeBlvds.geojson’</p></li>
+<li><p>‘notebook_data/transportation/bart.csv’</p></li>
+</ul>
+</li>
+<li><p>Expected time to complete</p>
+<ul>
+<li><p>Lecture + Questions: 45 minutes</p></li>
+<li><p>Exercises: 20 minutes
+</font></p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p>We will start by reviewing the most
+fundamental set, which we’ll refer to as <strong>spatial queries</strong>.
+These can be divided into:</p>
+<ul class="simple">
+<li><p><u>Measurement queries</u></p>
+<ul>
+<li><p>What is feature A’s <strong>length</strong>?</p></li>
+<li><p>What is feature A’s <strong>area</strong>?</p></li>
+<li><p>What is feature A’s <strong>perimeter</strong>?</p></li>
+<li><p>What is feature A’s <strong>distance</strong> from feature B?</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+<li><p><u>Relationship queries</u></p>
+<ul>
+<li><p>Is feature A <strong>within</strong> feature B?</p></li>
+<li><p>Does feature A <strong>intersect</strong> with feature B?</p></li>
+<li><p>Does feature A <strong>cross</strong> feature B?</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+</ul>
+<p>We’ll work through examples of each of those types of queries.</p>
+<p>Then we’ll see an example of a very common spatial analysis that
+is a conceptual amalgam of those two types: <strong>proximity analysis</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># base python plotting library</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># submodule of matplotlib</span>
+
+<span class="c1"># To display plots, maps, charts etc in the notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="load-and-prep-some-data">
+<h2>6.0 Load and prep some data<a class="headerlink" href="#load-and-prep-some-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s read in our census tracts data again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://notebook_data/census/Tracts/cb_2013_06_tract_500k.zip&quot;</span><span class="p">)</span>
+<span class="n">census_tracts</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we’ll grab just the Alameda Country tracts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac</span> <span class="o">=</span> <span class="n">census_tracts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">census_tracts</span><span class="p">[</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;001&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">census_tracts_ac</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="measurement-queries">
+<h2>6.1 Measurement Queries<a class="headerlink" href="#measurement-queries" title="Permalink to this headline">¶</a></h2>
+<p>We’ll start off with some simple measurement queries.</p>
+<p>For example, here’s how we can get the areas of each of our census tracts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay!</p>
+<p>We got…</p>
+<p>numbers!</p>
+<p>…?</p>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+</div>
+<ol class="simple">
+<li><p>What do those numbers mean?</p></li>
+<li><p>What are our units?</p></li>
+<li><p>And if we’re not sure, how might be find out?</p></li>
+</ol>
+<p>Let’s take a look at our CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ah-hah! We’re working in an unprojected CRS, with units of decimal degrees.</p>
+<p><strong>When doing spatial analysis, we will almost always want to work in a projected CRS
+that has natural distance units, such as meters!</strong></p>
+<p>Time to project!</p>
+<p>(As previously, we’ll use UTM Zone 10N with a NAD83 data.
+This is a good choice for our region of interest.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span> <span class="o">=</span> <span class="n">census_tracts_ac</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s try our area calculation again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That looks much more reasonable!</p>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+</div>
+<div class="section" id="question">
+<h3>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>What are our units now?</p>
+<p>You may have noticed that our census tracts already have an area column in them.</p>
+<p>Let’s do a sanity check on our results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the area for the 0th feature</span>
+<span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">area</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the area for the 0th feature according to its &#39;ALAND&#39; attribute</span>
+<span class="n">census_tracts</span><span class="p">[</span><span class="s1">&#39;ALAND&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check equivalence of the calculated areas and the &#39;ALAND&#39; column</span>
+<span class="n">census_tracts_ac_utm10</span><span class="p">[</span><span class="s1">&#39;ALAND&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+    <img src="http://www.pngall.com/wp-content/uploads/2016/03/Light-Bulb-Free-PNG-Image.png" width="30" align=left > 
+</div>  
+<div style="display:inline-block;">
+</div>
+<div class="section" id="id1">
+<h3>Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>What explains this disagreement? Are the calculated areas incorrect?</p>
+<p>We can also sum the area for Alameda county by adding <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> to the end of our area calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can actually look up how large Alameda County is to check our work.The county is 739 miles<sup>2</sup>, which is around 1,914,001,213 meters<sup>2</sup>. I’d say we’re pretty close!</p>
+<p>As it turns out, we can similarly use another attribute
+to get the features’ lengths.</p>
+<p><strong>NOTE</strong>: In this case, given we’re
+dealing with polygons, this is equivalent to getting the features’ perimeters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">length</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="relationship-queries">
+<h2>6.2 Relationship Queries<a class="headerlink" href="#relationship-queries" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Spatial_relation">Spatial relationship queries</a> consider how two geometries or sets of geometries relate to one another in space.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/TopologicSpatialRelarions2.png" height="300px"></img></p>
+<p>Here is a list of the most commonly used GeoPandas methods to test spatial relationships.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://geopandas.org/reference.html?highlight=distance#geopandas.GeoSeries.within">within</a></p></li>
+<li><p><a class="reference external" href="http://geopandas.org/reference.html?highlight=distance#geopandas.GeoSeries.contains">contains</a> (the inverse of <code class="docutils literal notranslate"><span class="pre">within</span></code>)</p></li>
+<li><p><a class="reference external" href="http://geopandas.org/reference.html?highlight=distance#geopandas.GeoSeries.intersects">intersects</a></p></li>
+</ul>
+<br>
+There several other GeoPandas spatial relationship predicates but they are more complex to properly employ. For example the following two operations only work with geometries that are completely aligned.
+<ul class="simple">
+<li><p><a class="reference external" href="http://geopandas.org/reference.html?highlight=distance#geopandas.GeoSeries.touches">touches</a></p></li>
+<li><p><a class="reference external" href="http://geopandas.org/reference.html?highlight=distance#geopandas.GeoSeries.equals">equals</a></p></li>
+</ul>
+<p>All of these methods takes the form:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Geoseries.&lt;predicate&gt;(geometry)
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Geoseries.contains(geometry)
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Let’s load a new dataset to demonstrate these queries.</p>
+<p>This is a dataset containing all the protected areas (parks and the like) in California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./notebook_data/protected_areas/CPAD_2020a_Units.shp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Does this need to be reprojected too?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yes it does!</p>
+<p>Let’s reproject it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas_utm10</span> <span class="o">=</span> <span class="n">pas</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One common use for spatial queries is for spatial subsetting of data.</p>
+<p>In our case, lets use <strong>intersects</strong> to
+find all of the parks that have land in Alameda County.</p>
+<p>But before we do that, let’s take another look at our geometries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because we nave census tracts, each of these rows is either a Polygon or a MultiPolygon. For our relationship query we can actually simplify our geometry to be one polygon by using <code class="docutils literal notranslate"><span class="pre">unary_union</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can go ahead and conduct our operation <code class="docutils literal notranslate"><span class="pre">intersects</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas_in_ac</span> <span class="o">=</span> <span class="n">pas_utm10</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we scroll the resulting GeoDataFrame to the right we’ll see that
+the <code class="docutils literal notranslate"><span class="pre">COUNTY</span></code> column of our resulting subset gives us a good sanity check on our results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas_in_ac</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pas_utm10</span><span class="p">[</span><span class="n">pas_in_ac</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So does this overlay plot!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">census_tracts_ac_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">])</span>
+<span class="n">pas_utm10</span><span class="p">[</span><span class="n">pas_in_ac</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;ACRES&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;summer&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                          <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;acres&quot;</span><span class="p">,</span>
+                                       <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Protected areas in Alameda County, colored by area&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># color by county?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-spatial-relationship-query">
+<h2>Exercise: Spatial Relationship Query<a class="headerlink" href="#exercise-spatial-relationship-query" title="Permalink to this headline">¶</a></h2>
+<p>Let’s use a spatial relationship query to create a new dataset containing Berkeley schools!</p>
+<p>Run the next two cells to load datasets containing Berkeley’s city boundary and Alameda County’s
+schools and to reproject them to EPSG: 26910.</p>
+<p>Then in the following cell, write your own code to:</p>
+<ol class="simple">
+<li><p>subset the schools for only those <code class="docutils literal notranslate"><span class="pre">within</span></code> Berkeley</p></li>
+<li><p>plot the Berkeley boundary and then the schools as an overlay map</p></li>
+</ol>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the Berkeley boundary</span>
+<span class="n">berkeley</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;notebook_data/berkeley/BerkeleyCityLimits.shp&quot;</span><span class="p">)</span>
+
+<span class="c1"># transform to EPSG:26910</span>
+<span class="n">berkeley_utm10</span> <span class="o">=</span> <span class="n">berkeley</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+
+<span class="c1"># display</span>
+<span class="n">berkeley_utm10</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the Alameda County schools CSV</span>
+<span class="n">schools_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;notebook_data/alco_schools.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># coerce it to a GeoDataFrame</span>
+<span class="n">schools_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">schools_df</span><span class="p">,</span> 
+                               <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">schools_df</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">schools_df</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="c1"># define its unprojected (EPSG:4326) CRS</span>
+<span class="n">schools_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+
+<span class="c1"># transform to EPSG:26910</span>
+<span class="n">schools_gdf_utm10</span> <span class="o">=</span> <span class="n">schools_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+
+<span class="c1"># display</span>
+<span class="n">schools_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="double-click-to-see-solution">
+<h3>Double-click to see solution!<a class="headerlink" href="#double-click-to-see-solution" title="Permalink to this headline">¶</a></h3>
+<!--
+
+# SOLUTION:
+
+# get the boolean Series indicating which schools are in Berkeley
+schools_in_berkeley = schools_gdf_utm10.within(berkeley_utm10.geometry.squeeze())
+
+# use that series to subset the schools for only those that are in Berkeley
+berkeley_schools = schools_gdf_utm10[schools_in_berkeley]
+
+# create a fig with one Axes object
+fig, ax = plt.subplots(figsize=(10,10))
+# plot the Berkeley border on those Axes
+berkeley_utm10.plot(color='lightgrey', ax=ax)
+# add the Berkeley schools to those Axes
+berkeley_schools.plot(color='purple',ax=ax)
+
+-->
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="proximity-analysis">
+<h2>6.3 Proximity Analysis<a class="headerlink" href="#proximity-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve seen the basic idea of spatial measurement and relationship queries,
+let’s take a look at a common analysis that combines those concepts: <strong>promximity analysis</strong>.</p>
+<p>Proximity analysis seeks to identify all features in a focal feature set
+that are within some maximum distance of features in a reference feature set.</p>
+<p>A common workflow for this analysis is:</p>
+<ol class="simple">
+<li><p>Buffer (i.e. add a margin around) the reference dataset, out to the maximum distance.</p></li>
+<li><p>Run a spatial relationship query to find all focal features that intersect (or are within) the buffer.</p></li>
+</ol>
+<hr class="docutils" />
+<p>Let’s read in our bike boulevard data again.</p>
+<p>Then we’ll find out which of our Berkeley schools are within a block’s distance (200 m) of the boulevards.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;notebook_data/transportation/BerkeleyBikeBlvds.geojson&#39;</span><span class="p">)</span>
+<span class="n">bike_blvds</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, we need to reproject the boulevards to our projected CRS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_utm10</span> <span class="o">=</span> <span class="n">bike_blvds</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can create our 200 meter bike boulevard buffers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_buf</span> <span class="o">=</span> <span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">distance</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bike_blvds_buf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s overlay everything.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">berkeley_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">bike_blvds_buf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">berkeley_schools</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great! Looks like we’re all ready to run our intersection to complete the proximity analysis.</p>
+<p><strong>NOTE</strong>: In order to subset with our buffers we need to call the <code class="docutils literal notranslate"><span class="pre">unary_union</span></code> attribute of the buffer object.
+This gives us a single unified polygon, rather than a series of multipolygons representing buffers around each of the points in our multilines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schools_near_blvds</span> <span class="o">=</span> <span class="n">berkeley_schools</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">bike_blvds_buf</span><span class="o">.</span><span class="n">unary_union</span><span class="p">)</span>
+<span class="n">blvd_schools</span> <span class="o">=</span> <span class="n">berkeley_schools</span><span class="p">[</span><span class="n">schools_near_blvds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s overlay again, to see if the schools we subsetted make sense.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">berkeley_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">bike_blvds_buf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">berkeley_schools</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">blvd_schools</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to find the shortest distance from one school to the bike boulevards, we can use the <code class="docutils literal notranslate"><span class="pre">distance</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley_schools</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">bike_blvds_utm10</span><span class="o">.</span><span class="n">unary_union</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-proximity-analysis">
+<h2>Exercise: Proximity Analysis<a class="headerlink" href="#exercise-proximity-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Now it’s your turn to try out a proximity analysis!</p>
+<p>Run the next cell to load our BART-system data, reproject it to EPSG: 26910, and subset it to Berkeley.</p>
+<p>Then in the following cell, write your own code to find all schools within walking distance (1 km) of a BART station.</p>
+<p>As a reminder, let’s break this into steps:</p>
+<ol class="simple">
+<li><p>buffer your Berkeley BART stations to 1 km (<strong>HINT</strong>: remember your units!)</p></li>
+<li><p>use the schools’ <code class="docutils literal notranslate"><span class="pre">within</span></code> attribute to check whether or not they’re within the buffers (<strong>HINT</strong>: don’t forget the <code class="docutils literal notranslate"><span class="pre">unary_union</span></code>!)</p></li>
+<li><p>subset the Berkeley schools using the object returned by your spatial relationship query</p></li>
+<li><p>as always, plot your results for a good visual check!</p></li>
+</ol>
+<p>To see the solution, double-click the Markdown cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the BART stations from CSV</span>
+<span class="n">bart_stations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;notebook_data/transportation/bart.csv&#39;</span><span class="p">)</span>
+<span class="c1"># coerce to a GeoDataFrame</span>
+<span class="n">bart_stations_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">bart_stations</span><span class="p">,</span> 
+                               <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">bart_stations</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">bart_stations</span><span class="o">.</span><span class="n">lat</span><span class="p">))</span>
+<span class="c1"># define its unprojected (EPSG:4326) CRS</span>
+<span class="n">bart_stations_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+<span class="c1"># transform to UTM Zone 10 N (EPSG:26910)</span>
+<span class="n">bart_stations_gdf_utm10</span> <span class="o">=</span> <span class="n">bart_stations_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span> <span class="s2">&quot;epsg:26910&quot;</span><span class="p">)</span>
+<span class="c1"># subset to Berkeley</span>
+<span class="n">berkeley_bart</span> <span class="o">=</span> <span class="n">bart_stations_gdf_utm10</span><span class="p">[</span><span class="n">bart_stations_gdf_utm10</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">berkeley_utm10</span><span class="o">.</span><span class="n">unary_union</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Double-click to see solution!<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<!--
+
+# SOLUTION
+
+# buffer the BART stations to 1 km
+bart_buf = berkeley_bart.buffer(distance=1000)
+# check whether or not each school is within a buffer
+schools_near_bart = berkeley_schools.within(bart_buf.unary_union)
+# subset the schools using the boolean Series you just produced
+bart_schools = berkeley_schools[schools_near_bart]
+
+# create a fig with one Axes object
+fig, ax = plt.subplots(figsize=(10,10))
+# plot the Berkeley boundary (for reference)
+berkeley_utm10.plot(color='lightgrey', ax=ax)
+# plot the BART stations (for reference)
+berkeley_bart.plot(color='green', ax=ax)
+# add the BART buffers (for check)
+bart_buf.plot(color='lightgreen', ax=ax, alpha=0.5)
+# add all Berkeley schools (for reference)
+berkeley_schools.plot(ax=ax)
+# add the schools near BART (for check)
+bart_schools.plot(color='yellow', markersize=50, ax=ax)
+
+-->
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="recap">
+<h2>6.4 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Leveraging what we’ve learned in our earlier lessons, we got to work with map overlays and start answering questions related to proximity. Key concepts include:</p>
+<ul class="simple">
+<li><p>Measuring area and length</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.area</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.length</span></code></p></li>
+</ul>
+</li>
+<li><p>Relationship Queries</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.intersects()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.within()</span></code></p></li>
+</ul>
+</li>
+<li><p>Buffer analysis</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.buffer()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.distance()</span></code></p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<div style="display:inline-block;vertical-align:middle;">
+<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
+</a>
+</div>
+<div style="display:inline-block;vertical-align:middle;">
+    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
+    <div>&nbsp;Team Geo<div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env2"
+        },
+        kernelOptions: {
+            kernelName: "geo_env2",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env2'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="04_More_Data_More_Maps.html" title="previous page">Lesson 4. More Data, More Maps!</a>
+    <a class='right-next' id="next-link" href="07_Joins_and_Aggregation.html" title="next page">Lesson 7. Attribute and Spatial Joins</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hikari Murayama, Drew Hart, Patty Frontiera<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
