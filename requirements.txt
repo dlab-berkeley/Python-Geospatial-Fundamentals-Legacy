@@ -1,6 +1,6 @@
 geopandas==0.3.0
 matplotlib==2.2.3
-numpy==1.14.5
+numpy==1.22.0
 pandas==0.23.4
-numpy==1.14.5
+numpy==1.22.0
 shapely==1.6.4
