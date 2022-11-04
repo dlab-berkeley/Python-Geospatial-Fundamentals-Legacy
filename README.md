@@ -1,116 +1,136 @@
-# Geospatial Data and Mapping in Python
+# D-Lab Python Geospatial Fundamentals Workshop
 
-## Overview
-
-Geospatial data are an important component of data visualization and analysis in the social sciences, humanities, and elsewhere. The Python programming language is a great platform for exploring these data and integrating them into your research. 
-
-### Geospatial Data and Mapping in Python, Part 1: Getting started with spatial dataframes
-
-Part one of this two-part workshop series will introduce basic methods for working with geospatial data in Python using the [GeoPandas library](https://geopandas.org). Participants will learn how to import and export spatial data and store them as GeoPandas GeoDataFrames (or spatial dataframes). We will explore and compare several methods for mapping the data including the GeoPandas plot function and the matplotlib library. We will review coordinate reference systems and methods for reading, defining and transforming these. Note, this workshop focuses on vector spatial data.
-
-### Geospatial Data and Mapping in Python, Part 2: Geoprocessing and analysis
-
-Part two of this two-part workshop series will dive deeper into data driven mapping in Python, using color palettes and data classification to communicate information with maps. We will also introduce basic methods for processing spatial data, which are the building blocks of common spatial analysis workflows. Note, this workshop focuses on vector spatial data.
+[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Geospatial-Fundamentals&urlpath=tree%2FPython-Geospatial-Fundamentals%2F&branch=main)
+ [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Geospatial-Fundamentals/HEAD)
 
 
-###  Pre-requisites
+This repository contains the materials for D-Lab's Python Text Analysis. Prior
+experience with Python Fundamentals and Python Data Wrangling is assumed.
+## Workshop Goals
 
-#### Knowledge Requirements
-You'll probably get the most out of this workshop if you have a basic foundation in Python and Pandas, similar to what you would have from taking the D-Lab Python Fundamentals workshop series. Here are a couple of suggestions for materials to check-out prior to the workshop.
+Geospatial data are an important component of data visualization and analysis in
+the social sciences, humanities, and elsewhere. The Python programming language
+is a great platform for exploring these data and integrating them into your
+research. 
 
-`D-Lab Workshops`:
- - [Python Fundamentals](https://github.com/dlab-berkeley/python-fundamentals)
- - [Pandas](https://github.com/dlab-berkeley/introduction-to-pandas)
+This workshop is divided in two parts:
 
-`Other`:
- - [Learn Python on Kaggle](https://www.kaggle.com/learn/python)
- - [Programming in Python - Software Carpentry](http://swcarpentry.github.io/python-novice-inflammation/)
- - [Learn Pandas on Kaggle](https://www.kaggle.com/learn/pandas)
- - [Plotting in Python - Software Carpentry](http://swcarpentry.github.io/python-novice-gapminder/)
-: Basic knowledge of geospatial data is expected. R experience equivalent to the D-Lab R Fundamentals workshop series is required to follow along with the tutorial. Knowledge of ggplot helpful.
+* **Part 1: Getting started with spatial dataframes.** Part one of this two-part
+  workshop series will introduce basic methods for working with geospatial data
+  in Python using the [GeoPandas library](https://geopandas.org). Participants
+  will learn how to import and export spatial data and store them as GeoPandas
+  GeoDataFrames (or spatial dataframes). We will explore and compare several
+  methods for mapping the data including the GeoPandas plot function and the
+  matplotlib library. We will review coordinate reference systems and methods
+  for reading, defining and transforming these. Note that this workshop focuses
+  on vector spatial data.
+* **Part 2: Geoprocessing and analysis.** In Part 2, we dive deeper into data
+  driven mapping in Python, using color palettes and data classification to
+  communicate information with maps. We will also introduce basic methods for
+  processing spatial data, which are the building blocks of common spatial
+  analysis workflows.
 
-#### Technology Requirements: 
+## Installation Instructions
 
-Bring a laptop with Python and the following packages installed: pandas, geopandas, matplotlib, descartes and dependencies. More details are provided on the workshop github page https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-Python).
+Anaconda is a useful package management software that allows you to run Python
+and Jupyter notebooks very easily. Installing Anaconda is the easiest way to
+make sure you have all the necessary software to run the materials for this
+workshop. Complete the following steps:
 
+1. [Download and install Anaconda (Python 3.8
+   distribution)](https://www.anaconda.com/products/individual). Click
+   "Download" and then click 64-bit "Graphical Installer" for your current
+   operating system.
 
-## 1.0 Python and Jupyter Notebook installation 
+2. Download the [Python-Geospatial-Fundamentals workshop
+   materials](https://github.com/dlab-berkeley/Python-Geospatial-Fundamentals):
 
-There are many ways to install python and python libraries, distributed as packages, on your computer. Here is one way that we recommend.
+* Click the green "Code" button in the top right of the repository information.
+* Click "Download Zip".
+* Extract this file to a folder on your computer where you can easily access it
+  (we recommend Desktop).
 
+3. Optional: if you're familiar with `git`, you can instead clone this
+   repository by opening a terminal and entering `git clone
+   git@github.com:dlab-berkeley/Python-Geospatial-Fundamentals.git`.
 
-* Anaconda installs IDEs and several important packages like NumPy, Pandas, and so on, and this is a really convenient package which can be downloaded and installed.
+## Run the code
 
-Anaconda is a free and open-source distribution of Python. Anaconda installs IDEs (integrated development environments, aka where you can write and run code) and several important packages like NumPy and Pandas, making it a really convenient package to use.
+Now that you have all the required software and materials, you need to run the
+code:
 
-### 1.1 Download Anaconda:
+1. Open the Anaconda Navigator application. You should see the green snake logo
+   appear on your screen. Note that this can take a few minutes to load up the
+   first time. 
 
-Follow this link to download Anaconda: https://www.anaconda.com/distribution. The same link can be used for Mac, Windows, and Linux. 
+2. Click the "Launch" button under "Jupyter Notebooks" and navigate through your
+   file system to the `Python-Geospatial-Fundamentals` folder you downloaded
+   above.
 
+3. Go to the `lessons` folder and find the notebook corresponding to the
+   workshop you are attending.
 
-We recommend downloading the latest version, which will be Python 3.
-<img src="assets/images/anaconda_download_instructions.png" width="650">
-    
-Open the .exe file that was downloaded and follow the instructions in the installation wizard prompt.
+4. Press Shift + Enter (or Ctrl + Enter) to run a cell.
 
-### 1.2 Launch Anaconda and open a Jupyter Notebook
+5. You will need to install additional packages depending on which workshop you
+   are attending.
 
-Once installation is complete open Anaconda Navigator and launch Jupyter Notebook. 
+Note that all of the above steps can be run from the terminal, if you're
+familiar with how to interact with Anaconda in that fashion. However, using
+Anaconda Navigator is the easiest way to get started if this is your first time
+working with Anaconda.
 
-> <img src="assets/images/anaconda_navigator_launch.png" width="650">
+## Is Python not working on your laptop? 
 
-Jupyter Notebook will open in your web browser (it does not require internet to work). In Jupyter, navigate to the folder where you saved the code file you plan to use and open the .ipynb file (the extension for Jupyter Notebook files written in Python) to view it in the Notebook.
+If you do not have Anaconda installed and the materials loaded on your workshop
+by the time it starts, we *strongly* recommend using the UC Berkeley Datahub to
+run the materials for these lessons. You can access the DataHub by clicking the
+following button:
 
-## 2.0 Installing Geopandas
+[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Geospatial-Fundamentals&urlpath=tree%2FPython-Geospatial-Fundamentals%2F&branch=main)
 
-- From within Anaconda Navigator click on the `Environments` selection in the left sidebar menu
+The DataHub downloads this repository, along with any necessary packages, and
+allows you to run the materials in a Jupyter notebook that is stored on UC
+Berkeley's servers. No installation is necessary from your end - you only need
+an internet browser and a CalNet ID to log in. By using the DataHub, you can
+save your work and come back to it at any time. When you want to return to your
+saved work, just go straight to [DataHub](https://datahub.berkeley.edu), sign
+in, and you click on the `Python-Geospatial-Fundamentals` folder.
 
-> <img src="assets/images/anaconda1_navigator_home.png" width="650">
+If you don't have a Berkeley CalNet ID, you can still run these lessons in the
+cloud, by clicking this button:
 
-- Click on the arrow to the right of your `base (root)` environment and select **Open Terminal** 
+[![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Geospatial-Fundamentals/HEAD)
 
-> <img src="assets/images/anaconda2_base_open_teriminal.png" width="650">
+By using this button, however, you cannot save your work.
 
-- This will give you access to the command line interface (CLI) on your computer in a window that looks like this:
+# About the UC Berkeley D-Lab
 
-> <img src="assets/images/anaconda3_the terminal.png" width="650">
+D-Lab works with Berkeley faculty, research staff, and students to advance data-intensive social science and humanities research. Our goal at D-Lab is to provide practical training, staff support, resources, and space to enable you to use R for your own research applications. Our services cater to all skill levels and no programming, statistical, or computer science backgrounds are necessary. We offer these services in the form of workshops, one-to-one consulting, and working groups that cover a variety of research topics, digital tools, and programming languages.  
 
-- Install some needed software by entering the following commands, one at a time:
+Visit the [D-Lab homepage](https://dlab.berkeley.edu/) to learn more about us. You can view our [calendar](https://dlab.berkeley.edu/events/calendar) for upcoming events, learn about how to utilize our [consulting](https://dlab.berkeley.edu/consulting) and [data](https://dlab.berkeley.edu/data) services, and check out upcoming [workshops](https://dlab.berkeley.edu/events/workshops).
 
-```
-conda install python=3 geopandas
-conda install juypter
-conda install matplotlib
-conda install descartes
-conda install mapclassify
-conda install contextily
-```
-Once you have those libraries all installed you will be able to go to Anaconda Navigator, launch a `Jupyter Notebook`, navigate to the workshop files and run all of the notebooks.
+# Other D-Lab Python Workshops
 
+Here are other Python workshops offered by the D-Lab:
 
-*Optionally you can create a virtual environment In the terminal window, type the **conda** commands shown on the [GeoPandas website](https://geopandas.org/install.html#creating-a-new-environment) for installing Geopandas in a virtual environment. These are:*
+## Introductory Workshops
 
-````
-conda create -n geo_env
-conda activate geo_env
-conda config --env --add channels conda-forge
-conda config --env --set channel_priority strict
-conda install python=3 geopandas
-````
+* [Python Fundamentals](https://github.com/dlab-berkeley/Python-Fundamentals)
+* [Python Data Wrangling](https://github.com/dlab-berkeley/Python-Data-Wrangling)
+* [Python Data Visualization](https://github.com/dlab-berkeley/Python-Data-Visualization)
 
-*After creating your virtual environment, you can process and install the rest of your packages listed above. You will be able to select your `geo_env` in Anaconda Navigator.*
+## Advanced Workshops
 
+* [Python Web Scraping and APIs](https://github.com/dlab-berkeley/Python-Web-Scraping)
+* [Python Machine Learning](https://github.com/dlab-berkeley/Python-Machine-Learning)
+* [Python Text Analysis](https://github.com/dlab-berkeley/Python-Text-Analysis)
+* [Python Deep Learning](https://github.com/dlab-berkeley/Python-Deep-Learning)
 
+# Contributors
 
----
-<div style="display:inline-block;vertical-align:middle;">
-<a href="https://dlab.berkeley.edu/" target="_blank"><img src ="assets/images/dlab_logo.png" width="75" align="left">
-</a>
-</div>
-
-<div style="display:inline-block;vertical-align:middle;">
-    <div style="font-size:larger">&nbsp;D-Lab @ University of California - Berkeley</div>
-    <div>&nbsp;Team Geo<div>
-</div>
-      
+* [Hikari Murayama](https://github.com/hikari-murayama)
+* [Patty Fronteira](https://github.com/pattyf)
+* [Drew Terasaki Hart](https://github.com/erthward)
+* [Pratik Sachdeva](https://github.com/pssachdeva)
 
