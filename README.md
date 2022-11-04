@@ -1,7 +1,6 @@
 # D-Lab Python Geospatial Fundamentals Workshop
 
-[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Geospatial-Fundamentals&urlpath=tree%2FPython-Geospatial-Fundamentals%2F&branch=main)
- [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Geospatial-Fundamentals/HEAD)
+[![Datahub](https://img.shields.io/badge/open-slides-blueviolet)](https://docs.google.com/presentation/d/1vDWfqAVKhOMVBC6U-uussHo6Nk7Q33PQ5uQ9iTG2S8I/edit?usp=share_link) [![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Geospatial-Fundamentals&urlpath=tree%2FPython-Geospatial-Fundamentals%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Geospatial-Fundamentals/HEAD)
 
 
 This repository contains the materials for D-Lab's Python Text Analysis. Prior
